@@ -1,0 +1,25 @@
+/* miniprogram/pages/index/index.wxss */
+#home {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: red;
+  height: 300rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.content {
+  background-color: violet;
+  height: 300rpx;
+}
+
+.footer {
+  background-color: blue;
+  height: 300rpx;
+  /* width: 750 / wx.getSystemInfoSync().windowWidth * 20 rpx; */
+}
