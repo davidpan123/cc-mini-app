@@ -1,0 +1,133 @@
+/* pages/my/index.wxss */
+page{
+  height: 100%;
+}
+.container{
+  background-color: #f3f3f3;
+  justify-content: initial;
+}
+
+.address-pane {
+  width: 710rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  padding: 40rpx 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+.address-pane-left .address {
+  margin-top: 24rpx;
+}
+.address-pane-right {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: right;
+}
+.arrow {
+  width: 20rpx;
+  height: 20rpx;
+} 
+.arrow-right {
+  margin-left: 16rpx;
+}
+.order-container {
+  margin-top: 16rpx;
+  width: 710rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+}
+.good-logistics-pane, .good-money-pane {
+  padding: 10rpx 20rpx;
+}
+.good-detail-pane {
+  padding-left: 20rpx;
+  padding-right: 40rpx;
+  display: flex;
+}
+.good-img-pane {
+  padding: 30rpx 0;
+}
+.good-img {
+  width: 200rpx;
+  height: 200rpx;
+}
+.good-content {
+  width: 100%;
+  margin-left: 30rpx;
+  padding: 40rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.good-desc {
+  font-size: 20rpx;
+  color: #999999;
+  margin-top: 20rpx;
+}
+.good-monet-type {
+  font-size: 20rpx;
+  color: #ff91a5;
+}
+.good-momey-value {
+  font-size: 30rpx;
+  color: #ff91a5;
+}
+.good-count {
+  font-size: 24rpx;
+  color: #555555;
+  font-weight: 600;
+}
+.row-item {
+  height: 84rpx;
+}
+.msg-pane {
+  width: 600rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.msg-pane .input{
+  width: 550rpx;
+  direction: rtl;
+}
+.placeholder {
+  font-size: 24rpx;
+  color: #cccccc;
+}
+.footer {
+  width: 100%;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer-pane {
+  padding: 20rpx 20rpx 20rpx 30rpx;
+}
+
+.all-txt {
+  font-size: 30rpx;
+  color: #333333;
+}
+.money-value {
+  font-size: 30rpx;
+  color: #ff91a5;
+}
+.order-btn {
+  width: 220rpx;
+  height: 68rpx;
+  border-radius: 34rpx;
+  background-color: #cccccc;
+  text-align: center;
+  line-height: 68rpx;
+  color: #ffffff;
+}
+/* 添加地址后激活 */
+.order-btn-active {
+  background-color: #ff91a5;
+} 

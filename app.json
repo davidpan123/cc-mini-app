@@ -9,7 +9,8 @@
     "pages/order-list/index",
     "pages/refund/index",
     "pages/refund-detail/index",
-    "pages/my/index"
+    "pages/my/index",
+    "pages/confirm-order/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

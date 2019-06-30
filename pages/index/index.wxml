@@ -9,4 +9,5 @@
     <navigator url="/pages/refund/index?title=navigate" hover-class="navigator-hover">退款/取消   </navigator>
   <navigator url="/pages/refund-detail/index?title=navigate" hover-class="navigator-hover">退款详情</navigator>
    <navigator url="/pages/my/index?title=navigate" hover-class="navigator-hover">个人中心</navigator>
+     <navigator url="/pages/confirm-order/index?title=navigate" hover-class="navigator-hover">确认订单</navigator>
 </view>

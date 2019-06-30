@@ -1,0 +1,84 @@
+<!--pages/my/index.wxml-->
+<view class="container">
+  <view class="address-container">
+    <view class="address-pane">
+      <view class="address-pane-left">
+        <view class="person">
+          <view wx:if="{{hasAddress}}">
+            <text class="font-6-blod">收货人：{{'A先生'}}</text>
+            <text class="font-6-blod phone">{{'182****9010'}}</text>
+          </view>
+          <view wx:else>
+            <text class="font-6-blod">添加收货地址</text>
+          </view>
+        </view>
+        <view class="address">
+          <text class="font-6" wx:if="{{hasAddress}}">收货地址：{{'陕西省西安市丈八东路123号'}}</text> 
+          <text class="font-6" wx:else>填写您的收货地址和联系方式</text>
+        </view>
+      </view>
+      <view class="address-pane-right">
+        <image src="/images/icon_arrow_r.png" class="arrow"></image>
+      </view>
+    </view>
+  </view>
+  <view class="good-detail-pane order-container">
+    <view class='good-img-pane'>
+      <image src='/images/my/icon_order_shipped.png' class='good-img'></image>
+    </view>
+    <view class='good-content'>
+      <view class='good-content-top'>
+        <view class='good-title font-6'>卡美婚嫁系列-戒指</view>
+        <view class='good-desc'>25分;vs微瑕; H/白;</view>
+      </view>
+      <view class='good-content-bottom flex-row-between'>
+        <view>
+          <text class='good-monet-type'>￥</text>
+          <text class='good-momey-value'>32223.00</text>
+        </view>
+        <text class='good-count'>x1</text>
+      </view>
+    </view>
+  </view>
+  <view class="good-logistics-pane order-container">
+    <view class='row-item flex-row-between'>
+      <text class='font-9'>配送方式</text>
+      <view>
+        <text class="font-6">快递运输￥10.00</text>
+        <image src="/images/icon_arrow_r.png" class="arrow arrow-right"></image>
+      </view>
+    </view>
+    <view class='row-item flex-row-between'>
+      <text class='font-9'>留言</text>
+      <view class='msg-pane'>
+        <input name="msg" class="input font-6" type="text" placeholder="选填： 建议留言前先与卖家沟通确认" value="{{msg}}" placeholder-class="placeholder"/>
+        <image src="/images/icon_arrow_r.png" class="arrow arrow-right"></image>
+      </view>
+    </view>
+  </view>
+  <view class="good-money-pane order-container">
+    <view class='row-item flex-row-between'>
+      <text class='font-9'>商品总额</text>
+      <text class="font-6-blod font-size-24">￥35540.00</text>
+    </view>
+    <view class='row-item flex-row-between'>
+      <text class='font-9'>运费</text>
+      <text class="font-6-blod font-size-24">￥10.00</text>
+    </view>
+    <view class='row-item flex-row-between'>
+      <text class='font-9'>优惠活动</text>
+      <text class="font-6-theme-blod font-size-24">-￥2000.00</text>
+    </view>
+  </view>
+  <view class="footer">
+    <view class='footer-pane flex-row-between'>
+      <view class='money'>
+        <text class='all-txt'>合计:</text>
+        <text class='money-value'>￥33566.90</text>
+      </view>
+      <view>
+        <button class="order-btn">提交订单</button>  
+      </view>
+    </view>
+  </view>
+</view>
