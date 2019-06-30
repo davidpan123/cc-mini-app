@@ -1,0 +1,116 @@
+/* miniprogram/pages/login/login.wxss */
+page{
+    height: 100%;
+}
+.container{
+    background-color: #F2f2f2;
+    justify-content: initial;
+}
+
+.top-sec{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20rpx;
+}
+.top-sec .top-sec-pane {
+    padding: 40rpx 20rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+}
+.top-sec .a-row{
+    display: flex;
+    font-size: 24rpx;
+    line-height: 54rpx;
+    color: #666666;
+}
+.top-sec .a-row .label{
+    color: #333;
+    margin-right: 28rpx;
+}
+.next {
+  padding: 20rpx 0;
+}
+.money-label {
+  color: #333;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+.money-value {
+  color: #ff91a5;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.refund-pane{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.refund-process-pane {
+  background-color: #fff;
+  border-radius: 15rpx;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  height: 200rpx;
+  position: relative;
+}
+
+.dot-pane {
+  display: flex;
+  padding: 44rpx 90rpx;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 4;
+}
+.dot-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.date-box {
+    color:#999;
+    margin-top: 12rpx;
+    font-size: 24rpx;
+}
+.info .text{
+    color: #666;
+    margin-top: 30rpx;
+    font-size: 24rpx;
+}
+.dot{
+    width: 30rpx;
+    height: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.default-dot{
+    background:#dcdcdc;
+    width:20rpx;
+    height:20rpx;
+    border-radius:100%;
+}
+/* .refuse-active-dot{
+    background:#ffaab9;
+    width:20rpx;
+    height:20rpx;
+    border-radius:50%;
+} */
+.active-dot{
+    background:#acd596;
+    width:20rpx;
+    height:20rpx;
+    border-radius:50%;
+}
+.line-box{
+    position: absolute;
+    top:54rpx;
+    left: 108rpx;
+    right: 108rpx;
+    background:#dcdcdc;
+    height:2rpx;
+}

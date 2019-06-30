@@ -2,16 +2,16 @@
     <view class="top-sec">
         <view class="top-sec-pane">
             <view class="a-row">
-            <view class="label">运单号</view>
+            <view class="label">运单号:</view>
             <view class="text">{{orderDetail.logistics.trackingNumber}}</view>
           </view>
-          <view class="a-row">
-              <view class="label">承运公司</view>
+          <view class="a-row next">
+              <view class="label">承运公司:</view>
               <view class="text">{{orderDetail.logistics.shipperName}}</view>
           </view>
            <view class="a-row">
-              <view class="label">承运公司电话</view>
-              <view class="text">{{orderDetail.logistics.phone}}</view>
+              <view class="label">承运公司电话:</view>
+              <view class="text phonenum">{{orderDetail.logistics.phone}}</view>
           </view>
         </view>
     </view>
@@ -20,12 +20,13 @@
             <view class="line-box"></view>
             <view class="a-row" wx:for-items="{{logisticsTraces}}" wx:key="{{index}}">
                 <view class="dot">
-                    <view class="active-dot" hidden="{{index== 0 ? false : true}}"><view class="yuan-red"></view></view>
+                    <view class="active-dot" hidden="{{index== 0 ? false : true}}"></view>
                     <view class="default-dot" hidden="{{index== 0 ? true : false}}"></view>
                 </view>
                 <view class="info">
-                    <view class="date-box">{{item.AcceptTime}}</view>
                     <view class="text">{{item.AcceptStation}}</view>
+                    <view class="date-box">{{item.AcceptTime}}</view>
+                    <view class="line"></view>
                 </view>
             </view>
         </view>

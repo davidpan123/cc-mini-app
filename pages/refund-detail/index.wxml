@@ -1,0 +1,38 @@
+<view class="container">
+  <view class="top-sec">
+    <view class="top-sec-pane">
+      <view class="a-row">
+        <view class="label">订单内容:</view>
+        <view class="text">{{'卡美婚假系列-戒指'}}</view>
+      </view>
+      <view class="a-row next">
+        <view class="label">下单时间:</view>
+        <view class="text">{{'2019-09-09 08:09:23'}}</view>
+      </view>
+      <view class="a-row">
+        <view class="label money-label">需支付:</view>
+        <view class="text money-value">{{'3879.80元'}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="refund-pane">
+    <view class="refund-process-pane">
+    </view>
+  </view>
+  <!-- <view class="sec-wrap">
+    <view class="details-info">
+      <view class="line-box"></view>
+      <view class="a-row" wx:for-items="{{logisticsTraces}}" wx:key="{{index}}">
+        <view class="dot">
+          <view class="active-dot" hidden="{{index== 0 ? false : true}}"></view>
+          <view class="default-dot" hidden="{{index== 0 ? true : false}}"></view>
+        </view>
+        <view class="info">
+          <view class="text">{{item.AcceptStation}}</view>
+          <view class="date-box">{{item.AcceptTime}}</view>
+          <view class="line"></view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+</view>

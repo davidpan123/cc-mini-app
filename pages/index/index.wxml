@@ -1,5 +1,12 @@
 <view class="container">
   首页
-  <navigator url="/pages/edit-address/index?title=navigate" hover-class="navigator-hover">编辑地址</navigator>
-   <navigator url="/pages/wuliu/index?title=navigate" hover-class="navigator-hover">物流追踪</navigator>
+  <navigator url="/pages/edit-address/index?title=navigate" hover-class="navigator-hover">编辑地址   </navigator>
+  <navigator url="/pages/wuliu/index?title=navigate" hover-class="navigator-hover">物流追踪          </navigator>
+  <navigator url="/pages/order-pay-success/index?title=navigate" hover-class="navigator-hover">订单支付成功
+  </navigator>
+  <navigator url="/pages/cashier/index?title=navigate" hover-class="navigator-hover">收银台       </navigator>
+    <navigator url="/pages/order-list/index?title=navigate" hover-class="navigator-hover">订单列表   </navigator>
+    <navigator url="/pages/refund/index?title=navigate" hover-class="navigator-hover">退款/取消   </navigator>
+  <navigator url="/pages/refund-detail/index?title=navigate" hover-class="navigator-hover">退款详情</navigator>
+   <navigator url="/pages/my/index?title=navigate" hover-class="navigator-hover">个人中心</navigator>
 </view>

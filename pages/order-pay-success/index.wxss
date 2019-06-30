@@ -1,0 +1,38 @@
+/* pages/order-pay-success/index.wxss */
+.pay-sucess-pane {
+  display: flex;
+  padding-top: 90rpx;
+}
+.pay-sucess-icon {
+  width: 180rpx;
+  height: 180rpx;
+}
+.pay-success-desc {
+  margin-top: 30rpx;
+  margin-bottom: 60rpx;
+  font-size: 24rpx;
+}
+.order-money {
+  margin-top: 30rpx;
+}
+.label-text {
+  color: #666666;
+}
+.value-text {
+  color: #ff91a5;
+  padding-left: 15rpx;
+}
+.view-order-btn,
+.back-btn{
+  width: 540rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  border-radius: 34rpx;
+  border: 2px solid #ff91a5;
+  color: #ff91a5;
+  font-size: 24rpx;
+}
+.back-btn {
+  margin-top: 30rpx;
+}

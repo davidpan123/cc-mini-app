@@ -2,7 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/edit-address/index",
-    "pages/wuliu/index"
+    "pages/wuliu/index",
+    "pages/start/start",
+    "pages/order-pay-success/index",
+    "pages/cashier/index",
+    "pages/order-list/index",
+    "pages/refund/index",
+    "pages/refund-detail/index",
+    "pages/my/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

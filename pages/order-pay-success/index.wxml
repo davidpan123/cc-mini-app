@@ -1,0 +1,20 @@
+<!--pages/order-pay-success/index.wxml-->
+<view class="container">
+  <view class="pay-sucess-pane">
+    <image src="../../images/order/icon_pay_suc.png" class="pay-sucess-icon"></image>
+  </view>
+  <view class="pay-success-desc">
+    <view class="order-type">
+      <label class="label-text">支付方式:</label>
+      <text class="value-text">微信支付</text>
+    </view>
+    <view class="order-money">
+      <label class="label-text">支付金额:</label>
+      <text class="value-text">3600.90元</text>
+    </view>
+  </view>
+  <view>
+    <button class="view-order-btn">查看订单</button>  
+    <button class="back-btn">返回首页</button>  
+  </view>
+</view>

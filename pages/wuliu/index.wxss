@@ -6,21 +6,29 @@ page{
     background-color: #F2f2f2;
     width: 100%;
     box-sizing: border-box;
-    padding: 24rpx 30rpx;
+    padding: 20rpx;
 }
 .top-sec .top-sec-pane {
-    padding: 24rpx 30rpx;
+    padding: 40rpx;
     background-color: #fff;
     border-radius: 10rpx;
 }
 .top-sec .a-row{
     display: flex;
-    font-size: 28rpx;
+    font-size: 24rpx;
     line-height: 54rpx;
+    color: #666666;
 }
 .top-sec .a-row .label{
-    color: #999;
+    color: #333;
     margin-right: 28rpx;
+}
+.next {
+  padding: 20rpx 0;
+}
+.phonenum {
+  color: #6196f6;
+  border-bottom: 2rpx solid #6196f6;
 }
 .sec-wrap{
     width: 100%;
@@ -30,65 +38,62 @@ page{
 .details-info{
     position: relative;
     width: 100%;
-    margin-top: 40rpx;
+    margin-top: 30rpx;
     overflow: hidden;
 }
 .details-info .a-row{
-    margin-left: 40rpx;
+    margin: 0 20rpx;
     display: flex;
-    margin-right: 30rpx;
     margin-bottom: 50rpx;
     position: relative;
     z-index: 4;
 }
 .details-info .a-row .info{
-    font-size: 28rpx;
+    font-size: 24rpx;
+    width: 100%;
 }
 .date-box {
-    font-size:26rpx;
     color:#999;
-    margin-bottom: 20rpx;
+    margin-top: 20rpx;
+    margin-bottom: 30rpx;
 }
 .info .text{
-    color: #000;
+    color: #666;
     line-height: 42rpx;
+    margin-top: -10rpx;
 }
 .dot{
     width: 30rpx;
     height: 30rpx;
-    margin-right: 30rpx;
+    margin-right: 20rpx;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    margin-top: -2rpx;
 }
 .default-dot{
-    background:#ddd;
-    width:25rpx;
-    height:25rpx;
+    background:#dcdcdc;
+    width:20rpx;
+    height:20rpx;
     border-radius:100%;
 }
 .active-dot{
-    border:2rpx solid #e64340;
-    width:26rpx;
-    height:26rpx;
-    border-radius:50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-}
-.active-dot .yuan-red{
-    background:#e64340;
-    width:14rpx;
-    height:14rpx;
+    background:#ffaab9;
+    width:22rpx;
+    height:22rpx;
     border-radius:50%;
 }
 .line-box{
     position: absolute;
-    top:-120rpx;
-    left: 54rpx;
-    background:#dddddd;
+    top:-160rpx;
+    left: 33rpx;
+    background:#dcdcdc;
     width:2rpx;
     height:100%;
+}
+
+.line {
+   height: 2rpx;
+   background-color: #f0f0f0;
 }

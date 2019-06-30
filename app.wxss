@@ -7,3 +7,29 @@
   justify-content: space-between;
   box-sizing: border-box;
 } 
+.cc-icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+.cc-icon:hover {
+  opacity: .6;
+}
+.font-6 {
+  color: #666666;
+  font-size: 24rpx;
+}
+.font-9 {
+  color: #999999;
+  font-size: 24rpx;
+}
+
+.flex-row-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
+.flex-row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+} 

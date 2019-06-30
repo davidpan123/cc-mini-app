@@ -1,0 +1,47 @@
+<view class="container">
+  <view wx:if='{{!hasRefund}}' class="status-box">
+    <view bindtap="statusTap" class="status-label {{index == currentType ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="{{index}}" data-index="{{index}}">
+      {{item}}
+      <view class="{{tabClass[index]}}"></view>
+    </view>
+  </view>
+  <view class="no-order" hidden="{{orderList ? true : false}}">
+    <image src="/images/order/icon_order.png" class="no-order-img"></image>
+    <view class="text">暂无订单</view>
+  </view>
+  <view class="order-list-pane" hidden="{{orderList ? false : true}}">
+    <scroll-view class="order-list" scroll-y="true">
+        <view class="order-item-pane" wx:for-items="{{orderList}}" wx:key="{{index}}">
+          <view class="order-item-header">
+            <view class="title">
+              <image class="shop-icon" src="/images/order/icon_shop.png"></image>
+              <text class="title-text">{{item.title}}</text>
+            </view>
+            <view class="status-desc">{{item.status}}</view>
+          </view>
+          <view class="order-item-content">
+            <view class="order-content-left">
+              <image src="{{item.pic}}" class="goods-img"></image>
+              <view class="good-desc-pane">
+                <view class="good-desc-title">{{item.title}}</view>
+                <view class="good-desc-txt">{{item.desc}}</view>
+              </view>
+            </view>
+            <view class="order-content-right">
+              <view class="order-item-money">￥：{{item.money}}</view>
+              <view class="order-item-count">✕{{item.count}}</view>
+            </view>
+          </view>
+          <view class="order-item-desc">
+            <text class="desc-text">共{{item.count}}件商品 实付款：￥{{item.money}} (含运费￥{{item.wmoney}})</text>
+          </view>
+          <view class="order-item-btn">
+            <view class="order-item-btn-pane">
+              <button class="service-btn">联系客服</button>  
+              <button class="pay-btn">立即付款</button>  
+            </view>
+          </view>
+        </view>
+    </scroll-view>
+  </view>
+</view>

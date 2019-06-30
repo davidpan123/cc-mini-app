@@ -1,0 +1,102 @@
+/* miniprogram/pages/login/login.wxss */
+page{
+    height: 100%;
+}
+.container{
+    background-color: #F2f2f2;
+    justify-content: initial;
+}
+
+.top-sec{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20rpx;
+}
+.top-sec .top-sec-pane {
+    padding: 40rpx 20rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+}
+.top-sec .a-row{
+    display: flex;
+    font-size: 24rpx;
+    line-height: 54rpx;
+    color: #666666;
+}
+.top-sec .a-row .label{
+    color: #333;
+    margin-right: 28rpx;
+}
+.next {
+  padding: 20rpx 0;
+}
+.money-label {
+  color: #333;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+.money-value {
+  color: #ff91a5;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.order-type-pane {
+  width: 100%;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+  color: #999999;
+  font-size: 24rpx;
+  text-align: left;
+  padding-left: 80rpx;
+}
+.order-pane{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.wechat-pay-pane {
+  background-color: #fff;
+  border-radius: 15rpx;
+  padding: 40rpx 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pay-pane {
+  display: flex;
+  align-items: center;
+}
+.type-pane {
+  margin-left: 40rpx;
+}
+.icon_wePay {
+  width: 60rpx;
+  height: 60rpx;
+}
+.pay-text {
+  font-size: 24rpx;
+  color: #666666;  
+}
+.pay-safe-text {
+  margin-top: 20rpx;
+  font-size: 20rpx;
+  color: #999999;  
+}
+.icon_select_on {
+  width: 36rpx;
+  height: 36rpx;
+}
+.save-btn{
+    position: absolute;
+    bottom: 14rpx;
+    width: 710rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+    text-align: center;
+    border-radius: 34rpx;
+    box-sizing: border-box;
+    background-color: #ffaab9;
+    color:#fff;
+}
+

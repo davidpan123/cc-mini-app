@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="top-sec">
+    <view class="top-sec-pane">
+      <view class="a-row">
+        <view class="label">订单内容:</view>
+        <view class="text">{{'卡美婚假系列-戒指'}}</view>
+      </view>
+      <view class="a-row next">
+        <view class="label">下单时间:</view>
+        <view class="text">{{'2019-09-09 08:09:23'}}</view>
+      </view>
+      <view class="a-row">
+        <view class="label money-label">需支付:</view>
+        <view class="text money-value">{{'3879.80元'}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="order-type-pane">支付方式</view>
+  <view class="order-pane">
+    <view class="wechat-pay-pane">
+      <view class="pay-pane">
+        <image src="../../images/order/icon_wePay.png" class="icon_wePay"></image>
+        <view class="type-pane">
+          <view class="pay-text">微信支付</view>
+          <view class="pay-safe-text">微信安全支付</view>
+        </view>
+      </view>
+      <view class="selatc-pane">
+        <image src="../../images/order/button_select_on.png" class="icon_select_on"></image>
+      </view>
+    </view>
+  </view>
+  <button class="save-btn">确认支付</button>  
+</view>
