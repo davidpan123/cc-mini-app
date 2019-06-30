@@ -1,0 +1,39 @@
+/* pages/authorize/index.wxss */
+page{
+  height: 100%;
+}
+.container{
+  background-color: #ffffff;
+  justify-content: initial;
+}
+.logo {
+  margin-top: 240rpx;
+}
+.logo-img {
+  width: 352rpx;
+  height: 170rpx;
+}
+.authorise-desc-pane {
+  margin-top: 150rpx;
+}
+.authorise-desc-txt {
+  font-size: 30rpx;
+  color:#666666;
+  text-align: center;
+}
+.authorise-desc-txt2 {
+  margin-top: 30rpx;
+  text-align: center;
+}
+.login-pane {
+  margin-top: 144rpx; 
+}
+.login-btn {
+  width: 600rpx;
+  height: 68rpx;
+  text-align: center;
+  line-height: 68rpx;
+  color:#ffffff;
+  border-radius: 34rpx;
+  background-color: #ffaab9;
+}

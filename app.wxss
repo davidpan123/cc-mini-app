@@ -41,7 +41,10 @@
 font-size-24 {
   font-size: 24rpx;
 }
-
+.flex-row-start {
+  display: flex;
+  align-items: center;
+} 
 .flex-row-center {
   display: flex;
   align-items: center;

@@ -10,7 +10,9 @@
     "pages/refund/index",
     "pages/refund-detail/index",
     "pages/my/index",
-    "pages/confirm-order/index"
+    "pages/confirm-order/index",
+    "pages/authorize/index",
+    "pages/authorize/bindmobil"
   ],
   "window": {
     "backgroundTextStyle": "light",
