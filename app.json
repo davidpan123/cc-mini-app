@@ -12,7 +12,8 @@
     "pages/my/index",
     "pages/confirm-order/index",
     "pages/authorize/index",
-    "pages/authorize/bindmobil"
+    "pages/authorize/bindmobil",
+    "pages/apply-refund/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

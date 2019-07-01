@@ -12,4 +12,5 @@
      <navigator url="/pages/confirm-order/index?title=navigate" hover-class="navigator-hover">确认订单</navigator>
      <navigator url="/pages/authorize/index?title=navigate" hover-class="navigator-hover">授权登录</navigator>
      <navigator url="/pages/authorize/bindmobil?title=navigate" hover-class="navigator-hover">验证手机</navigator>
+      <navigator url="/pages/apply-refund/index?title=navigate" hover-class="navigator-hover">申请退款</navigator>
 </view>

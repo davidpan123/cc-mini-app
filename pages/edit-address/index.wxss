@@ -93,6 +93,7 @@ picker {
     color: #777;
 }
 .placeholder {
-    text-align: right;
-    color: #cccccc;
+  font-size: 24rpx;
+  text-align: right;
+  color: #cccccc;
 }

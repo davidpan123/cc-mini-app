@@ -55,3 +55,15 @@ font-size-24 {
   align-items: center;
   justify-content: space-between;
 } 
+
+.border-bottom {
+  border-bottom: 2rpx solid #f0f0f0;
+}
+.input-right {
+  direction: rtl;
+  text-align:right;
+}
+.input-placeholder {
+  font-size: 24rpx;
+  color: #cccccc;
+}
