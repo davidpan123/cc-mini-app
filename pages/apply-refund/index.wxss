@@ -11,7 +11,7 @@ page{
 .top-sec{
     width: 100%;
     box-sizing: border-box;
-    padding: 20rpx;
+    padding: 20rpx 20rpx 16rpx;
 }
 .top-sec .top-sec-pane {
     padding: 40rpx 20rpx;
@@ -74,6 +74,7 @@ page{
 
 /* 联系人 */
 .person-pane {
+  margin-top: 16rpx;
   border-radius: 10rpx;
   width: 710rpx;
   background-color: #ffffff;
@@ -97,3 +98,64 @@ page{
     color:#fff;
 }
 
+/* 原因模态框 */
+.show-popup{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  z-index: 4;
+}
+.popup-mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+.popup-contents{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width:100%;
+  background-color: #fff;
+  z-index: 6;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+.title {
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color:#999999;
+}
+.reason-list {
+  padding: 0 24rpx;
+}
+.reason-row-item {
+  padding: 30rpx 16rpx;
+}
+.select-img {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+.buy-pane {
+  margin-top: 40rpx;
+  padding: 20rpx;
+}
+.buy-btn {
+  width: 100%;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #ffffff;
+  border-radius: 34rpx;
+  background-color: #ff91a5;
+}

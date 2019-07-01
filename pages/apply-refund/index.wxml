@@ -1,6 +1,6 @@
 <!--pages/apply-refund/index.wxml-->
 <view class="container">
-  <view class="top-sec">
+  <view class="top-sec top-shadow-inset">
     <view class="top-sec-pane">
       <view class="a-row">
         <view class="label">订单内容:</view>
@@ -20,7 +20,7 @@
     <view class='refund-reason-pane border-bottom'>
       <view class='refund-reason flex-row-between'>
         <text class="font-6">申请原因</text>
-        <view>
+        <view bindtap="bindGuiGeTap">
           <text class="font-9">请选择申请原因</text>
           <image src="/images/icon_arrow_r.png" class="arrow-right"></image>
         </view>
@@ -36,7 +36,7 @@
       </view>
     </view>
   </view>
-  <view class="person-pane">
+  <view class="person-pane shadow">
     <view class="row-item border-bottom flex-row-between">
       <text class='font-6'>联系人</text>
       <view>
@@ -51,4 +51,19 @@
     </view>
   </view>
   <button class="save-btn">确认提交</button>  
+  <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+        <view class="title">选择申请原因</view>
+        <view class="reason-list">
+          <view class="reason-row-item border-bottom font-6 flex-row-between" wx:for="{{reasonlist}}" wx:key="{{index}}" data-index="{{index}}" bindtap="handleReasonSelect">
+            <text>{{item}}</text>
+            <image class="select-img" src="{{selectIndex === index ? '/images/refund/button_select_on.png' : '/images/refund/button_select_off.png'}}"></image>
+          </view>
+        </view>
+        <view class="buy-pane">
+          <button class="buy-btn" bindtap="save">完成</button>  
+        </view>
+    </view>
+  </view>
 </view>

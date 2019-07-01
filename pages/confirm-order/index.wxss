@@ -7,6 +7,10 @@ page{
   justify-content: initial;
 }
 
+.address-container {
+  width: 100%;
+}
+
 .address-pane {
   width: 710rpx;
   background-color: #ffffff;

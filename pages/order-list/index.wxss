@@ -15,10 +15,6 @@ page{
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    border-top: 2rpx solid #cccccc;
-    /* box-shadow: 10rpx 20rpx 5rpx  rgba(170, 170, 170, 0.5) */
-    /* box-shadow:10rpx 10rpx 5rpx #888888 */
-    box-shadow: 0rpx 10rpx 20rpx rgba(170, 170, 170, 0.3)
 }
 .status-box .status-label{
     width: 150rpx;

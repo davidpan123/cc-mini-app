@@ -1,5 +1,5 @@
 <view class="container">
-    <view class="top-sec">
+    <view class="top-sec top-shadow-inset">
         <view class="top-sec-pane">
             <view class="a-row">
             <view class="label">运单号:</view>

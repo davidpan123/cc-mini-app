@@ -67,3 +67,7 @@ font-size-24 {
   font-size: 24rpx;
   color: #cccccc;
 }
+
+.top-shadow-inset {
+  box-shadow:0px 15px 20px -20rpx rgba(170, 170, 170, 0.50) inset;
+}

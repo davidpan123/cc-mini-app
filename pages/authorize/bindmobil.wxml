@@ -1,6 +1,6 @@
 <!--pages/authorize/bindmobil.wxml-->
 <view class="container">
-  <view class="form">
+  <view class="form top-shadow-inset">
     <view class="form-item phone flex-row-start">
       <input name="phone" class="input" maxlength="11" type="number" placeholder="请输入手机号码" value="{{phone.number}}" placeholder-class="placeholder"/>
     </view>

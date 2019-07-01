@@ -1,6 +1,6 @@
 <!--pages/order-pay-success/index.wxml-->
 <view class="container">
-  <view class="pay-sucess-pane">
+  <view class="pay-sucess-pane flex-row-center top-shadow-inset">
     <image src="../../images/order/icon_pay_suc.png" class="pay-sucess-icon"></image>
   </view>
   <view class="pay-success-desc">

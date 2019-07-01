@@ -1,5 +1,5 @@
 <view class="container">
-  <view wx:if='{{!hasRefund}}' class="status-box">
+  <view wx:if='{{!hasRefund}}' class="status-box top-shadow-inset">
     <view bindtap="statusTap" class="status-label {{index == currentType ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="{{index}}" data-index="{{index}}">
       {{item}}
       <view class="{{tabClass[index]}}"></view>

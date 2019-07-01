@@ -1,6 +1,6 @@
 <!--pages/my/index.wxml-->
 <view class="container">
-  <view class="address-container">
+  <view class="address-container flex-row-center top-shadow-inset">
     <view class="address-pane">
       <view class="address-pane-left">
         <view class="person">

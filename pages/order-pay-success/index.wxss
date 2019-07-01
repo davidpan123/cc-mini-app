@@ -1,6 +1,6 @@
 /* pages/order-pay-success/index.wxss */
 .pay-sucess-pane {
-  display: flex;
+  width: 100%;
   padding-top: 90rpx;
 }
 .pay-sucess-icon {

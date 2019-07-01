@@ -1,9 +1,9 @@
 <view class="container">
-  <view class="no-order" hidden="{{orderList ? true : false}}">
+  <view class="no-order top-shadow-inset" hidden="{{orderList ? true : false}}">
     <image src="/images/order/icon_order.png" class="no-order-img"></image>
     <view class="text">暂无退款订单</view>
   </view>
-  <view class="order-list-pane" hidden="{{orderList ? false : true}}">
+  <view class="order-list-pane top-shadow-inset" hidden="{{orderList ? false : true}}">
     <scroll-view class="order-list" scroll-y="true">
         <view class="order-item-pane" wx:for-items="{{orderList}}" wx:key="{{index}}">
           <view class="order-item-header">
