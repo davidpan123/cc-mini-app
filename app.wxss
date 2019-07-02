@@ -45,6 +45,11 @@ font-size-24 {
   display: flex;
   align-items: center;
 } 
+.flex-row-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 .flex-row-center {
   display: flex;
   align-items: center;
@@ -58,6 +63,9 @@ font-size-24 {
 
 .border-bottom {
   border-bottom: 2rpx solid #f0f0f0;
+}
+.border-top {
+  border-top: 2rpx solid #f0f0f0;
 }
 .input-right {
   direction: rtl;
