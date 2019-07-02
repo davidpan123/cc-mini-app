@@ -1,38 +1,46 @@
-<view class="container">
-  <view class="top-sec">
-    <view class="top-sec-pane">
-      <view class="a-row">
-        <view class="label">订单内容:</view>
-        <view class="text">{{'卡美婚假系列-戒指'}}</view>
-      </view>
-      <view class="a-row next">
-        <view class="label">下单时间:</view>
-        <view class="text">{{'2019-09-09 08:09:23'}}</view>
-      </view>
-      <view class="a-row">
-        <view class="label money-label">需支付:</view>
-        <view class="text money-value">{{'3879.80元'}}</view>
-      </view>
-    </view>
-  </view>
-  <view class="refund-pane">
-    <view class="refund-process-pane">
-    </view>
-  </view>
-  <!-- <view class="sec-wrap">
-    <view class="details-info">
-      <view class="line-box"></view>
-      <view class="a-row" wx:for-items="{{logisticsTraces}}" wx:key="{{index}}">
-        <view class="dot">
-          <view class="active-dot" hidden="{{index== 0 ? false : true}}"></view>
-          <view class="default-dot" hidden="{{index== 0 ? true : false}}"></view>
+<scroll-view scroll-y class='scroll-view'>
+  <view class="container">
+    <view class="top-sec top-shadow-inset">
+      <view class="top-sec-pane">
+        <view class="a-row">
+          <view class="label">订单内容:</view>
+          <view class="text">{{'卡美婚假系列-戒指'}}</view>
         </view>
-        <view class="info">
-          <view class="text">{{item.AcceptStation}}</view>
-          <view class="date-box">{{item.AcceptTime}}</view>
-          <view class="line"></view>
+        <view class="a-row next">
+          <view class="label">下单时间:</view>
+          <view class="text">{{'2019-09-09 08:09:23'}}</view>
+        </view>
+        <view class="a-row">
+          <view class="label money-label">需支付:</view>
+          <view class="text money-value">{{'3879.80元'}}</view>
         </view>
       </view>
     </view>
-  </view> -->
-</view>
+    <view class="refund-process">
+      <view class="refund-process-pane">
+      </view>
+    </view>
+    <view class="refund-pane">
+      <view class='refund-reason-pane flex-row-between border-bottom'>
+        <text class="font-6">申请原因</text>
+        <text class="font-9">联系信息填错</text>
+      </view>
+      <view class="refund-content">
+        <view class="refund-content-title font-6">问题描述</view>
+        <view class="qustion-pane">
+          <textarea name="qustion" class="qustion-area font-9" disabled="true" maxlength="{{500}}" value="{{qustion}}" placeholder-class="qustion-placeholder"/>
+        </view>
+      </view>
+    </view>
+    <view class="person-pane shadow">
+      <view class="row-item border-bottom flex-row-between">
+        <text class='font-6'>联系人</text>
+        <text class='font-9'>A先生</text>
+      </view>
+      <view class="row-item flex-row-between">
+        <text class='font-6'>联系电话</text>
+        <text class='font-9'>18710203040</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>

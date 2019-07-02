@@ -1,0 +1,49 @@
+/* pages/order-detail/index.wxss */
+page, .scroll-view{
+    height: 100%;
+}
+.container{
+    background-color: #F2f2f2;
+    justify-content: initial;
+}
+
+.top-sec{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20rpx;
+}
+.top-sec .top-sec-pane {
+    padding: 40rpx 30rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+}
+.top-sec .a-row{
+  display: flex;
+}
+.next {
+  margin-top: 54rpx;
+}
+
+
+.logistics-desc, .address-desc-pane {
+  margin-left: 20rpx;
+}
+
+.logistics-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+.person {
+  width: 100%;
+  display: flex;
+}
+.time, .address {
+  margin-top: 20rpx;
+}
+.phone {
+  padding-left: 100rpx;
+}
+.flex-row-start {
+  display: flex;
+  align-items: flex-start;
+}

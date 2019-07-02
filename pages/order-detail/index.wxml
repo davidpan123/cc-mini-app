@@ -1,0 +1,40 @@
+<!--pages/order-detail/index.wxml-->
+<scroll-view scroll-y class='scroll-view'>
+  <view class="container">
+    <view class="top-sec top-shadow-inset">
+      <view class="top-sec-pane">
+        <view class="a-row">
+          <view class="logistics-pane flex-row-start">
+            <image class="logistics-icon" src="/images/order/icon_exp.png"></image>
+            <view class='logistics-desc'>
+              <view wx:if="{{order.logistics.info.data.length==0}}">
+                <view class="logInfo font-6">暂无物流信息</view>
+                <view class="time font-9">{{order.status === 8 ? "订单已取消" : "订单等待付款中"}}</view>
+              </view>
+              <view wx:else>
+                <view class="logInfo font-6">{{order.logistics.info.data[0].context}}</view>
+                <view class="time font-9">{{order.logistics.info.data[0].time}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="arrow-pane" wx:if="{{order.logistics.info.data.length > 0}}">
+          </view>
+        </view>
+        <view class="a-row next">
+          <view class='address-pane flex-row-start'>
+            <image class='logistics-icon' src='/images/order/icon_package.png'></image>
+            <view class='address-desc-pane'>
+              <view class='person font-6'>
+                <text>收货人: {{order.address.name}}</text>
+                <text class='phone'>{{order.address.phone}}</text>
+              </view>
+              <view class='address font-9'>
+                收获地址: {{order.address.province+order.address.city + order.address.district + order.address.street}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
