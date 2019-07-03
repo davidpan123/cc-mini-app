@@ -1,0 +1,15 @@
+<!--pages/home/index.wxml-->
+<view class="container">
+  <scroll-view scroll-y scroll-top="{{scrollTop}}" scroll-into-view="{{toView}}" scroll-with-animation="{{true}}" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" style="height: {{windowHeight+'px'}}">
+    <view class="good-list-pane" wx:for="{{goodList}}" wx:key="{{index}}" id="{{item.id}}">
+      <image class="good-img" src="{{item.src}}" style="height: {{windowHeight+'px'}}"></image>
+    </view>
+  </scroll-view>
+  <view class='footer'>
+    <view class='flex-row-between footer-pane'>
+      <image class='foot-img' src='/images/button_shop.png'></image>
+      <image class='foot-img' src='/images/button_bom.png' bindtap='scrollBottom'></image>
+      <image class='foot-img' src='/images/button_my.png'></image>
+    </view>
+  </view>
+</view>

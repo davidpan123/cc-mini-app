@@ -10,7 +10,7 @@ page, .scroll-view{
 .top-sec{
     width: 100%;
     box-sizing: border-box;
-    padding: 20rpx;
+    padding: 20rpx 20rpx 16rpx;
 }
 .top-sec .top-sec-pane {
     padding: 40rpx 20rpx;
@@ -42,25 +42,73 @@ page, .scroll-view{
 }
 
 .refund-process{
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 20rpx 20rpx;
+  width: 710rpx;
+  background-color: #ffffff;
+  margin-left: 20rpx;
+  margin-bottom: 16rpx;
 }
-.refund-process-pane {
-  background-color: #fff;
-  border-radius: 15rpx;
-  height: 200rpx;
-  position: relative;
+
+.refundline {
+  padding: 54rpx 0 40rpx;
+}
+.line {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 108rpx;
+}
+.circle {
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #dcdcdc;
+  border-radius: 50%;
+}
+.circle.active {
+  background-color: #acd598;
+}
+.link {
+  width: 217rpx;
+  height: 4rpx;
+  background: #dcdcdc;
+}
+.link.active {
+  background-color: #acd598;
+}
+.lintext {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  margin-top: 30rpx;
+  margin-left: 10rpx;
+  text-align: center;
+}
+.link-item {
+  flex: 1
+}
+.circle.rejected {
+  background-color: #ff91a5;
+}
+.link.rejected {
+  background-color: #ff91a5;
+}
+.time {
+  font-size: 20rpx;
+  color: #999999;
+  margin-top: 12rpx;
 }
 
 /* 退款原因 */
 /* 退款内容 */
+.refund-coantainer {
+  width: 100%;
+  padding: 0 20rpx 20rpx;
+  box-sizing:border-box;
+}
 .refund-pane {
   border-radius: 10rpx;
-  width: 710rpx;
   background-color: #ffffff;
   padding: 40rpx 30rpx;
-  box-sizing: border-box;
 }
 .refund-reason-pane {
   padding-bottom: 20rpx;
@@ -72,6 +120,17 @@ page, .scroll-view{
 }
 .refund-content-title {
   margin: 30rpx 0;
+}
+.arrow-right {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 16rpx;
+}
+.refund-desc {
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+  color: #ff91a5;
+  font-size: 20rpx;
 }
 
 .qustion-pane {
@@ -92,11 +151,86 @@ page, .scroll-view{
 .person-pane {
   margin-top: 16rpx;
   border-radius: 10rpx;
-  width: 710rpx;
   background-color: #ffffff;
   padding: 10rpx 20rpx;
-  box-sizing: border-box;
 }
 .row-item {
   height: 84rpx;
+}
+
+.submit-pane {
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.submit-btn {
+  width: 710rpx;
+  height: 68rpx;
+  text-align: center;
+  line-height: 68rpx;
+  color:#ffffff;
+  border-radius: 34rpx;
+  background-color: #ffaab9;
+}
+
+/* 原因模态框 */
+.show-popup{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  z-index: 4;
+}
+.popup-mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+.popup-contents{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width:100%;
+  background-color: #fff;
+  z-index: 6;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+.title {
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color:#999999;
+}
+.reason-list {
+  padding: 0 24rpx;
+}
+.reason-row-item {
+  padding: 30rpx 16rpx;
+}
+.select-img {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+.buy-pane {
+  margin-top: 40rpx;
+  padding: 20rpx;
+}
+.buy-btn {
+  width: 100%;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #ffffff;
+  border-radius: 34rpx;
+  background-color: #ff91a5;
 }

@@ -1,5 +1,5 @@
 <view class="container">
-  首页
+<navigator url="/pages/home/index">首页</navigator>
   <navigator url="/pages/edit-address/index?title=navigate" hover-class="navigator-hover">编辑地址   </navigator>
   <navigator url="/pages/wuliu/index?title=navigate" hover-class="navigator-hover">物流追踪          </navigator>
   <navigator url="/pages/order-pay-success/index?title=navigate" hover-class="navigator-hover">订单支付成功

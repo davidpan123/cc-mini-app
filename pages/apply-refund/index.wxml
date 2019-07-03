@@ -31,7 +31,7 @@
     </view>
     <view class="refund-content">
       <view class="refund-content-title font-6">问题描述</view>
-      <view class="qustion-pane">
+      <view class="qustion-pane" wx:if="{{hideShopPopup}}">
         <textarea name="qustion" class="qustion-area font-9" placeholder="请描述申请退款的详细信息，不超过500字(选填)" maxlength="{{500}}" value="{{qustion}}" placeholder-class="qustion-placeholder"/>
       </view>
     </view>

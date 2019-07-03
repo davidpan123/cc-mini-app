@@ -1,5 +1,5 @@
-<scroll-view scroll-y class='scroll-view'>
-  <view class="container">
+<view class="container">
+  <scroll-view scroll-y class='scroll-view'>
     <view class="top-sec top-shadow-inset">
       <view class="top-sec-pane">
         <view class="a-row">
@@ -16,31 +16,115 @@
         </view>
       </view>
     </view>
-    <view class="refund-process">
-      <view class="refund-process-pane">
+    <!-- 退款流程 -->
+    <view class="refund-process refundline" wx:if="{{order.is_rejected===false}}">
+      <view class="line" wx:if="{{order.status===4}}">
+        <view class="circle {{lines===1 ? 'active' : ''}}"></view>
+        <view class='link'></view>
+        <view class='circle'></view>
+        <view class='link'></view>
+        <view class='circle'></view>
       </view>
-    </view>
-    <view class="refund-pane">
-      <view class='refund-reason-pane flex-row-between border-bottom'>
-        <text class="font-6">申请原因</text>
-        <text class="font-9">联系信息填错</text>
+      <view class="line" wx:if="{{order.status===6}}">
+        <view class="circle {{lines===1 ? 'active' : ''}}"></view>
+        <view class="link {{lines===1 ? 'active' : ''}}"></view>
+        <view class="circle {{lines===1 ? 'active' : ''}}"></view>
+        <view class="link {{lines===1 ? 'active' : ''}}"></view>
+        <view class="circle {{lines===1 ? 'active' : ''}}"></view>
       </view>
-      <view class="refund-content">
-        <view class="refund-content-title font-6">问题描述</view>
-        <view class="qustion-pane">
-          <textarea name="qustion" class="qustion-area font-9" disabled="true" maxlength="{{500}}" value="{{qustion}}" placeholder-class="qustion-placeholder"/>
+      <view class="lintext">
+        <view class="link-item font-9">
+          <view class="{{order.status===4 || order.status===6 ? 'font-6' : ''}}">发起退款</view>
+          <view class="time">----------</view>
+        </view>
+        <view class="link-item font-9">
+          <view class="{{order.status===6 ? 'font-6' : ''}}">审核通过</view>
+          <view class="time" wx:if="{{order.status===6}}">------------</view>
+        </view>
+        <view class="link-item font-9">
+          <view class="{{order.status===6 ? 'font-6' : ''}}">退款成功</view>
+          <view class="time" wx:if="{{order.status===6}}">------------</view>
         </view>
       </view>
     </view>
-    <view class="person-pane shadow">
-      <view class="row-item border-bottom flex-row-between">
-        <text class='font-6'>联系人</text>
-        <text class='font-9'>A先生</text>
+    <view class="refund-process refundline" wx:else>
+      <view class="line">
+        <view class="circle rejected"></view>
+        <view class="link rejected"></view>
+        <view class="circle rejected"></view>
+        <view class="link"></view>
+        <view class="circle"></view>
       </view>
-      <view class="row-item flex-row-between">
-        <text class='font-6'>联系电话</text>
-        <text class='font-9'>18710203040</text>
+      <view class="lintext">
+        <view class="link-item font-9">
+          <view class='font-6'>发起退款</view>
+          <view class="time">----------</view>
+        </view>
+        <view class="link-item font-9">
+          <view class='font-6'>审核不通过</view>
+          <view class="time">------------</view>
+        </view>
+        <view class="link-item font-9">
+          <view>退款成功</view>
+        </view>
       </view>
     </view>
+    <!-- 退款原因、内容 -->
+    <view class='refund-coantainer'>
+      <view class="refund-pane">
+        <view class='refund-reason-pane border-bottom'>
+          <view class='refund-reason flex-row-between' wx:if="{{order.is_rejected===false}}">
+            <text class="font-6">申请原因</text>
+            <text class="font-9">联系信息填错</text>
+          </view>
+          <view wx:else>
+            <view class='refund-reason flex-row-between'>
+              <text class="font-6">申请原因</text>
+              <view bindtap="bindGuiGeTap">
+                <text class="font-9">请选择申请原因</text>
+                <image src="/images/icon_arrow_r.png" class="arrow-right"></image>
+              </view>
+            </view>
+            <view class="refund-desc">
+              如果退货请保持商品的完好, 建议您先与卖家沟通
+            </view>
+          </view>
+        </view>
+        <view class="refund-content">
+          <view class="refund-content-title font-6">问题描述</view>
+          <view class="qustion-pane" wx:if="{{hideShopPopup}}">
+            <textarea name="qustion" class="qustion-area font-9" disabled="{{!order.is_rejected}}" maxlength="{{500}}" value="{{qustion}}" placeholder-class="qustion-placeholder"/>
+          </view>
+        </view>
+      </view>
+      <view class="person-pane shadow">
+        <view class="row-item border-bottom flex-row-between">
+          <text class='font-6'>联系人</text>
+          <text class='font-9'>A先生</text>
+        </view>
+        <view class="row-item flex-row-between">
+          <text class='font-6'>联系电话</text>
+          <text class='font-9'>18710203040</text>
+        </view>
+      </view>
+    </view>
+    <view class="submit-pane flex-row-between">
+      <button class="submit-btn">授权登录</button>  
+    </view>
+  </scroll-view>
+  <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+        <view class="title">选择申请原因</view>
+        <view class="reason-list">
+          <view class="reason-row-item border-bottom font-6 flex-row-between" wx:for="{{reasonlist}}" wx:key="{{index}}" data-index="{{index}}" bindtap="handleReasonSelect">
+            <text>{{item}}</text>
+            <image class="select-img" src="{{selectIndex === index ? '/images/refund/button_select_on.png' : '/images/refund/button_select_off.png'}}"></image>
+          </view>
+        </view>
+        <view class="buy-pane">
+          <button class="buy-btn" bindtap="save">完成</button>  
+        </view>
+    </view>
   </view>
-</scroll-view>
+</view>
