@@ -15,7 +15,8 @@
     "pages/authorize/bindmobil",
     "pages/apply-refund/index",
     "pages/order-detail/index",
-    "pages/home/index"
+    "pages/home/index",
+    "pages/good-list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

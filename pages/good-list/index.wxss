@@ -1,0 +1,88 @@
+/* pages/home/index.wxss */
+page {
+  height: 100%;
+  background-color: #F2f2f2;
+}
+.container{
+  background-color: #F2f2f2;
+  padding-bottom: 20rpx;
+}
+.good-pane {
+  /* padding: 0 35rpx; */
+}
+.good-list-pane{
+  margin-top: 20rpx;
+  position: relative;
+  margin: 20rpx 35rpx 0rpx;
+}
+.model-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1000rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background:rgba(0,0,0,.3);
+  border-radius: 10rpx;
+}
+.good-img {
+  border-radius: 10rpx;
+  width: 100%;
+  height: 1000rpx;
+}
+.good-top-img {
+  margin-top: 120rpx;
+  width: 300rpx;
+  height: 300rpx;
+  /* opacity: 0.1; */
+}
+.good-title {
+  margin-top: 60rpx;
+  font-size: 30rpx;
+  color: #ffffff;
+  text-align: center;
+}
+.good-desc {
+  max-width: 400rpx;
+  height: 200rpx;
+  margin-top: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color:#ffffff;
+}
+
+.good-item-desc {
+  margin-top: 15rpx;
+}
+
+.buy-pane {
+  margin-top: 84rpx;
+}
+.buy-btn {
+  width: 180rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #ffffff;
+  border: 2rpx solid #ffffff;
+  font-size: 24rpx;
+  background:rgba(0,0,0,.1);
+}
+
+/* 底部按钮 */
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.footer-pane {
+  padding: 24rpx;
+}
+.foot-img {
+  width: 60rpx;
+  height: 60rpx;
+}

@@ -27,11 +27,7 @@ Page({
     let that = this;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res);
-        // 屏幕宽度、高度
-        console.log('height=' + res.windowHeight);
-        console.log('width=' + res.windowWidth);
-        // 高度,宽度 单位为px
+        // 高度 单位为px
         that.setData({
           windowHeight:  res.windowHeight
         })
@@ -87,45 +83,41 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /**
+   *  点击跳转具体的商品
+   */
+  gotoGoodList: function (e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/good-list/index?id=' + id
+    })
+  },
+  /**
+   *  滚动事件
+   */
   scroll: function(e) {
-    console.log(e.dta)
-    console.log(e.detail.deltaY)
     let isUpper = e.detail.deltaY > 0
-    // this.scrollView(isUpper)
     if (e.detail.scrollTop <= 0 || e.detail.scrollTop >= (this.data.goodList.length-1)*this.data.windowHeight) {
       return 
     }
 
-    console.log(this.data.scrollTop)
-    //向下
+    // 滚动到具体位置
     let index = Math.floor(e.detail.scrollTop/this.data.windowHeight)
     if (isUpper) {
+       //向上
       this.setData({
         scrollTop: this.data.scrollTop >= this.data.windowHeight ? this.data.scrollTop - this.data.windowHeight : 0
       })
     } else {
+      //向下
       this.setData({
         scrollTop: this.data.scrollTop + this.data.windowHeight
       })
     }
-
-    // //向下
-    // this.setData({
-    //   scrollTop: this.data.scrollTop + this.data.windowHeight
-    // })
-
-    // //向上
-    // this.setData({
-    //   scrollTop: this.data.scrollTop >= this.data.windowHeight ? this.data.scrollTop - this.data.windowHeight : 0
-    // })
-
   },
-  upper: function (e) {
-    console.log(e)
-  },
-  lower: function (e) {
-    console.log(e)
-  },
+  /**
+   *  点击底部滚动
+   */
   scrollBottom: function() {
     if (this.data.scrollTop >= (this.data.goodList.length - 1)*this.data.windowHeight) {
       return
@@ -133,18 +125,5 @@ Page({
     this.setData({
       scrollTop: this.data.scrollTop + this.data.windowHeight
     })
-
-    console.log(this.data.scrollTop)
-    // for (var i = 0; i < this.data.goodList.length; ++i) {
-    //   if (this.data.goodList[i].id === this.data.toView) {
-    //     let viewKey = isUpper ? i - 1 : i + 1
-    //     if (this.data.goodList[viewKey]) {
-    //       this.setData({
-    //         toView: this.data.goodList[viewKey].id
-    //       })
-    //       break
-    //     }
-    //   }
-    // }
   }
 })
