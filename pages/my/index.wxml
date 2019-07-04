@@ -25,13 +25,13 @@
   <view class="order-container">
     <view class="order-header">
       <view class="order-left font-6">我的订单</view>
-      <view class="order-right">
+      <view class="order-right" data-type="-1" bindtap="goOrder">
         <text class=".font-9">查看全部订单</text>
         <image src="/images/icon_arrow_r.png" class="arrow"></image>
       </view>
     </view>
     <view class="order-content flex-row-between">
-      <view wx:for="{{myOrders}}" wx:key="{{index}}">
+      <view wx:for="{{myOrders}}" wx:key="{{index}}" data-type="{{item.type}}" bindtap="goOrder">
         <image src="{{item.src}}" class="my-order-icon"></image>
         <view class="desc-text">{{item.desc}}</view>
       </view>

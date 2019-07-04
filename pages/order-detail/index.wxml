@@ -80,10 +80,7 @@
           </view>
         </view>
         <view class="order-item-btn flex-row-end " wx:if="{{order.status===1}}">
-          <view class="order-item-btn-pane">
-            <button class="service-btn">联系客服</button>  
-            <button class="pay-btn">申请退款</button>  
-          </view>
+          <button class="service-btn">联系客服</button> 
         </view>
         <view class="order-item-btn flex-row-between" wx:if="{{order.status===2}}">
           <view ><button class="service-btn">申请退款</button></view>

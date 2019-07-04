@@ -11,7 +11,9 @@ const request = (url, needSubDomain, method, data, isJson) => {
       method: method,
       data: data,
       header: {
-        'X-AUTH-TOKEN': wx.getStorageSync('token'),
+        'X-AUTH-USER': '1000177',
+        // 'X-AUTH-TOKEN': wx.getStorageSync('token')
+        'X-AUTH-TOKEN': 'c56b1a74-65e5-4730-8fc0-6a93a2eb8474',
         'Content-Type': isJson ? 'application/json; charset=UTF-8' : 'application/x-www-form-urlencoded; charset=UTF-8'
         //  Content-Type："json"
       },
@@ -70,6 +72,9 @@ module.exports = {
   },
   getDistrict: (data) => {
     return request('/district', true, 'get', data, true)
+  },
+  getOrders: ()=> {
+    return request('/my/orders', true, 'get', '', true)
   },
   uploadFile: (token, tempFilePath) => {
     const uploadUrl = API_BASE_URL + '/' + CONFIG.subDomain + '/dfs/upload/file'
