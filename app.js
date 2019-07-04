@@ -61,7 +61,9 @@ App({
     })
   },
   onShow: function() {
-    this.checkLoginStatus()
+    // 临时联调
+    wx.setStorageSync('token', '87463963-0971-425a-85c8-c2efcad81aac')
+    // this.checkLoginStatus()
   },
   login: function () {
     // 登录

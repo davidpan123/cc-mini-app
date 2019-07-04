@@ -1,7 +1,7 @@
 // 小程序开发api接口工具包，https://github.com/gooking/wxapi
 const CONFIG = require('./config.js')
 // const API_BASE_URL = 'https://api.it120.cc'
-const API_BASE_URL = 'http://47.105.53.172:8080'
+const API_BASE_URL = 'http://47.105.53.172'
 
 const request = (url, needSubDomain, method, data, isJson) => {
   let _url = API_BASE_URL + (needSubDomain ? '/' + CONFIG.subDomain : '') + url
@@ -11,6 +11,7 @@ const request = (url, needSubDomain, method, data, isJson) => {
       method: method,
       data: data,
       header: {
+        'X-AUTH-TOKEN': wx.getStorageSync('token'),
         'Content-Type': isJson ? 'application/json; charset=UTF-8' : 'application/x-www-form-urlencoded; charset=UTF-8'
         //  Content-Type："json"
       },
@@ -60,6 +61,15 @@ module.exports = {
   },
   register: (data) => {
     return request('/user/wxapp/register/complex', true, 'post', data)
+  },
+  getProvince: () => {
+    return request('/province', true, 'get', '', true)
+  },
+  getCity: (data) => {
+    return request('/city', true, 'get', data, true)
+  },
+  getDistrict: (data) => {
+    return request('/district', true, 'get', data, true)
   },
   uploadFile: (token, tempFilePath) => {
     const uploadUrl = API_BASE_URL + '/' + CONFIG.subDomain + '/dfs/upload/file'

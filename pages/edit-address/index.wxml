@@ -4,32 +4,53 @@
         <view class="row-wrap">
             <view class="label">收货人</view>
             <view class="label-right">
-                <input name="linkMan" class="input input-right" type="text" placeholder="请填写收货人姓名" value="{{addressData.linkMan}}" placeholder-class="placeholder"/>
+                <input name="linkMan" class="input input-right" type="text" placeholder="请填写收货人姓名" value="{{reqData.name}}" placeholder-class="placeholder" bindinput="nameInput"/>
             </view>
         </view>
         <view class="row-wrap">
             <view class="label">手机号码</view>
             <view class="label-right">
-                <input name="mobile" class="input input-right" maxlength="11" type="number" placeholder="请填写收货人手机号码" value="{{addressData.mobile}}" placeholder-class="placeholder"/>
+                <input name="mobile" class="input input-right" maxlength="11" type="number" placeholder="请填写收货人手机号码" value="{{reqData.phone}}" placeholder-class="placeholder" bindinput="phoneInput"/>
             </view>
         </view>
-        <view class="row-wrap" bindtap="selectCity">
+        <view class="row-wrap">
             <view class="label">所在地区</view>
-            <!-- <picker mode="multiSelector" range="{{pickerRegionRange}}" range-key="name" value="{{pickerSelect}}" bindchange="bindchange" bindcolumnchange="bindcolumnchange">
-              {{showRegionStr}}
-            </picker> -->
-            <!-- <view class="select-area">请选择收货人所在地区</view> -->
-            <view class="label-right">
-                <input name="linkArea" class="input" type="text" disabled="true" placeholder="请选择收货人所在地区" value="{{addressData.area}}" placeholder-class="placeholder" style="direction: rtl;"/>
+            <view class="label-right" bindtap="selectAddress">
+                <input name="linkArea" class="input" type="text" disabled="true" placeholder="请选择收货人所在地区" value="{{address}}" placeholder-class="placeholder" style="direction: rtl;"/>
             </view>
         </view>
         <view class="addr-details">
             <view class="label">详细地址</view>
             <view class="label-right">
-                <textarea name="address" class='input-right' auto-height placeholder="请填写街道、楼门牌等信息"  value="{{addressData.address}}" placeholder-class="placeholder"/>
+                <textarea name="address" class='input-right' auto-height placeholder="请填写街道、楼门牌等信息"  value="{{reqData.street}}" placeholder-class="placeholder" bindinput="streetInput"/>
             </view>
         </view>
     </view>  
   </form>
-  <button class="save-btn {{addressData.linkMan && addressData.mobile && addressData.area && addressData.address? 'btn-active' : ''}}">保存</button>  
+  <button class="save-btn {{(reqData.name && reqData.phone && address && reqData.street) ? 'btn-active' : ''}}" bindtap="bindSave">保存</button>  
+  <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+        <view class="title">选择地区</view>
+        <view class="addChoice">
+          <view class="choisce-item font-6" data-index="1" bindtap="addRessClick">{{reqData.province}}
+            <view class="choisce-item-btm" wx:if="{{chIndex==1}}"></view>
+          </view>
+          <view class="choisce-item font-6" data-index="2" bindtap="addRessClick">{{reqData.city}}
+            <view class="choisce-item-btm" wx:if="{{chIndex==2}}"></view>
+          </view>
+          <view class="choisce-item font-6" data-index="3" bindtap="addRessClick">{{reqData.district}}
+            <view class="choisce-item-btm" wx:if="{{chIndex==3}}"></view>
+          </view>
+        </view>
+        <view class="addList">
+          <view wx:for="{{adList}}" wx:key="{{index}}" data-item="{{item}}" data-index="{{index}}" bindtap="choice" class="list-item font-6 {{selectedIndex === index ? 'actived' : ''}}" >
+            {{item.name}}
+          </view>
+        </view>
+        <view class="complete-pane">
+          <button class="complete-btn" bindtap="confirm">完成</button>
+        </view>
+    </view>
+  </view>
 </view>
