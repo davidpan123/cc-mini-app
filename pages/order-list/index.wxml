@@ -8,9 +8,9 @@
     <image src="/images/order/icon_order.png" class="no-order-img"></image>
     <view class="text">暂无订单</view>
   </view>
-  <view class="order-list-pane" hidden="{{orderList ? false : true}}">
+  <view class="order-list-pane" hidden="{{orderList && orderList.length ? false : true}}">
     <scroll-view class="order-list" scroll-y="true">
-        <view class="order-item-pane" wx:for="{{orderList}}" wx:key="{{index}}">
+        <view class="order-item-pane" wx:for="{{orderList}}" wx:key="{{index}}" data-id="{{item.order_id}}" bindtap="goOrderDetail">
           <view class="order-item-header">
             <view class="title">
               <image class="shop-icon" src="/images/order/icon_shop.png"></image>

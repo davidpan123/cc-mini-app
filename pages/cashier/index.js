@@ -62,5 +62,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /**
+   * 确认支付
+   */
+  confirmPay () {
+    // 支付接口
+    // 支付完成跳转
+    wx.navigateTo({
+      url: '/pages/order-pay-success/index'
+    })
   }
 })

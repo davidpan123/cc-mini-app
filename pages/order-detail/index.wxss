@@ -35,6 +35,10 @@ page, .scroll-view{
 .person {
   width: 100%;
   display: flex;
+  font-weight: 600;
+}
+.address {
+  font-weight: 600;
 }
 .time, .address {
   margin-top: 20rpx;

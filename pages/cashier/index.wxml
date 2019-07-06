@@ -30,5 +30,5 @@
       </view>
     </view>
   </view>
-  <button class="save-btn">确认支付</button>  
+  <button class="save-btn" bindtap="confirmPay">确认支付</button>  
 </view>

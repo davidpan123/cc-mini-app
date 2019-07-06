@@ -38,6 +38,12 @@ Page({
       }
     })
   },
+  goOrderDetail (e) {
+    let orderId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/order-detail/index?orderId=' + orderId,
+    })
+  },
   onLoad: function (options) {
     if (options && options.type) {
       this.setData({

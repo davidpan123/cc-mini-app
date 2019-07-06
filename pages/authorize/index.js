@@ -62,5 +62,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /**
+   * 登录
+   */
+  login () {
+    // 登录接口
+    // 跳转手机号码验证
+    wx.navigateTo({
+      url: '/pages/authorize/bindmobil'
+    })
   }
 })

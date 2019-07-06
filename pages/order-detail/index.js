@@ -1,39 +1,28 @@
 const util = require('../../utils/util.js')
+const WXAPI = require('../../wxapi/main')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    order: {
-      status: 1,
-      all_money: 344450.00,
-      logistics_money: 10,
-      rest_money: 344450.00,
-      logistics: {
-        info: {
-          data: []
-        }
-      },
-      goods: [
-        {
-          id: 1,
-          goods_img: '/images/order/icon_shop.png',
-          goods_name: 'CC卡美珠宝',
-          skuLabel: '2edds;ddddddddddddddddddddddddddddd;dddddddddddddddddddd;dddddddddddddd;',
-          goods_count: 2,
-          goods_price: 29000.90
-        }
-      ]
-    },
+    orderId: '',
+    order: {},
     isShowPay: false,
-    statusName: ''
+    statusName: '',
+    //created_at下单时间； finish_at取消时间； pay_time支付时间
+    created_at: '',
+    finish_at: '',
+    pay_time: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      orderId: options.orderId 
+    })
   },
 
   /**
@@ -47,48 +36,52 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //created_at下单时间； finish_at取消时间； pay_time支付时间
-    // formatDate(this.data.order.created_at, 'yyyy-MM-dd hh:mm:ss')
-    this.setData({
-      statusName: this.getStatusName(this.data.order.status),
-      isShowPay: this.getOrderStatus(this.data.order.status)
+    this.getOrderDetail()
+  },
+
+  getOrderDetail: function () {
+    let that = this;
+    let params = {id: this.data.orderId}
+    WXAPI.getOrderDetail(params).then(res => {
+      let order = res.data
+      order.goods.forEach(item => {
+        if (item.is_diamond) {
+          item.skuLabel = `${item.zhuzuanfenshu};${item.zuanshijingdu};${item.guige};${item.guige}`;
+        } else {
+          item.skuLabel = `${item.zhushimingcheng};${item.zhushipingji};${item.guige};${item.guige}`;
+        }
+      });
+      if (!order.logistics.info) {
+        order.logistics = {
+          info: {
+            data: []
+          }
+        };
+      }
+      
+      //created_at下单时间； finish_at取消时间； pay_time支付时间
+      let created_at = '', finish_at='', pay_time =''
+      if (order.created_at) {
+        created_at = util.formatDate(order.created_at, 'yyyy-MM-dd hh:mm:ss')
+      }
+      if (order.finish_at) {
+        finish_at = util.formatDate(order.finish_at, 'yyyy-MM-dd hh:mm:ss')
+      }
+      if (order.pay_time) {
+        pay_time = util.formatDate(order.pay_time, 'yyyy-MM-dd hh:mm:ss')
+      }
+
+      that.setData({
+        order: order,
+        statusName: that.getStatusName(order.status),
+        isShowPay: that.isShowPay(order.status),
+        created_at: created_at,
+      })
     })
   },
-
   /**
-   * 生命周期函数--监听页面隐藏
+   * 获取订单状态名称
    */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   getStatusName (status) {
     const statusObjs = {
       0: '待付款',
@@ -101,7 +94,10 @@ Page({
     }
     return statusObjs[status] || ''
   },
-  getOrderStatus (status) {
+  /**
+   * 是否显示付款信息
+   */
+  isShowPay (status) {
     if (status === 0) {
       return false;
     } else {
@@ -111,5 +107,57 @@ Page({
         return true;
       }
     }
+  },
+  /**
+   * 查看物流
+   */
+  gotLogistics () {
+    wx.navigateTo({
+      url: '/pages/wuliu/index'
+    })
+  },
+  /**
+   * 立即付款-收银台
+   */
+  parOrder () {
+    // 存下order
+    // 跳转立即付款页面
+    wx.navigateTo({
+      url: '/pages/cashier/index'
+    })
+  },
+  /**
+   * 申请退款
+   */
+  goApplyRefund () {
+    wx.navigateTo({
+      url: '/pages/apply-refund/index'
+    })
+  },
+  /**
+   * 查看退款
+   */
+  goRefundDetail () {
+    wx.navigateTo({
+      url: '/pages/refund-detail/index'
+    })
+  },
+  /**
+   * 取消订单
+   */
+  cancelOrder () {
+
+  },
+  /**
+   * 确认收货
+   */
+  conformOrder () {
+
+  },
+  /**
+   * 联系客服
+   */
+  contactService () {
+
   }
 })

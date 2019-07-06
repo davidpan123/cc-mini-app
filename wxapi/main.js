@@ -4,6 +4,10 @@ const CONFIG = require('./config.js')
 const API_BASE_URL = 'http://47.105.53.172'
 
 const request = (url, needSubDomain, method, data, isJson) => {
+  if (/:id/.test(url)) {
+    url = url.replace(':id', data.id);
+    delete data.id
+  }
   let _url = API_BASE_URL + (needSubDomain ? '/' + CONFIG.subDomain : '') + url
   return new Promise((resolve, reject) => {
     wx.request({
@@ -75,6 +79,9 @@ module.exports = {
   },
   getOrders: ()=> {
     return request('/my/orders', true, 'get', '', true)
+  },
+  getOrderDetail: (data) => {
+    return request('/order/detail/:id', true, 'get', data, true)
   },
   uploadFile: (token, tempFilePath) => {
     const uploadUrl = API_BASE_URL + '/' + CONFIG.subDomain + '/dfs/upload/file'
