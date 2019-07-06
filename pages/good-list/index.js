@@ -1,12 +1,30 @@
-// pages/good-list/index.js
+const WXAPI = require('../../wxapi/main')
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    hideShopPopup: true,
     toView: 'dssdsd22',
     windowHeight: '',
+    res: null,
+    isZuan: false,
+    sku: {
+      skuScore: [],
+      skuClarity: [],
+      skuColor: [],
+      skuSpec: [],
+      merchantCode: '',
+      price: 0,
+      defaultSKU: '',
+      defaultMerchantCode: '',
+      defaultPrice: 0,
+      limit: 99,
+      count: 1,
+      skuId: '',
+      selectedSku: '',
+      stock: 0 //经销库存
+    },
     goodList: [
       {
         id: 'sdd111',
@@ -55,5 +73,108 @@ Page({
         break
       }
     }
+  },
+  getGoodDetail () {
+    const self = this;
+    let params = { id: '5be14683a2154f6a355108e0'}
+    WXAPI.getGoodDetail(params).then(res => {
+      self.setData({
+        res: res.data,
+        isZuan: res.data.is_diamond
+      })
+      let skuScore = [];
+      let skuClarity = [];
+      let skuColor = [];
+      let skuSpec = [];
+
+      self.data.res.skus.forEach((item, index) => {
+        if (!index) {
+          self.data.sku.defaultSKU = item.sku_id; //默认第1条是默认sku
+          self.data.sku.defaultPrice = item.price;
+          self.data.sku.defaultMerchantCode = item.merchant_code;
+          self.getGoodsStock(item.sku_id, stock => {
+            self.data.sku.stock = stock;
+            self.setData({
+              sku: self.data.sku
+            })
+          });
+        }
+        if (self.data.isZuan) {
+          if (item.zhuzuanfenshu) {
+            skuScore.push(item.zhuzuanfenshu);
+          }
+          if (item.zuanshijingdu) {
+            skuClarity.push(item.zuanshijingdu);
+          }
+        } else {
+          if (item.zhushimingcheng) {
+            skuScore.push(item.zhushimingcheng);
+          }
+          if (item.zhushipingji) {
+            skuClarity.push(item.zhushipingji);
+          }
+        }
+        if (item.color) {
+          skuColor.push(item.color);
+        }
+        if (item.guige) {
+          skuSpec.push(item.guige);
+        }
+      });
+
+      skuScore = [...new Set(skuScore)];
+      skuClarity = [...new Set(skuClarity)];
+      skuColor = [...new Set(skuColor)];
+      skuSpec = [...new Set(skuSpec)];
+
+      self.data.res.skus.forEach(item => {
+        if (self.data.isZuan) {
+          item.skuIds = [
+            skuScore.indexOf(item.zhuzuanfenshu),
+            skuClarity.indexOf(item.zuanshijingdu),
+            skuColor.indexOf(item.color),
+            skuSpec.indexOf(item.guige)
+          ].join('_');
+        } else {
+          item.skuIds = [
+            skuScore.indexOf(item.zhushimingcheng),
+            skuClarity.indexOf(item.zhushipingji),
+            skuColor.indexOf(item.color),
+            skuSpec.indexOf(item.guige)
+          ].join('_');
+        }
+      });
+
+      self.data.sku.skuScore = skuScore.map(item => ({ label: item, disabled: false }));
+      self.data.sku.skuClarity = skuClarity.map(item => ({ label: item, disabled: false }));
+      self.data.sku.skuColor = skuColor.map(item => ({ label: item, disabled: false }));
+      self.data.sku.skuSpec = skuSpec.map(item => ({ label: item, disabled: false }));
+      self.setData({
+        sku: self.data.sku
+      })
+
+      console.log(self.data.sku)
+    })
+  },
+  getGoodsStock(skuId, cb) {
+    let params = { sku: skuId }
+    WXAPI.getGoodsStock(params).then(res => {
+      cb(res.data.stock);
+    })
+  },
+  /**
+   * 显示购买对话框
+   */
+  showPayDialog () {
+    //获取商品详情，设置购买参数
+    this.getGoodDetail();
+    this.setData({
+      hideShopPopup: false
+    })
+  },
+  closePopupTap () {
+    this.setData({
+      hideShopPopup: true
+    })
   }
 })

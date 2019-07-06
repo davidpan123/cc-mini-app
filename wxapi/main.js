@@ -83,6 +83,14 @@ module.exports = {
   getOrderDetail: (data) => {
     return request('/order/detail/:id', true, 'get', data, true)
   },
+  //获取商品详情
+  getGoodDetail: (data) => {
+    return request('/goods/detail/:id', true, 'get', data, true)
+  },
+  //获取某个sku的库存
+  getGoodsStock: (data) => {
+    return request('/goods_stock', true, 'get', data, true)
+  },
   uploadFile: (token, tempFilePath) => {
     const uploadUrl = API_BASE_URL + '/' + CONFIG.subDomain + '/dfs/upload/file'
     return new Promise((resolve, reject) => {

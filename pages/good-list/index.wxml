@@ -13,7 +13,7 @@
             <view class="good-item-desc">尽显无敌柔美灵动</view>
         </view>
         <view class="buy-pane">
-          <button class="buy-btn">立即购买</button>
+          <button class="buy-btn" bindtap="showPayDialog">立即购买</button>
         </view>
       </view>
     </view>
@@ -23,6 +23,56 @@
       <image class='foot-img' src='/images/button_cc.png'></image>
       <!-- <image class='foot-img' src='/images/button_bom.png' bindtap='scrollBottom'></image> -->
       <image class='foot-img' src='/images/button_my.png'></image>
+    </view>
+  </view>
+  <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class="good-pay-pane flex-row-start border-bottom"> 
+        <image class="good-pay-img" src="{{res.img}}"></image>
+        <view class="good-pay-desc-pane">
+          <view class="pay-money">￥{{sku.price || sku.defaultPrice}}</view>
+          <view class="good-pay-num">商品编号：{{sku.merchantCode || sku.defaultMerchantCode}}</view>
+          <view class="good-pay-num">库存：{{sku.stock}}</view>
+        </view>
+      </view>
+      <view class="sku-pane border-bottom">
+        <view class="sku-tem-pane">
+          <view class="sku-title font-6 mag-top-40">{{isZuan ? '主钻分数' : '主石名称'}}</view>
+          <view wx:for="{{sku.skuScore}}" wx:key="{{index}}" class="sku-tem-btn-pane">
+            <button class="sku-btn font-6">{{item.label}}</button>
+          </view>
+        </view>
+        <view class="sku-tem-pane">
+          <view class="sku-title font-6 mag-top-40">{{isZuan ? '钻石净度' : '主石评级'}}</view>
+          <view wx:for="{{sku.skuClarity}}" wx:key="{{index}}" class="sku-tem-btn-pane">
+            <button class="sku-btn font-6">{{item.label}}</button>
+          </view>
+        </view>
+        <view class="sku-tem-pane">
+          <view class="sku-title font-6 mag-top-40">{{isZuan ? '主钻颜色' : '主石颜色'}}</view>
+          <view wx:for="{{sku.skuColor}}" wx:key="{{index}}" class="sku-tem-btn-pane">
+            <button class="sku-btn font-6">{{item.label}}</button>
+          </view>
+        </view>
+        <view class="sku-tem-pane">
+          <view class="sku-title font-6 mag-top-40">{{isZuan ? '主钻规格' : '主石规格'}}</view>
+          <view wx:for="{{sku.skuSpec}}" wx:key="{{index}}" class="sku-tem-btn-pane">
+            <button class="sku-btn font-6">{{item.label}}</button>
+          </view>
+        </view>
+      </view> 
+      <view class="sku-count-pane flex-row-between">
+        <view class="font-6">数量</view>
+        <view class="flex-row-between">
+          <view class="minute-pane">-</view>
+          <input class="number-pane" disabled="true" value="{{sku.count}}"/>
+          <view class="plus-pane">+</view>
+        </view>
+      </view>
+      <view class="complete-pane">
+        <button class="complete-btn" bindtap="confirm">购买</button>
+      </view>
     </view>
   </view>
 </view>

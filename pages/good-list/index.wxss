@@ -86,3 +86,98 @@ page {
   width: 60rpx;
   height: 60rpx;
 }
+
+/* 购买模态框 */
+.show-popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    z-index: 4;
+  }
+  .popup-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+  }
+  .popup-contents{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    background-color: #fff;
+    z-index: 6;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+  }
+  .good-pay-pane {
+    padding: 40rpx;
+  }
+  .good-pay-img {
+    width: 200rpx;
+    height: 200rpx;
+  }
+  .good-pay-desc-pane {
+    padding-top: 70rpx;
+    margin-left: 30rpx;
+  }
+  .pay-money {
+    font-size: 30rpx;
+    color: #ff91a5;
+  }
+  .good-pay-num {
+    margin-top: 20rpx;
+    font-size: 20rpx;
+    color: #999999;
+  }
+  .sku-pane {
+    padding: 0 40rpx 40rpx;
+  }
+  .sku-tem-pane {
+    display: flex;
+  }
+  .sku-tem-btn-pane {
+    display: flex;
+    margin-top: 16rpx;
+    flex-wrap: wrap;
+    margin-left: 40rpx;
+  }
+  .mag-top-40 {
+    margin-top: 40rpx;
+  }
+  .mag-top-56 {
+    margin-top: 56rpx;
+  }
+  .sku-btn {
+    margin-top: 24rpx;
+    border-radius: 20rpx;
+    background-color: #fff7f7;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+    border: 2prx solid #fff7f7;
+  }
+
+  .sku-count-pane {
+    padding: 32rpx 40rpx;
+  }
+  .complete-pane {
+    height: 96rpx;
+    padding: 0 20rpx;
+    display: flex;
+    align-items: center;
+  }
+  .complete-btn {
+      height: 68rpx;
+      border-radius: 34rpx;
+      width: 100%;
+      text-align: center;
+      color: #ffffff;
+      line-height: 68rpx;
+      background-color: #ffaab9;
+  }
