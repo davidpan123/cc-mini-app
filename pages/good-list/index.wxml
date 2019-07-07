@@ -56,8 +56,8 @@
           </view>
         </view>
         <view class="sku-tem-pane">
-          <view class="sku-title font-6 mag-top-40">{{isZuan ? '主钻规格' : '主石规格'}}</view>
-          <view wx:for="{{sku.skuSpec}}" wx:key="{{index}}" class="sku-tem-btn-pane">
+          <view class="sku-title font-6 mag-top-40">规格</view>
+          <view wx:for="{{sku.skuSpec}}" wx:key="{{index}}" class="sku-tem-btn-pane mar-left">
             <button class="sku-btn font-6">{{item.label}}</button>
           </view>
         </view>
@@ -65,13 +65,13 @@
       <view class="sku-count-pane flex-row-between">
         <view class="font-6">数量</view>
         <view class="flex-row-between">
-          <view class="minute-pane">-</view>
-          <input class="number-pane" disabled="true" value="{{sku.count}}"/>
-          <view class="plus-pane">+</view>
+          <image class="minute-pane" bindtap="minute" src="{{sku.count > 1? '/images/good/button_minus_active.png' : '/images/good/button_minus.png'}}"></image>
+          <view class="number-pane">{{sku.count}}</view>
+          <image class="plus-pane" bindtap="plus" src="{{sku.count < sku.limit?'/images/good/button_plus_active.png':'/images/good/button_plus.png'}}"></image>
         </view>
       </view>
       <view class="complete-pane">
-        <button class="complete-btn" bindtap="confirm">购买</button>
+        <button class="complete-btn" bindtap="confirmBuy">购买</button>
       </view>
     </view>
   </view>

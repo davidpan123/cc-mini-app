@@ -7,9 +7,6 @@ page {
   background-color: #F2f2f2;
   padding-bottom: 20rpx;
 }
-.good-pane {
-  /* padding: 0 35rpx; */
-}
 .good-list-pane{
   margin-top: 20rpx;
   position: relative;
@@ -153,6 +150,9 @@ page {
   .mag-top-56 {
     margin-top: 56rpx;
   }
+  .mar-left {
+    margin-left: 90rpx;
+  }
   .sku-btn {
     margin-top: 24rpx;
     border-radius: 20rpx;
@@ -165,6 +165,20 @@ page {
 
   .sku-count-pane {
     padding: 32rpx 40rpx;
+  }
+  .minute-pane {
+    width: 40rpx;
+    height: 40rpx;
+  }
+  .number-pane {
+    width: 120rpx;
+    font-size: 30rpx;
+    color: #666666;
+    text-align: center;
+  }
+  .plus-pane {
+    width: 40rpx;
+    height: 40rpx;
   }
   .complete-pane {
     height: 96rpx;

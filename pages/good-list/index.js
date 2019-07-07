@@ -162,6 +162,29 @@ Page({
       cb(res.data.stock);
     })
   },
+  minute () {
+    if (this.data.sku.count > 1) {
+      this.data.sku.count--
+      this.setData({
+        sku: this.data.sku
+      })
+    }
+  },
+  plus () {
+    if (this.data.sku.count < this.data.sku.limit) {
+      this.data.sku.count++
+      this.setData({
+        sku: this.data.sku
+      })
+    }
+  },
+  /**
+   * 确认购买
+   */
+  confirmBuy () {
+    // 购买操作
+    this.closePopupTap()
+  },
   /**
    * 显示购买对话框
    */
