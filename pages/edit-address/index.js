@@ -148,43 +148,49 @@ Page({
   bindSave: function (e) {
     console.log(this.data.reqData)
     var that = this;
-    // var linkMan = e.detail.value.linkMan;
-    // var address = e.detail.value.address;
-    // var mobile = e.detail.value.mobile;
-    // if (linkMan == "") {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '请填写联系人姓名',
-    //     showCancel: false
-    //   })
-    //   return
-    // }
-    // if (mobile == "") {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '请填写手机号码',
-    //     showCancel: false
-    //   })
-    //   return
-    // }
-    // if (!this.data.pObject || !this.data.cObject) {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '请选择地区',
-    //     showCancel: false
-    //   })
-    //   return
-    // }
-    // if (address == "") {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '请填写详细地址',
-    //     showCancel: false
-    //   })
-    //   return
-    // }
-    // // 跳转到结算页面
-    // wx.navigateBack({})
+    var linkMan = this.data.reqData.name;
+    var address = this.data.reqData.name;
+    var mobile = this.data.reqData.phone;
+    let street = this.data.reqData.street
+    if (linkMan == "") {
+      wx.showModal({
+        title: '提示',
+        content: '请填写收货人姓名',
+        showCancel: false
+      })
+      return
+    }
+    if (mobile == "") {
+      wx.showModal({
+        title: '提示',
+        content: '请填写手机号码',
+        showCancel: false
+      })
+      return
+    }
+    if (!this.data.address) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择所在地区',
+        showCancel: false
+      })
+      return
+    }
+    if (street == "") {
+      wx.showModal({
+        title: '提示',
+        content: '请填写详细地址',
+        showCancel: false
+      })
+      return
+    }
+    let resObj = {
+    }
+    if (this.data.isEdit) {
+
+    }
+    // 跳转到结算页面
+    wx.navigateBack({})
   },
   onLoad: function (e) {
    
