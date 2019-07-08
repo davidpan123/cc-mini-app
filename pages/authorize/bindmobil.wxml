@@ -12,6 +12,6 @@
     </view>
   </view>
   <view class="submit-pane">
-    <button class="submit-btn">确认提交</button>  
+    <button class="submit-btn" bindtap='submit'>确认提交</button>  
   </view>
 </view>

@@ -19,7 +19,8 @@ Page({
       street: '',//街道
       code: '0',
       district: '朝阳区'//区
-    }
+    },
+    isEdit: false
   },
   selectAddress: function () {
     this.setData({
@@ -189,6 +190,23 @@ Page({
    
   },
   onShow: function (e) {
+    this.getAddress()
     this.getProvince()
+  },
+  /**
+   * 获取地址
+   */
+  getAddress() {
+    const self = this;
+    WXAPI.getAddress().then(res => {
+      if (res && res.data.length) {
+        let address = res.data[0]
+        self.setData({
+          isEdit: true,
+          reqData: address,
+          address: address.province + '-' + address.city + '-' + address.district
+        })
+      }
+    })
   }
 })

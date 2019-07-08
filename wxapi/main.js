@@ -68,6 +68,15 @@ module.exports = {
   register: (data) => {
     return request('/user/wxapp/register/complex', true, 'post', data)
   },
+  getAddress: (data) => {
+    return request('/address', true, 'get')
+  },
+  addAdress: () => {
+    return request('/address', true, 'post', data, true)
+  },
+  setAddress: () => {
+    return request('/address', true, 'put', data, true)
+  },
   getProvince: () => {
     return request('/province', true, 'get', '', true)
   },
