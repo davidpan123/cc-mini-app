@@ -1,7 +1,6 @@
 <view class="container">
 <navigator url="/pages/home/index">首页</navigator>
 <navigator url="/pages/good-list/index">商品列表</navigator>
-  <navigator url="/pages/edit-address/index?title=navigate" hover-class="navigator-hover">编辑地址   </navigator>
   <navigator url="/pages/wuliu/index?title=navigate" hover-class="navigator-hover">物流追踪          </navigator>
   <navigator url="/pages/refund-detail/index?title=navigate" hover-class="navigator-hover">退款详情</navigator>
    <navigator url="/pages/my/index?title=navigate" hover-class="navigator-hover">个人中心</navigator>

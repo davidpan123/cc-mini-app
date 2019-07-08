@@ -4,20 +4,20 @@
     <view class="address-pane">
       <view class="address-pane-left">
         <view class="person">
-          <view wx:if="{{hasAddress}}">
-            <text class="font-6-blod">收货人：{{'A先生'}}</text>
-            <text class="font-6-blod phone">{{'182****9010'}}</text>
+          <view wx:if="{{addInfo}}">
+            <text class="font-6-blod">收货人：{{addInfo.name}}</text>
+            <text class="font-6-blod phone">{{addInfo.phone}}</text>
           </view>
           <view wx:else>
-            <text class="font-6-blod">添加收货地址</text>
+            <text class="font-9-blod">添加收货地址</text>
           </view>
         </view>
         <view class="address">
-          <text class="font-6" wx:if="{{hasAddress}}">收货地址：{{'陕西省西安市丈八东路123号'}}</text> 
+          <text class="font-6" wx:if="{{addInfo}}">收货地址：{{address}}</text> 
           <text class="font-6" wx:else>填写您的收货地址和联系方式</text>
         </view>
       </view>
-      <view class="address-pane-right">
+      <view class="address-pane-right" bindtap="goAddress">
         <image src="/images/icon_arrow_r.png" class="arrow"></image>
       </view>
     </view>
@@ -51,7 +51,7 @@
     <view class='row-item flex-row-between'>
       <text class='font-9'>留言</text>
       <view class='msg-pane'>
-        <input name="msg" class="input font-6" type="text" placeholder="选填： 建议留言前先与卖家沟通确认" value="{{msg}}" placeholder-class="placeholder"/>
+        <input name="msg" class="input input-right font-6" type="text" placeholder="选填： 建议留言前先与卖家沟通确认" value="{{msg}}" placeholder-class="placeholder"/>
         <image src="/images/icon_arrow_r.png" class="arrow arrow-right"></image>
       </view>
     </view>

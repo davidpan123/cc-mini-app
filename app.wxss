@@ -22,6 +22,11 @@
   color: #999999;
   font-size: 24rpx;
 }
+.font-9-blod {
+  color: #999999;
+  font-size: 24rpx;
+  font-weight: 600;
+}
 .font-6-blod {
   color: #666666;
   font-size: 30rpx;

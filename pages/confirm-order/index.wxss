@@ -89,6 +89,9 @@ page{
 .row-item {
   height: 84rpx;
 }
+.phone {
+  margin-left: 100rpx;
+}
 .msg-pane {
   width: 600rpx;
   display: flex;
@@ -97,7 +100,6 @@ page{
 }
 .msg-pane .input{
   width: 550rpx;
-  direction: rtl;
 }
 .placeholder {
   font-size: 24rpx;

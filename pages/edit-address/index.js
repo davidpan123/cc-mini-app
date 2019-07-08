@@ -149,7 +149,7 @@ Page({
     console.log(this.data.reqData)
     var that = this;
     var linkMan = this.data.reqData.name;
-    var address = this.data.reqData.name;
+    var address = this.data.address;
     var mobile = this.data.reqData.phone;
     let street = this.data.reqData.street
     if (linkMan == "") {
@@ -184,13 +184,17 @@ Page({
       })
       return
     }
-    let resObj = {
-    }
+    let resObj = {}
     if (this.data.isEdit) {
-
+      resObj = Object.assign({}, this.data.reqData, {address_id: this.data.reqData.id })
+      WXAPI.setAddress(resObj).then(res => {
+        wx.navigateBack({})
+      })
+    } else {
+      WXAPI.addAdress(this.data.reqData).then(res => {
+        wx.navigateBack({})
+      })
     }
-    // 跳转到结算页面
-    wx.navigateBack({})
   },
   onLoad: function (e) {
    

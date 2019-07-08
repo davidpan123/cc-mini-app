@@ -1,5 +1,5 @@
-// pages/my/index.js
 const appData = getApp()
+const WXAPI = require('../../wxapi/main')
 Page({
 
   /**
@@ -7,6 +7,8 @@ Page({
    */
   data: {
     userInfo: null,
+    addInfo: null,
+    address: null,
     myOrders: [
       { type: 0, src: '/images/my/icon_order_non_payment.png', desc: '待付款'},
       { type: 1, src: '/images/my/icon_order_shipped.png', desc: '待发货' },
@@ -48,40 +50,26 @@ Page({
     this.setData({
       userInfo: appData.globalData.userInfo
     })
+    this.getAddress()
   },
-
   /**
-   * 生命周期函数--监听页面隐藏
+   * 获取地址
    */
-  onHide: function () {
-
+  getAddress() {
+    const self = this;
+    WXAPI.getAddress().then(res => {
+      if (res && res.data.length) {
+        let address = res.data[0]
+        self.setData({
+          addInfo: address,
+          address: address.province + address.city + address.district + address.street
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  goAddress () {
+    wx.navigateTo({
+      url: '/pages/edit-address/index'
+    })
   }
 })

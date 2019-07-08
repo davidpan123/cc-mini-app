@@ -47,6 +47,9 @@ page{
 .address-pane-left .address {
   margin-top: 24rpx;
 }
+.phone {
+  margin-left: 100rpx;
+}
 .address-pane-right {
   width: 40rpx;
   height: 40rpx;

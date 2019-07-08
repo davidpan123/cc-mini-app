@@ -1,11 +1,12 @@
-// pages/confirm-order/index.js
+const WXAPI = require('../../wxapi/main')
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    msg: ''
+    msg: '',
+    addInfo: null,
+    address: null
   },
 
   /**
@@ -26,41 +27,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getAddress()
   },
-
   /**
-   * 生命周期函数--监听页面隐藏
+   * 获取地址
    */
-  onHide: function () {
-
+  getAddress() {
+    const self = this;
+    WXAPI.getAddress().then(res => {
+      if (res && res.data.length) {
+        let address = res.data[0]
+        self.setData({
+          addInfo: address,
+          address: address.province + address.city + address.district + address.street
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  goAddress() {
+    wx.navigateTo({
+      url: '/pages/edit-address/index'
+    })
   }
 })

@@ -71,10 +71,10 @@ module.exports = {
   getAddress: (data) => {
     return request('/address', true, 'get')
   },
-  addAdress: () => {
+  addAdress: (addAdress) => {
     return request('/address', true, 'post', data, true)
   },
-  setAddress: () => {
+  setAddress: (data) => {
     return request('/address', true, 'put', data, true)
   },
   getProvince: () => {
