@@ -108,8 +108,8 @@
         </view>
       </view>
     </view>
-    <view class="submit-pane flex-row-between">
-      <button class="submit-btn">授权登录</button>  
+    <view class="submit-pane flex-row-between" wx:if="{{order.is_rejected}}">
+      <button class="submit-btn" bindtap='reSumbit'>重新提交</button>  
     </view>
   </scroll-view>
   <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">

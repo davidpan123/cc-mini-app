@@ -167,3 +167,64 @@ page{
   background-color: #ffaab9;
 }
 
+/* 模态框 */
+.show-popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    z-index: 4;
+  }
+  .popup-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+  }
+  .popup-contents{
+    background-color: #fff;
+    z-index: 6;
+    width: 600rpx;
+    border-radius: 10rpx;
+  }
+  .popup-title {
+    height: 160rpx;
+    line-height: 160rpx;
+    text-align: center;
+    border-top-left-radius: 10rpx;
+    border-top-right-radius: 10rpx;
+  }
+  .popup-item {
+    padding-top: 30rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #666666;
+  }
+  .popup-conten-item {
+    padding: 10rpx 20rpx 30rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #666666;
+  }
+  .popup-btn {
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    flex: 1;
+    border-bottom-left-radius: 10rpx;
+    border-bottom-right-radius: 10rpx;
+  }
+  .cancel-btn {
+    font-size: 30rpx;
+    color: #666666;
+  }
+  .ok-btn {
+    font-size: 30rpx;
+    color: #ffffff;
+    background-color: #ffaab9;
+  }
+

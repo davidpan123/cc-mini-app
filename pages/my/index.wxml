@@ -46,7 +46,9 @@
     </view>
   </view>
   <view class="footer flex-row-between">
-    <image src="/images/button_cc.png" class="cc-icon"></image>
-    <image src="/images/button_my.png" class="cc-icon"></image>
+    <image src="/images/button_cc.png" class="cc-icon" bindtap='goHome'></image>
+    <navigator open-type="exit" target="miniProgram">
+      <image src="/images/button_my.png" class="cc-icon"></image>
+    </navigator>
   </view>
 </view>

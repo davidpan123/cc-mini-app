@@ -28,39 +28,21 @@ Page({
   onShow: function () {
 
   },
-
   /**
-   * 生命周期函数--监听页面隐藏
+   * to 订单详情
    */
-  onHide: function () {
-
+  goOrderDetail () {
+    // oreder详情id
+    wx.navigateTo({
+      url: '/pages/order-detail/index'
+    })
   },
-
   /**
-   * 生命周期函数--监听页面卸载
+   * 返回首页
    */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  goHome () {
+    wx.navigateTo({
+      url: '/pages/home/index'
+    })
   }
 })

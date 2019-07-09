@@ -50,7 +50,7 @@
       </view>
     </view>
   </view>
-  <button class="save-btn">确认提交</button>  
+  <button class="save-btn" bindtap='goRefundDetail'>确认提交</button>  
   <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">
     <view class="popup-mask" bindtap="closePopupTap"></view>
     <view class="popup-contents">

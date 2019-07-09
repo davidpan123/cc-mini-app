@@ -13,7 +13,9 @@ Page({
     //created_at下单时间； finish_at取消时间； pay_time支付时间
     created_at: '',
     finish_at: '',
-    pay_time: ''
+    pay_time: '',
+    hideShopPopup: true,
+    hideServicePopup: true
   },
 
   /**
@@ -40,9 +42,13 @@ Page({
   },
 
   getOrderDetail: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
     let that = this;
     let params = {id: this.data.orderId}
     WXAPI.getOrderDetail(params).then(res => {
+      wx.hideLoading();
       let order = res.data
       order.goods.forEach(item => {
         if (item.is_diamond) {
@@ -146,7 +152,27 @@ Page({
    * 取消订单
    */
   cancelOrder () {
-
+    this.setData({
+      hideShopPopup: false
+    })
+  },
+  /**
+   * 关闭取消订单对话框
+   */
+  closePopupTap () {
+    this.setData({
+      hideShopPopup: true,
+      hideServicePopup: true
+    })
+  },
+  /**
+   * 取消订单对话框-确定
+   */
+  okCancelOrder () {
+    // 确定取消
+    // 再次调用订单详情接口
+    // 关闭取消订单对话框
+    this.closePopupTap()
   },
   /**
    * 确认收货
@@ -157,7 +183,17 @@ Page({
   /**
    * 联系客服
    */
-  contactService () {
-
-  }
+  contactService() {
+    this.setData({
+      hideServicePopup: false
+    })
+  },
+  /**
+   * 对话框-确定联系客服
+   */
+  okContactService() {
+    // 联系客服操作
+    // 关闭对话框
+    this.closePopupTap()
+  },
 })

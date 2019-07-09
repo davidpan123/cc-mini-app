@@ -71,5 +71,10 @@ Page({
     wx.navigateTo({
       url: '/pages/edit-address/index'
     })
+  },
+  goHome () {
+    wx.navigateTo({
+      url: '/pages/home/index'
+    })
   }
 })

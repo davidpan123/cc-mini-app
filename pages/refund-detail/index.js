@@ -105,5 +105,12 @@ Page({
    */
   save: function () {
     this.closePopupTap();
+  },
+  /**
+   * 重新提交
+   */
+  reSumbit () {
+    // 重新提交成功后
+    // 再次调用退款详情接口
   }
 })

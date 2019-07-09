@@ -1,10 +1,5 @@
 <view class="container">
 <navigator url="/pages/home/index">首页</navigator>
-<navigator url="/pages/good-list/index">商品列表</navigator>
-  <navigator url="/pages/wuliu/index?title=navigate" hover-class="navigator-hover">物流追踪          </navigator>
-  <navigator url="/pages/refund-detail/index?title=navigate" hover-class="navigator-hover">退款详情</navigator>
-   <navigator url="/pages/my/index?title=navigate" hover-class="navigator-hover">个人中心</navigator>
-     <navigator url="/pages/confirm-order/index?title=navigate" hover-class="navigator-hover">确认订单</navigator>
-     <navigator url="/pages/authorize/index?title=navigate" hover-class="navigator-hover">授权登录</navigator>
-      <navigator url="/pages/apply-refund/index?title=navigate" hover-class="navigator-hover">申请退款</navigator>
+<navigator url="/pages/authorize/index?title=navigate" hover-class="navigator-hover">授权登录</navigator>
+<navigator open-type="exit" target="miniProgram">退出</navigator>
 </view>

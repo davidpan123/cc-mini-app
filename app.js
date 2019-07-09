@@ -130,6 +130,7 @@ App({
     // }
   },
   globalData: {
+    exitFlag: false,
     isConnected: true,
     userInfo: null
   }

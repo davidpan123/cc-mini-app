@@ -11,7 +11,9 @@ Page({
       { type: 3, name: "已完成" }
     ],
     currentType: -1,
-    orderList: []
+    orderList: [],
+    hideReceingPopup: true,
+    hideServicePopup: true
   },
   statusTap: function (e) {
     const curType = e.currentTarget.dataset.type;
@@ -20,23 +22,6 @@ Page({
       currentType: curType
     });
     this.onShow();
-  },
-  cancelOrderTap: function (e) {
-    const that = this;
-    const orderId = e.currentTarget.dataset.id;
-    wx.showModal({
-      title: '确定要取消该订单吗？',
-      content: '',
-      success: function (res) {
-        if (res.confirm) {
-          WXAPI.orderClose(orderId, wx.getStorageSync('token')).then(function (res) {
-            if (res.code == 0) {
-              that.onShow();
-            }
-          })
-        }
-      }
-    })
   },
   goOrderDetail (e) {
     let orderId = e.currentTarget.dataset.id;
@@ -50,11 +35,21 @@ Page({
         currentType: options.type
       });
     }
+    // 获取订单列表
+    this.getOrderList()
   },
   onShow: function () {
-    // 获取订单列表
+  },
+  /**
+   * 获取订单列表
+   */
+  getOrderList () {
+    wx.showLoading({
+      title: '加载中',
+    })
     let that = this;
     WXAPI.getOrders().then(res => {
+      wx.hideLoading();
       let orders = res.data;
       if (that.data.currentType != -1) {
         orders = orders.filter(order => {
@@ -85,5 +80,72 @@ Page({
   onReachBottom: function () {
     // 页面上拉触底事件的处理函数
 
+  },
+  /**
+   * 查看退款详情
+   */
+  goRefundDetail () {
+    wx.navigateTo({
+      url: '/pages/refund-detail/index'
+    })
+  },
+  /**
+   * 查看物流
+   */
+  goLogistics () {
+    wx.navigateTo({
+      url: '/pages/wuliu/index'
+    })
+  },
+  /**
+   * 立即付款
+   */
+  pay () {
+
+  },
+  /**
+   * 联系客服
+   */
+  contactService () {
+    this.setData({
+      hideServicePopup: false
+    })
+  },
+  /**
+   * 对话框-确定联系客服
+   */
+  okContactService () {
+    app.globalData.exitFlag = true;
+    // 联系客服操作
+    // 关闭对话框
+    this.closePopupTap()
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
+  },
+  /**
+   * 确认收货-弹出层
+   */
+  confimReceiving () {
+    this.setData({
+      hideReceingPopup: false
+    })
+  },
+  /**
+   * 对话框-确认收货
+   */
+  okReceiving () {
+    // 确认操作-调用接口
+    // 关闭对话框
+    this.closePopupTap()
+  },
+  /**
+   * 关闭对话框
+   */
+  closePopupTap () {
+    this.setData({
+      hideReceingPopup: true,
+      hideServicePopup: true
+    })
   }
 })

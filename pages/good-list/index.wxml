@@ -20,9 +20,9 @@
   </scroll-view>
   <view class='footer'>
     <view class='flex-row-between footer-pane'>
-      <image class='foot-img' src='/images/button_cc.png'></image>
+      <image class='foot-img' src='/images/button_cc.png' bindtap='goHome'></image>
       <!-- <image class='foot-img' src='/images/button_bom.png' bindtap='scrollBottom'></image> -->
-      <image class='foot-img' src='/images/button_my.png'></image>
+      <image class='foot-img' src='/images/button_my.png' bindtap='goUserCenter'></image>
     </view>
   </view>
   <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">

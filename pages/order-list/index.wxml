@@ -37,36 +37,50 @@
           <!-- 待付款 0-->
           <view class="order-item-btn" wx:if="{{item.status==0}}">
             <view class="order-item-btn-pane">
-              <button class="service-btn">联系客服</button>  
-              <button class="pay-btn">立即付款</button>  
+              <button class="service-btn" catchtap="contactService">联系客服</button>  
+              <button class="pay-btn" catchtap="pay">立即付款</button>  
             </view>
           </view>
           <!-- 待发货 1  |  已完成 3  | 已取消 8-->
           <view class="order-item-btn" wx:if="{{item.status==1 || item.status==3 || item.status==8}}">
-            <button class="service-btn">联系客服</button>  
+            <button class="service-btn" catchtap="contactService">联系客服</button>  
           </view>
           <!-- 待收货 2-->
           <view class="order-item-btn" wx:if="{{item.status==2}}">
             <view class="order-item-btn-pane">
-              <button class="service-btn">查看物流</button>  
-              <button class="pay-btn">确认收货</button>  
-            </view>
-          </view>
-          <!-- 已完成 3-->
-          <view class="order-item-btn" wx:if="{{item.status==3}}">
-            <view class="order-item-btn-pane">
-              <button class="service-btn">查看物流</button>  
-              <button class="pay-btn">确认收货</button>  
+              <button class="service-btn" catchtap="goLogistics">查看物流</button>  
+              <button class="pay-btn" catchtap="confimReceiving">确认收货</button>  
             </view>
           </view>
           <!-- 退款中 4  |  已退款 6-->
           <view class="order-item-btn" wx:if="{{item.status==4 || item.status==6}}">
             <view class="order-item-btn-pane">
-              <button class="service-btn">联系客服</button>  
-              <button class="pay-btn">查看退款</button>  
+              <button class="service-btn" catchtap="contactService">联系客服</button>  
+              <button class="pay-btn" catchtap='goRefundDetail'>查看退款</button>  
             </view>
           </view>
         </view>
     </scroll-view>
+  </view>
+  <view class="show-popup flex-row-center" hidden="{{hideReceingPopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class="popup-title border-bottom">确定商品已被本人亲自签收了吗？</view>
+      <view class="popup-btn-pane flex-row-center ">
+        <view class='popup-btn cancel-btn' bindtap="closePopupTap">取消</view>
+        <view class='popup-btn ok-btn' bindtap="okReceiving">确定</view>
+      </view>
+    </view>
+  </view>
+  <view class="show-popup flex-row-center" hidden="{{hideServicePopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class="popup-item">即将离开商城，接通您的专属客服。</view>
+      <view class="popup-conten-item border-bottom">您可以在公众号中回复“人工服务”与客服进行联系与沟通。</view>
+      <view class="popup-btn-pane flex-row-center ">
+        <view class='popup-btn cancel-btn' bindtap="closePopupTap">取消</view>
+        <view class='popup-btn ok-btn' bindtap="okContactService">确定</view>
+      </view>
+    </view>
   </view>
 </view>

@@ -77,7 +77,7 @@
         <text class='money-value'>￥33566.90</text>
       </view>
       <view>
-        <button class="order-btn">提交订单</button>  
+        <button class="order-btn" bindtap='submitOrder'>提交订单</button>  
       </view>
     </view>
   </view>

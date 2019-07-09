@@ -96,5 +96,13 @@ Page({
    */
   save: function () {
     this.closePopupTap();
+  },
+  /**
+   * 跳转退款详情
+   */
+  goRefundDetail () {
+    wx.navigateTo({
+      url: '/pages/refund-detail/index'
+    })
   }
 })

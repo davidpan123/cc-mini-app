@@ -44,9 +44,22 @@ Page({
       }
     })
   },
+  /**
+   * 路由-编辑地址
+   */
   goAddress() {
     wx.navigateTo({
       url: '/pages/edit-address/index'
+    })
+  },
+  /**
+   * 提交订单
+   */
+  submitOrder () {
+    // 提交订单成功后
+    // 跳转支付页面
+    wx.navigateTo({
+      url: '/pages/cashier/index'
     })
   }
 })

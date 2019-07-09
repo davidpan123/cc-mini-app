@@ -184,6 +184,11 @@ Page({
   confirmBuy () {
     // 购买操作
     this.closePopupTap()
+    // 购买操作
+    // 成功后跳转确认订单页面
+    wx.navigateTo({
+      url: '/pages/confirm-order/index'
+    })
   },
   /**
    * 显示购买对话框
@@ -198,6 +203,22 @@ Page({
   closePopupTap () {
     this.setData({
       hideShopPopup: true
+    })
+  },
+  /**
+   * 跳转首页
+   */
+  goHome () {
+    wx.navigateTo({
+      url: '/pages/home/index'
+    })
+  },
+  /**
+   * 跳转个人中心
+   */
+  goUserCenter () {
+    wx.navigateTo({
+      url: '/pages/my/index'
     })
   }
 })

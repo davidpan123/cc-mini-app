@@ -7,9 +7,9 @@
   </scroll-view>
   <view class='footer'>
     <view class='flex-row-between footer-pane'>
-      <image class='foot-img' src='/images/button_shop.png'></image>
+      <image class='foot-img' src='/images/button_shop.png' bindtap="gotoGoodList"></image>
       <image class='foot-img' src='/images/button_bom.png' bindtap='scrollBottom'></image>
-      <image class='foot-img' src='/images/button_my.png'></image>
+      <image class='foot-img' src='/images/button_my.png' bindtap="goUserCenter"></image>
     </view>
   </view>
 </view>

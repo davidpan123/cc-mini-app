@@ -87,9 +87,17 @@ Page({
    *  点击跳转具体的商品
    */
   gotoGoodList: function (e) {
-    let id = e.currentTarget.dataset.id
+    let id = e && e.currentTarget.dataset.id || this.data.goodList[0].id
     wx.navigateTo({
       url: '/pages/good-list/index?id=' + id
+    })
+  },
+  /**
+   *  跳转个人中心
+   */
+  goUserCenter () {
+    wx.navigateTo({
+      url: '/pages/my/index'
     })
   },
   /**

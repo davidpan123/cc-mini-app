@@ -72,6 +72,7 @@
             <text class="good-real-value">￥{{order.rest_money}}</text>
           </view>
         </view>
+        <!-- 待付款 -->
         <view class="order-item-btn flex-row-between" wx:if="{{order.status===0}}">
           <view ><button class="service-btn" bindtap="cancelOrder">取消订单</button></view>
           <view class="order-item-btn-pane">
@@ -79,10 +80,12 @@
             <button class="pay-btn" bindtap="parOrder">立即付款</button>  
           </view>
         </view>
+        <!-- 待发货 -->
         <view class="order-item-btn flex-row-between " wx:if="{{order.status===1}}">
           <button class="service-btn" bindtap="goApplyRefund">申请退款</button>
           <button class="service-btn" bindtap="contactService">联系客服</button> 
         </view>
+        <!-- 待收货 -->
         <view class="order-item-btn flex-row-between" wx:if="{{order.status===2}}">
           <view ><button class="service-btn" bindtap="goApplyRefund">申请退款</button></view>
           <view class="order-item-btn-pane">
@@ -90,11 +93,13 @@
             <button class="pay-btn" bindtap="conformOrder">确认收货</button>  
           </view>
         </view>
+        <!-- 已完成 | 已取消 -->
         <view class="order-item-btn flex-row-end " wx:if="{{order.status===3 || order.status===8}}">
           <view class="order-item-btn-pane">
             <button class="service-btn" bindtap="contactService">联系客服</button>
           </view>
         </view>
+        <!-- 退款中 | 已退款 -->
         <view class="order-item-btn flex-row-end " wx:if="{{order.status===4 || order.status===6}}">
           <view class="order-item-btn-pane">
             <button class="service-btn" bindtap="contactService">联系客服</button>
@@ -124,4 +129,25 @@
       </view>
     </view>
   </scroll-view>
+  <view class="show-popup flex-row-center" hidden="{{hideShopPopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class="popup-title border-bottom">确认取消此订单？</view>
+      <view class="popup-btn-pane flex-row-center ">
+        <view class='popup-btn cancel-btn' bindtap="closePopupTap">取消</view>
+        <view class='popup-btn ok-btn' bindtap="okCancelOrder">确定</view>
+      </view>
+    </view>
+  </view>
+  <view class="show-popup flex-row-center" hidden="{{hideServicePopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents wdith-600">
+      <view class="popup-item">即将离开商城，接通您的专属客服。</view>
+      <view class="popup-conten-item border-bottom">您可以在公众号中回复“人工服务”与客服进行联系与沟通。</view>
+      <view class="popup-btn-pane flex-row-center ">
+        <view class='popup-btn cancel-btn' bindtap="closePopupTap">取消</view>
+        <view class='popup-btn ok-btn' bindtap="okContactService">确定</view>
+      </view>
+    </view>
+  </view>
 </view>
