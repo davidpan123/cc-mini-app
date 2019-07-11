@@ -94,8 +94,12 @@ page{
     text-align: center;
     border-radius: 34rpx;
     box-sizing: border-box;
-    background-color: #ffaab9;
+    background-color: #cccccc;
     color:#fff;
+}
+
+.save-btn.active {
+  background-color: #ffaab9;
 }
 
 /* 原因模态框 */

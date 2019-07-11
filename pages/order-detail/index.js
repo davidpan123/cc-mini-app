@@ -15,6 +15,7 @@ Page({
     finish_at: '',
     pay_time: '',
     hideShopPopup: true,
+    hideReceingPopup: true,
     hideServicePopup: true
   },
 
@@ -31,7 +32,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -119,17 +119,16 @@ Page({
    */
   gotLogistics () {
     wx.navigateTo({
-      url: '/pages/wuliu/index'
+      url: '/pages/wuliu/index?orderId=' + this.data.orderId
     })
   },
   /**
    * 立即付款-收银台
    */
   parOrder () {
-    // 存下order
     // 跳转立即付款页面
     wx.navigateTo({
-      url: '/pages/cashier/index'
+      url: '/pages/cashier/index?orderId=' + this.data.orderId
     })
   },
   /**
@@ -137,7 +136,7 @@ Page({
    */
   goApplyRefund () {
     wx.navigateTo({
-      url: '/pages/apply-refund/index'
+      url: '/pages/apply-refund/index?orderId=' + this.data.orderId
     })
   },
   /**
@@ -145,7 +144,7 @@ Page({
    */
   goRefundDetail () {
     wx.navigateTo({
-      url: '/pages/refund-detail/index'
+      url: '/pages/refund-detail/index?orderId=' + this.data.orderId
     })
   },
   /**
@@ -162,6 +161,7 @@ Page({
   closePopupTap () {
     this.setData({
       hideShopPopup: true,
+      hideReceingPopup: true,
       hideServicePopup: true
     })
   },
@@ -169,16 +169,32 @@ Page({
    * 取消订单对话框-确定
    */
   okCancelOrder () {
-    // 确定取消
-    // 再次调用订单详情接口
-    // 关闭取消订单对话框
-    this.closePopupTap()
+    const self = this;
+    self.closePopupTap()
+    let orderId = self.data.orderId;
+    let params = { order_id: orderId, action: 'cancel' };
+    WXAPI.changeOrder(params).then(res => {
+      // 重新提交成功后再次请求详情接口
+      self.getOrderDetail()
+    })
   },
   /**
    * 确认收货
    */
   conformOrder () {
-
+    this.setData({
+      hideReceingPopup: false
+    })
+  },
+  okReceing () {
+    const self = this;
+    self.closePopupTap()
+    let orderId = self.data.orderId;
+    let params = { order_id: orderId, action: 'affirm' };
+    WXAPI.changeOrder(params).then(res => {
+      // 重新提交成功后再次请求详情接口
+      self.getOrderDetail()
+    })
   },
   /**
    * 联系客服

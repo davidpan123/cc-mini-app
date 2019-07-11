@@ -139,6 +139,16 @@
       </view>
     </view>
   </view>
+  <view class="show-popup flex-row-center" hidden="{{hideReceingPopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents wdith-600">
+      <view class="popup-title border-bottom">确定商品已被本人亲自签收了吗？</view>
+      <view class="popup-btn-pane flex-row-center ">
+        <view class='popup-btn cancel-btn' bindtap="closePopupTap">取消</view>
+        <view class='popup-btn ok-btn' bindtap="okReceing">确定</view>
+      </view>
+    </view>
+  </view>
   <view class="show-popup flex-row-center" hidden="{{hideServicePopup}}" catchtouchmove="true">
     <view class="popup-mask" bindtap="closePopupTap"></view>
     <view class="popup-contents wdith-600">

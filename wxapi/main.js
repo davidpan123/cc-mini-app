@@ -27,8 +27,9 @@ const request = (url, needSubDomain, method, data, isJson) => {
       fail(error) {
         reject(error)
       },
-      complete(aaa) {
+      complete(res) {
         // 加载完成
+        checkStatus(res)
       }
     })
   })
@@ -57,13 +58,72 @@ Promise.prototype.finally = function (callback) {
   );
 }
 
+//检查接口请求状态
+function checkStatus(res) {
+  if (res.statusCode === 200 && res.data.status === 0) return
+  let message = ''
+  let statusCode = res.statusCode;
+  switch (statusCode) {
+    case 400:
+      message = '错误请求';
+      break;
+    case 401:
+      message = '未授权，请重新登录';
+      break;
+    case 403:
+      message = '拒绝访问';
+      break;
+    case 404:
+      message = '请求错误, 未找到该资源';
+      break;
+    case 405:
+      message = '请求方法未允许';
+      break;
+    case 408:
+      message = '请求超时';
+      break;
+    case 500:
+      message = '服务器端出错';
+      break;
+    case 501:
+      message = '网络未实现';
+      break;
+    case 502:
+      message = '网络错误';
+      break;
+    case 503:
+      message = '服务不可用';
+      break;
+    case 504:
+      message = '网络超时';
+      break;
+    case 505:
+      message = 'http版本不支持该请求';
+      break;
+    default:
+      message = `${res.data.msg}`;
+  }
+
+  wx.showToast({
+    title: message,
+    icon: 'none'
+  })
+  // 认证失败,请重新登陆
+  if (statusCode === '401') {
+    wx.navigateTo({
+      url: '/pages/authorize/index'
+    })
+    wx.removeStorageSync('token')
+  }
+}
+
 module.exports = {
   request,
-  login: (code) => {
-    return request('/wechat_login', true, 'post', {
-      code,
-      type: 2
-    })
+  wechat_login: (data) => {
+    return request('/wechat_login', true, 'post', data, true)
+  },
+  getUserInfo: () => {
+    return request('/user_info', true, 'get')
   },
   register: (data) => {
     return request('/user/wxapp/register/complex', true, 'post', data)
@@ -91,6 +151,9 @@ module.exports = {
   },
   getOrderDetail: (data) => {
     return request('/order/detail/:id', true, 'get', data, true)
+  },
+  changeOrder: (data) => {
+    return request('/change_order', true, 'post', data, true)
   },
   //获取商品详情
   getGoodDetail: (data) => {

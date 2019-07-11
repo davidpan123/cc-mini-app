@@ -5,14 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orderId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    this.setData({
+      orderId: options.orderId
+    })
   },
 
   /**
@@ -26,7 +28,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
-    console.log(e)
   },
 
   /**
@@ -40,7 +41,7 @@ Page({
    */
   onUnload: function () {
     wx.navigateTo({
-      url: '/pages/order-detail/index',
+      url: '/pages/order-detail/index?orderId=' + this.data.orderId
     })
   },
 

@@ -1,1 +1,22 @@
 /* pages/start/start.wxss */
+page {
+  height: 100%;
+  background-color: #ffffff;
+}
+.video-pane {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  position: relative;
+}
+.video {
+  width: 100%;
+  height: 100%;
+}
+.btn {
+  position: absolute;
+  left: 330rpx;
+  bottom: 126rpx;
+  width: 90rpx;
+  height: 90rpx;
+}

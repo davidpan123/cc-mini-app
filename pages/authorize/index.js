@@ -1,4 +1,5 @@
 // pages/authorize/index.js
+const WXAPI = require('../../wxapi/main')
 Page({
 
   /**
@@ -68,9 +69,28 @@ Page({
    */
   login () {
     // 登录接口
-    // 跳转手机号码验证
-    wx.navigateTo({
-      url: '/pages/authorize/bindmobil'
-    })
+    // 登录
+    wx.login({
+      success: res => {
+        //发送 res.code 到后台换取 openId, sessionKey, unionId
+        WXAPI.wechat_login({code: res.code}).then(function (result) {
+          // 微信验证成功后存下token
+          if (res.status !== 0) return
+          WXAPI.getUserInfo().then(function (res) {
+            console.log(res)
+            // 验证是否有填写了号码，填写了则跳首页，否则跳验证手机
+            if (res.data && res.data.phone) {
+              wx.navigateTo({
+                url: '/pages/home/index'
+              })
+            } else {
+              wx.navigateTo({
+                url: '/pages/authorize/bindmobil'
+              })
+            }
+          })
+        })
+      }
+    });
   }
 })

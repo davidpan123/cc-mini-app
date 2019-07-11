@@ -1,5 +1,5 @@
 <view class="container">
+<navigator url="/pages/start/start">启动页</navigator>
 <navigator url="/pages/home/index">首页</navigator>
 <navigator url="/pages/authorize/index?title=navigate" hover-class="navigator-hover">授权登录</navigator>
-<navigator open-type="exit" target="miniProgram">退出</navigator>
 </view>

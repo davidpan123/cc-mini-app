@@ -1,34 +1,40 @@
 <view class="container">
-    <view class="top-sec top-shadow-inset">
-        <view class="top-sec-pane">
-            <view class="a-row">
-            <view class="label">运单号:</view>
-            <view class="text">{{orderDetail.logistics.trackingNumber}}</view>
-          </view>
-          <view class="a-row next">
-              <view class="label">承运公司:</view>
-              <view class="text">{{orderDetail.logistics.shipperName}}</view>
-          </view>
-           <view class="a-row">
-              <view class="label">承运公司电话:</view>
-              <view class="text phonenum">{{orderDetail.logistics.phone}}</view>
-          </view>
-        </view>
+    <view class="empty-pane top-shadow-inset font-6-blod" wx:if="{{!order.logistics.info.data.length}}">
+      <image src='/images/order/icon_exp.png' class='empty-image'></image>
+      <view class="empty-desc font-6-blod">暂无物流信息</view>
     </view>
-    <view class="sec-wrap">
-        <view class="details-info">
-            <view class="line-box"></view>
-            <view class="a-row" wx:for-items="{{logisticsTraces}}" wx:key="{{index}}">
-                <view class="dot">
-                    <view class="active-dot" hidden="{{index== 0 ? false : true}}"></view>
-                    <view class="default-dot" hidden="{{index== 0 ? true : false}}"></view>
-                </view>
-                <view class="info">
-                    <view class="text">{{item.AcceptStation}}</view>
-                    <view class="date-box">{{item.AcceptTime}}</view>
-                    <view class="line"></view>
-                </view>
+    <view wx:else>
+      <view class="top-sec top-shadow-inset">
+          <view class="top-sec-pane">
+              <view class="a-row">
+              <view class="label">运单号:</view>
+              <view class="text">{{orderDetail.logistics.id}}</view>
             </view>
-        </view>
+            <view class="a-row next">
+                <view class="label">承运公司:</view>
+                <view class="text">{{orderDetail.logistics.name}}</view>
+            </view>
+            <view class="a-row">
+                <view class="label">承运公司电话:</view>
+                <view class="text phonenum">{{orderDetail.logistics.phone}}</view>
+            </view>
+          </view>
+      </view>
+      <view class="sec-wrap" wx:if="{{orderDetail.logistics.info.data.length}}">
+          <view class="details-info">
+              <view class="line-box"></view>
+              <view class="a-row" wx:for-items="{{orderDetail.logistics.info.data}}" wx:key="{{index}}">
+                  <view class="dot">
+                      <view class="active-dot" hidden="{{index== 0 ? false : true}}"></view>
+                      <view class="default-dot" hidden="{{index== 0 ? true : false}}"></view>
+                  </view>
+                  <view class="info">
+                      <view class="text">{{item.context}}</view>
+                      <view class="date-box">{{item.time}}</view>
+                      <view class="line"></view>
+                  </view>
+              </view>
+          </view>
+      </view>
     </view>
 </view>

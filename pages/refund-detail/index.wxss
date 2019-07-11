@@ -92,11 +92,6 @@ page, .scroll-view{
 .link.rejected {
   background-color: #ff91a5;
 }
-.time {
-  font-size: 20rpx;
-  color: #999999;
-  margin-top: 12rpx;
-}
 
 /* 退款原因 */
 /* 退款内容 */

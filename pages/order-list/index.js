@@ -13,7 +13,8 @@ Page({
     currentType: -1,
     orderList: [],
     hideReceingPopup: true,
-    hideServicePopup: true
+    hideServicePopup: true,
+    receingOrderId: ''
   },
   statusTap: function (e) {
     const curType = e.currentTarget.dataset.type;
@@ -84,24 +85,30 @@ Page({
   /**
    * 查看退款详情
    */
-  goRefundDetail () {
+  goRefundDetail (e) {
+    let orderId = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/refund-detail/index'
+      url: '/pages/refund-detail/index?orderId=' + orderId
     })
   },
   /**
    * 查看物流
    */
-  goLogistics () {
+  goLogistics (e) {
+    let orderId = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/wuliu/index'
+      url: '/pages/wuliu/index?orderId=' + orderId
     })
   },
   /**
    * 立即付款
    */
-  pay () {
-
+  pay (e) {
+    let orderId = e.currentTarget.dataset.id;
+    // 跳转立即付款页面
+    wx.navigateTo({
+      url: '/pages/cashier/index?orderId=' + orderId
+    })
   },
   /**
    * 联系客服
@@ -115,19 +122,17 @@ Page({
    * 对话框-确定联系客服
    */
   okContactService () {
-    app.globalData.exitFlag = true;
     // 联系客服操作
     // 关闭对话框
     this.closePopupTap()
-    wx.reLaunch({
-      url: '/pages/index/index',
-    })
   },
   /**
    * 确认收货-弹出层
    */
-  confimReceiving () {
+  confimReceiving (e) {
+    let receingOrderId = e.currentTarget.dataset.id;
     this.setData({
+      receingOrderId: receingOrderId,
       hideReceingPopup: false
     })
   },
@@ -135,9 +140,14 @@ Page({
    * 对话框-确认收货
    */
   okReceiving () {
-    // 确认操作-调用接口
-    // 关闭对话框
-    this.closePopupTap()
+    const self = this;
+    self.closePopupTap()
+    let orderId = self.data.receingOrderId;
+    let params = { order_id: orderId, action: 'affirm' };
+    WXAPI.changeOrder(params).then(res => {
+      // 重新提交成功后再次请求列表接口
+      self.getOrderList()
+    })
   },
   /**
    * 关闭对话框

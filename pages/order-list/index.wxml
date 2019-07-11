@@ -38,7 +38,7 @@
           <view class="order-item-btn" wx:if="{{item.status==0}}">
             <view class="order-item-btn-pane">
               <button class="service-btn" catchtap="contactService">联系客服</button>  
-              <button class="pay-btn" catchtap="pay">立即付款</button>  
+              <button class="pay-btn" data-id="{{item.order_id}}" catchtap="pay">立即付款</button>  
             </view>
           </view>
           <!-- 待发货 1  |  已完成 3  | 已取消 8-->
@@ -48,15 +48,15 @@
           <!-- 待收货 2-->
           <view class="order-item-btn" wx:if="{{item.status==2}}">
             <view class="order-item-btn-pane">
-              <button class="service-btn" catchtap="goLogistics">查看物流</button>  
-              <button class="pay-btn" catchtap="confimReceiving">确认收货</button>  
+              <button class="service-btn" data-id="{{item.order_id}}" catchtap="goLogistics">查看物流</button>  
+              <button class="pay-btn"  data-id="{{item.order_id}}"  catchtap="confimReceiving">确认收货</button>  
             </view>
           </view>
           <!-- 退款中 4  |  已退款 6-->
           <view class="order-item-btn" wx:if="{{item.status==4 || item.status==6}}">
             <view class="order-item-btn-pane">
               <button class="service-btn" catchtap="contactService">联系客服</button>  
-              <button class="pay-btn" catchtap='goRefundDetail'>查看退款</button>  
+              <button class="pay-btn" data-id="{{item.order_id}}" catchtap='goRefundDetail'>查看退款</button>  
             </view>
           </view>
         </view>

@@ -4,15 +4,18 @@
     <view class="top-sec-pane">
       <view class="a-row">
         <view class="label">订单内容:</view>
-        <view>{{'卡美婚假系列-戒指'}}</view>
+        <view>
+          <text wx:for="order.goods" wx:key="{{index}}">{{item.goods_name}}</text>
+          <text>共{{item.goods_count}}件</text>
+        </view>
       </view>
       <view class="a-row next">
         <view class="label">下单时间:</view>
-        <view>{{'2019-09-09 08:09:23'}}</view>
+        <view>{{created_at}}</view>
       </view>
       <view class="a-row">
         <view class="label money">总金额:</view>
-        <view class="money">{{'3879.80元'}}</view>
+        <view class="money">{{order.all_money}}元</view>
       </view>
     </view>
   </view>
@@ -21,7 +24,7 @@
       <view class='refund-reason flex-row-between'>
         <text class="font-6">申请原因</text>
         <view bindtap="bindGuiGeTap">
-          <text class="font-9">请选择申请原因</text>
+          <text class="font-9">{{reason ? reason : '请选择申请原因'}}</text>
           <image src="/images/icon_arrow_r.png" class="arrow-right"></image>
         </view>
       </view>
@@ -32,7 +35,7 @@
     <view class="refund-content">
       <view class="refund-content-title font-6">问题描述</view>
       <view class="qustion-pane" wx:if="{{hideShopPopup}}">
-        <textarea name="qustion" class="qustion-area font-9" placeholder="请描述申请退款的详细信息，不超过500字(选填)" maxlength="{{500}}" value="{{qustion}}" placeholder-class="qustion-placeholder"/>
+        <textarea name="qustion" class="qustion-area font-9" placeholder="请描述申请退款的详细信息，不超过500字(选填)" maxlength="{{500}}" value="{{reqData.desc}}" placeholder-class="qustion-placeholder" bindinput="descInput"/>
       </view>
     </view>
   </view>
@@ -40,17 +43,17 @@
     <view class="row-item border-bottom flex-row-between">
       <text class='font-6'>联系人</text>
       <view>
-        <input name="linkMan" class="input-right font-9" type="text" placeholder="请填写退款联系人姓名" value="{{linkMan}}" placeholder-class="input-placeholder"/>
+        <input name="linkMan" class="input-right font-9" type="text" placeholder="请填写退款联系人姓名" value="{{reqData.name}}" bindinput="nameInput" placeholder-class="input-placeholder"/>
       </view>
     </view>
     <view class="row-item flex-row-between">
       <text class='font-6'>联系电话</text>
       <view>
-        <input name="linkPhone" class="input-right font-9" type="text" placeholder="请填写退款联系人电话" value="{{linkPhone}}" placeholder-class="input-placeholder"/>
+        <input name="linkPhone" class="input-right font-9" type="text" placeholder="请填写退款联系人电话" value="{{reqData.phone}}" bindinput="phoneInput" placeholder-class="input-placeholder"/>
       </view>
     </view>
   </view>
-  <button class="save-btn" bindtap='goRefundDetail'>确认提交</button>  
+  <button class="save-btn {{reason && reqData.name && reqData.phone ? 'active' : ''}}" bindtap='goRefundDetail'>确认提交</button>  
   <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">
     <view class="popup-mask" bindtap="closePopupTap"></view>
     <view class="popup-contents">

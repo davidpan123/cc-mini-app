@@ -66,28 +66,9 @@ App({
     // this.checkLoginStatus()
   },
   login: function () {
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // WXAPI.login(res.code).then(function (res) {
-        //   if (res.code != 0) {
-        //     // 登录错误
-        //     wx.hideLoading();
-        //     wx.showModal({
-        //       title: '提示',
-        //       content: '无法登录，请重试',
-        //       showCancel: false
-        //     })
-        //     return;
-        //   }
-        //   console.log(res)
-        //   wx.setStorageSync('token', res.token)
-        //   wx.setStorageSync('uid', res.user_id)
-          // wx.navigateBack();
-        // })
-      }
-    });
+    wx.navigateTo({
+      url: '/pages/authorize/index'
+    })
   },
   goStartIndexPage: function () {
     setTimeout(function () {
@@ -103,34 +84,20 @@ App({
       _this.login()
       return
     }
-    WXAPI.checkToken(token).then(function (res) {
-      if (res.code != 0) {
-        wx.removeStorageSync('token')
-        _this.login()
-        return
-      }
-    })
-    wx.checkSession({
-      fail() {
-        _this.login()
-        return
-      }
-    })
-    // // 已经处于登录状态，检测是否强制需要手机号码
-    // if (CONFIG.requireBindMobile) {
-    //   WXAPI.userDetail(token).then(function (res) {
-    //     if (res.code == 0) {
-    //       if (!res.data.base.mobile) {
-    //         wx.navigateTo({
-    //           url: "/pages/authorize/bindmobile"
-    //         })
-    //       }
-    //     }
-    //   })
-    // }
+    // 已经处于登录状态，检测是否强制需要手机号码
+    if (CONFIG.requireBindMobile) {
+      WXAPI.getUserInfo().then(function (res) {
+        if (res.status == 0) {
+          if (!res.data.phone) {
+            wx.navigateTo({
+              url: "/pages/authorize/bindmobile"
+            })
+          }
+        }
+      })
+    }
   },
   globalData: {
-    exitFlag: false,
     isConnected: true,
     userInfo: null
   }
