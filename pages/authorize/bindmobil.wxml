@@ -2,16 +2,16 @@
 <view class="container">
   <view class="form top-shadow-inset">
     <view class="form-item phone flex-row-start">
-      <input name="phone" class="input" maxlength="11" type="number" placeholder="请输入手机号码" value="{{phone.number}}" placeholder-class="placeholder"/>
+      <input name="phone" class="input" maxlength="16" type="number" placeholder="请输入手机号码" value="{{account}}" placeholder-class="placeholder"  bindinput="phoneInput"/>
     </view>
     <view class="form-item flex-row-between code-item">
-      <input name="code" class="input" maxlength="5" type="number" placeholder="请输入验证码" value="{{phone.code}}" placeholder-class="placeholder"/>
+      <input name="code" class="input" maxlength="16" type="number" placeholder="请输入验证码" value="{{code}}" placeholder-class="placeholder" bindinput="codeInput"/>
       <view>
-        <button class="code-btn">{{codeText}}</button> 
+        <button class="code-btn {{sending ? 'active' : ''}}" bindtap='getCode'>{{codeText}}</button> 
       </view>
     </view>
   </view>
   <view class="submit-pane">
-    <button class="submit-btn" bindtap='submit'>确认提交</button>  
+    <button class="submit-btn {{account && code ? 'active' : ''}}" bindtap='submit'>确认提交</button>  
   </view>
 </view>

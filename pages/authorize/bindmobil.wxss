@@ -20,7 +20,7 @@ page{
   border-bottom: 2rpx solid #f0f0f0;
 }
 .code-btn {
-  background-color: #cccccc;
+  background-color: #e1c8af;
   font-size: 24rpx;
   color: #ffffff;
   height: 52rpx;
@@ -28,8 +28,8 @@ page{
   width: 180rpx;
   border-radius: 26rpx;
 }
-.code-btn-active {
-  background-color: #ffaab9;
+.code-btn.active {
+  background-color: #cccccc;
 }
 .input {
   font-size: 30rpx;
@@ -52,6 +52,6 @@ page{
   border-radius: 34rpx;
   background-color: #cccccc;
 }
-.submit-btn-active {
+.submit-btn.active {
   background-color: #ffaab9;
 }

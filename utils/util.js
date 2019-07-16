@@ -38,6 +38,18 @@ const formatDate = (nS, format) => {
   return new Date(nS).format(format);
 }
 
+//验证手机号码
+const checkPhone = (phone)=> {
+  return Boolean(/^1[3578]\d{9}$/.test(phone));
+}
+
+//验证验证吗
+const checkVerify = (code) => {
+  return Boolean(/^\d{4}$/.test(code));
+}
+
 module.exports = {
-  formatDate: formatDate
+  formatDate: formatDate,
+  checkPhone: checkPhone,
+  checkVerify: checkVerify
 }
