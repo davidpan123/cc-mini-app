@@ -18,22 +18,20 @@ Page({
     const app_show_pic_version = wx.getStorageSync('app_show_pic_version')
     if (app_show_pic_version && app_show_pic_version == CONFIG.version) {
       wx.navigateTo({
-        url: '/pages/index/index'
+        url: '/pages/home/index'
       })
     } else {
-      this.setData(
-        { videoSrc: '/assets/start.mp4'}
-      )
-      // 展示视频
-      // WXAPI.getVideo().then(function (res) {
-      //   _this.setData({
-      //     videoSrc: res.data
-      //   })
-      // }).catch(function (e) {
-      //   wx.navigateTo({
-      //     url: '/pages/index/index'
-      //   })
-      // })
+      let params = { src_flag: 0 }
+      WXAPI.start(params).then(res => {
+        console.log(res)
+        this.setData(
+          { videoSrc: res.data.src_addr }
+        )
+      }).catch(function (e) {
+        wx.navigateTo({
+          url: '/pages/home/index'
+        })
+      })
     }
   },  
   /**
@@ -52,7 +50,7 @@ Page({
         data: CONFIG.version
       })
       wx.navigateTo({
-        url: '/pages/index/index'
+        url: '/pages/home/index'
       })
     } else {
       wx.showToast({

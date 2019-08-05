@@ -119,6 +119,9 @@ function checkStatus(res) {
 
 module.exports = {
   request,
+  start: (data) => {
+    return request('/start', true, 'get', data, true)
+  },
   wechat_login: (data) => {
     return request('/wechat_login', true, 'post', data, true)
   },
@@ -154,6 +157,9 @@ module.exports = {
   },
   changeOrder: (data) => {
     return request('/change_order', true, 'post', data, true)
+  },
+  getGoodList: (data) => {
+    return request('/goods', true, 'get', data, true)
   },
   //获取商品详情
   getGoodDetail: (data) => {

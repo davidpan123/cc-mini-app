@@ -3,14 +3,12 @@
 <view class="container">
   <scroll-view scroll-y scroll-with-animation="{{true}}" scroll-into-view="{{toView}}" style="height: {{windowHeight+'px'}}">
     <view class="good-list-pane" wx:for="{{goodList}}" wx:key="{{index}}" id="{{item.id}}">
-      <image class="good-img" src="{{item.src}}"></image>
+      <image class="good-img" src="{{item.xcx_d_pic}}"></image>
       <view class="model-pane">
-        <image class="good-top-img" src="{{item.src}}"></image>
-        <view class="good-title">美护系列-耳钉</view>
+        <image class="good-top-img" src="{{item.xcx_xq_pic}}"></image>
+        <view class="good-title">{{item.xcx_title}}}</view>
         <view class="good-desc">
-            <view class="good-item-desc">九尾降幅, 见证美满</view>
-            <view class="good-item-desc">天烧红宝石结合温润贝母</view>
-            <view class="good-item-desc">尽显无敌柔美灵动</view>
+            <view class="good-item-desc">{{item.xcx_xq_content}}}</view>
         </view>
         <view class="buy-pane">
           <button class="buy-btn" bindtap="showPayDialog">立即购买</button>

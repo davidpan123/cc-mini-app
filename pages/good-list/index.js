@@ -25,18 +25,16 @@ Page({
       selectedSku: '',
       stock: 0 //经销库存
     },
+    total: 0,
+    pageIndex: 0 ,
+    pageSize: 10,
     goodList: [
       {
         id: 'sdd111',
-        src: '/images/card1.png'
-      },
-      {
-        id: 'dssdsd22',
-        src: '/images/card2.png'
-      },
-      {
-        id: 'sdd111333',
-        src: '/images/card1.png'
+        xcx_title: '',
+        xcx_d_pic: '/images/card1.png',
+        xcx_xq_pic: '',
+        xcx_xq_content: ''
       }
     ]
   },
@@ -60,6 +58,8 @@ Page({
     this.setData({
       toView: options.id
     })
+
+    this.getGoodList()
   },
 
   onShow: function () {
@@ -73,6 +73,15 @@ Page({
         break
       }
     }
+  },
+  getGoodList () {
+    let params = {pageIndex: this.data.pageIndex, pageSize: this.data.pageSize}
+    WXAPI.getGoodList(params).then(res => {
+      this.setData({
+        total: res.pages,
+        goodList: [...this.goodList, ...res.data.list]
+      })
+    })
   },
   getGoodDetail () {
     const self = this;
@@ -220,5 +229,27 @@ Page({
     wx.navigateTo({
       url: '/pages/my/index'
     })
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.setData({
+      pageIndex: 1
+    })
+    this.getGoodList()
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    if (this.data.pageIndex < this.data.total) {
+      this.setData({
+        pageIndex: this.data.pageIndex + 1
+      })
+      this.getGoodList()
+    }
   }
 })

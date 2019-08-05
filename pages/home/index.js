@@ -1,4 +1,5 @@
 // pages/home/index.js
+const WXAPI = require('../../wxapi/main')
 Page({
 
   /**
@@ -8,6 +9,8 @@ Page({
     toView:'sdd111',
     scrollTop: 0,
     windowHeight: '',
+    page: 1,
+    size: 10,
     goodList:[
       {
         id:'sdd111',
@@ -33,8 +36,12 @@ Page({
         })
       }
     })
+    this.getGoodList()
   },
 
+  getGoodList () {
+    
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
