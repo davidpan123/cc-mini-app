@@ -17,16 +17,16 @@ Page({
     const _this = this
     const app_show_pic_version = wx.getStorageSync('app_show_pic_version')
     if (app_show_pic_version && app_show_pic_version == CONFIG.version) {
-      wx.navigateTo({
-        url: '/pages/home/index'
-      })
+      this.goLoginOrHome()
     } else {
       let params = { src_flag: 0 }
       WXAPI.start(params).then(res => {
-        console.log(res)
-        this.setData(
-          { videoSrc: res.data.src_addr }
-        )
+        if (res.status !== 0) return
+        if (res.data.list.length > 0) {
+          this.setData(
+            { videoSrc: res.data.list[0]['src_addr'] }
+          )
+        }
       }).catch(function (e) {
         wx.navigateTo({
           url: '/pages/home/index'
@@ -38,7 +38,19 @@ Page({
    * 视频播放完毕
    */
   videoEnd () {
-    // this.goToIndex()
+    this.goToIndex()
+  },
+  goLoginOrHome() {
+    // 判断登录
+    if (!wx.getStorageSync('token')) {
+      wx.navigateTo({
+        url: '/pages/authorize/index'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/index'
+      })
+    }
   },
   /**
    * 跳转首页
@@ -49,9 +61,7 @@ Page({
         key: 'app_show_pic_version',
         data: CONFIG.version
       })
-      wx.navigateTo({
-        url: '/pages/home/index'
-      })
+      this.goLoginOrHome()
     } else {
       wx.showToast({
         title: '当前无网络',

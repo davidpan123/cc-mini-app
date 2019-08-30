@@ -8,6 +8,8 @@
     <view class="authorise-desc-txt2 font-9">授权并同意使用微信账号登录当前小程序</view>
   </view>
   <view class="login-pane">
-    <button class="login-btn" bindtap="login">授权登录</button>  
+    <!-- <button class="login-btn" bindtap="login">授权登录</button>   -->
+    <button wx:if="{{canIUse}}" class="login-btn" open-type="getUserInfo" bindgetuserinfo="login">授权登录</button>
+    <view wx:else>请升级微信版本</view>
   </view>
 </view>

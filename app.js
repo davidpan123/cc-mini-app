@@ -1,5 +1,6 @@
 //app.js
 const WXAPI = require('./wxapi/main')
+const CONFIG = require('./config.js')
 App({
   onLaunch: function () {
     /**
@@ -39,31 +40,9 @@ App({
         wx.hideToast()
       }
     });
-
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
-      }
-    })
   },
   onShow: function() {
-    // 临时联调
-    wx.setStorageSync('token', '87463963-0971-425a-85c8-c2efcad81aac')
-    // this.checkLoginStatus()
+    this.checkLoginStatus()
   },
   login: function () {
     wx.navigateTo({
@@ -86,15 +65,11 @@ App({
     }
     // 已经处于登录状态，检测是否强制需要手机号码
     if (CONFIG.requireBindMobile) {
-      WXAPI.getUserInfo().then(function (res) {
-        if (res.status == 0) {
-          if (!res.data.phone) {
-            wx.navigateTo({
-              url: "/pages/authorize/bindmobile"
-            })
-          }
-        }
-      })
+      if (!wx.getStorageSync('user_id')) {
+        wx.navigateTo({
+          url: "/pages/authorize/bindmobile"
+        })
+      }
     }
   },
   globalData: {

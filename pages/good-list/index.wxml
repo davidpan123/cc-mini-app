@@ -1,8 +1,8 @@
 <!--pages/good-list/index.wxml-->
 <!--pages/home/index.wxml-->
 <view class="container">
-  <scroll-view scroll-y scroll-with-animation="{{true}}" scroll-into-view="{{toView}}" style="height: {{windowHeight+'px'}}">
-    <view class="good-list-pane" wx:for="{{goodList}}" wx:key="{{index}}" id="{{item.id}}">
+  <scroll-view scroll-y scroll-with-animation="{{true}}" scroll-into-view="{{toView}}" style="height: {{windowHeight+'px'}}" bindscrolltolower="loadMore">
+    <view class="good-list-pane" wx:for="{{goodList}}" wx:key="{{index}}" id="{{item.goods_id}}">
       <image class="good-img" src="{{item.xcx_d_pic}}"></image>
       <view class="model-pane">
         <image class="good-top-img" src="{{item.xcx_xq_pic}}"></image>
@@ -11,7 +11,7 @@
             <view class="good-item-desc">{{item.xcx_xq_content}}}</view>
         </view>
         <view class="buy-pane">
-          <button class="buy-btn" bindtap="showPayDialog">立即购买</button>
+          <button class="buy-btn" id="{{item.goods_id}}" bindtap="showPayDialog">立即购买</button>
         </view>
       </view>
     </view>
@@ -31,32 +31,31 @@
         <view class="good-pay-desc-pane">
           <view class="pay-money">￥{{sku.price || sku.defaultPrice}}</view>
           <view class="good-pay-num">商品编号：{{sku.merchantCode || sku.defaultMerchantCode}}</view>
-          <view class="good-pay-num">库存：{{sku.stock}}</view>
         </view>
       </view>
       <view class="sku-pane border-bottom">
         <view class="sku-tem-pane">
-          <view class="sku-title font-6 mag-top-40">{{isZuan ? '主钻分数' : '主石名称'}}</view>
+          <view class="sku-title font-6 mag-top-40">{{res.good_kind === '0' ? '主钻分数' : (res.good_kind === '1' ? '主石名称' : '金类型')}}</view>
           <view wx:for="{{sku.skuScore}}" wx:key="{{index}}" class="sku-tem-btn-pane">
-            <button class="sku-btn font-6">{{item.label}}</button>
+            <button class="sku-btn font-6 {{sku.type === item.label ? 'type-active' : ''}}" bindtap="selectedType" data-type="{{item.label}}">{{item.label}}</button>
           </view>
         </view>
         <view class="sku-tem-pane">
-          <view class="sku-title font-6 mag-top-40">{{isZuan ? '钻石净度' : '主石评级'}}</view>
+          <view class="sku-title font-6 mag-top-40"> {{res.good_kind === '0' ? '钻石净度' : (res.good_kind === '1' ? '主石评级' : '金重')}}</view>
           <view wx:for="{{sku.skuClarity}}" wx:key="{{index}}" class="sku-tem-btn-pane">
-            <button class="sku-btn font-6">{{item.label}}</button>
+            <button class="sku-btn font-6 {{sku.level === item.label ? 'level-active' : ''}}" bindtap="selectedLevel" data-level="{{item.label}}">{{item.label}}</button>
           </view>
         </view>
-        <view class="sku-tem-pane">
-          <view class="sku-title font-6 mag-top-40">{{isZuan ? '主钻颜色' : '主石颜色'}}</view>
+        <view class="sku-tem-pane" wx:if="{{res.good_kind !== '2'}}">
+          <view class="sku-title font-6 mag-top-40">{{res.good_kind === '0' ? '主钻颜色' : '主石颜色'}}</view>
           <view wx:for="{{sku.skuColor}}" wx:key="{{index}}" class="sku-tem-btn-pane">
-            <button class="sku-btn font-6">{{item.label}}</button>
+            <button class="sku-btn font-6 {{sku.color === item.label ? 'color-active' : ''}}" bindtap="selectedColor" data-color="{{item.label}}">{{item.label}}</button>
           </view>
         </view>
         <view class="sku-tem-pane">
           <view class="sku-title font-6 mag-top-40">规格</view>
-          <view wx:for="{{sku.skuSpec}}" wx:key="{{index}}" class="sku-tem-btn-pane mar-left">
-            <button class="sku-btn font-6">{{item.label}}</button>
+          <view wx:for="{{sku.skuSpec}}" wx:key="{{index}}" class="sku-tem-btn-pane">
+            <button class="sku-btn font-6 {{sku.spec === item.label ? 'spec-active' : ''}}" bindtap="selectedSpec" data-spec="{{item.label}}">{{item.label}}</button>
           </view>
         </view>
       </view> 

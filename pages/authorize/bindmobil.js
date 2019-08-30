@@ -1,5 +1,6 @@
 const WXAPI = require('../../wxapi/main')
 const util = require('../../utils/util.js')
+let app = getApp()
 Page({
 
   /**
@@ -16,7 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
   /**
    * 手机号码输入
@@ -55,8 +55,8 @@ Page({
     }
 
     let params = {
-      account: this.data.account,
-      code: this.data.code
+      action: 'bind',
+      phone: this.data.account
     }
 
     const _this = this;
@@ -101,8 +101,30 @@ Page({
 
       return
     }
+
+    console.log(app)
+    let { nickName, avatarUrl, gender } = app.globalData.userInfo
+    let params = {
+      nick_name: nickName,
+      avatar: avatarUrl,
+      gender: gender,
+      openid: wx.getStorageSync('open_id'),
+      phone: this.data.account,
+      vcode: this.data.code
+    }
     
-    WXAPI.login(params).then(res => {
+    WXAPI.bindMobile(params).then(res => {
+      if (res.status !== 0) return
+      
+      // 微信验证成功后存下token
+      if (res.data.token) {
+        wx.setStorageSync('token', res.data.token)
+      }
+      // 存下用户id
+      if (res.data.user_id) {
+        wx.setStorageSync('user_id', res.data.user_id)
+      }
+
       //手机验证成功后，跳入首页
       wx.navigateTo({
         url: '/pages/home/index'

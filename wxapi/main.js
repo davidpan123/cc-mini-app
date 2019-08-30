@@ -1,7 +1,6 @@
 // 小程序开发api接口工具包，https://github.com/gooking/wxapi
 const CONFIG = require('./config.js')
-// const API_BASE_URL = 'https://api.it120.cc'
-const API_BASE_URL = 'http://47.105.53.172'
+const API_BASE_URL = 'http://shoptest.cc-jewel.com'
 
 const request = (url, needSubDomain, method, data, isJson) => {
   if (/:id/.test(url)) {
@@ -15,9 +14,8 @@ const request = (url, needSubDomain, method, data, isJson) => {
       method: method,
       data: data,
       header: {
-        'X-AUTH-USER': '1000177',
-        // 'X-AUTH-TOKEN': wx.getStorageSync('token')
-        'X-AUTH-TOKEN': 'c56b1a74-65e5-4730-8fc0-6a93a2eb8474',
+        // 'X-AUTH-USER': '1000177',
+        'X-AUTH-TOKEN': wx.getStorageSync('token'),
         'Content-Type': isJson ? 'application/json; charset=UTF-8' : 'application/x-www-form-urlencoded; charset=UTF-8'
         //  Content-Type："json"
       },
@@ -120,10 +118,16 @@ function checkStatus(res) {
 module.exports = {
   request,
   start: (data) => {
-    return request('/start', true, 'get', data, true)
+    return request('/xcx/start', true, 'get', data, true)
   },
   wechat_login: (data) => {
-    return request('/wechat_login', true, 'post', data, true)
+    return request('/xcx/login', true, 'post', data, false)
+  },
+  getCode: (data) => {
+    return request('/v1/vcode', true, 'get', data, true)
+  },
+  bindMobile: (data) => {
+    return request('/xcx/update_user', true, 'post', data, false)
   },
   getUserInfo: () => {
     return request('/user_info', true, 'get')
@@ -159,15 +163,11 @@ module.exports = {
     return request('/change_order', true, 'post', data, true)
   },
   getGoodList: (data) => {
-    return request('/goods', true, 'get', data, true)
+    return request('/xcx/goods', true, 'get', data, true)
   },
   //获取商品详情
   getGoodDetail: (data) => {
-    return request('/goods/detail/:id', true, 'get', data, true)
-  },
-  //获取某个sku的库存
-  getGoodsStock: (data) => {
-    return request('/goods_stock', true, 'get', data, true)
+    return request('/xcx/goods/detail/:id', true, 'get', data, true)
   },
   uploadFile: (token, tempFilePath) => {
     const uploadUrl = API_BASE_URL + '/' + CONFIG.subDomain + '/dfs/upload/file'

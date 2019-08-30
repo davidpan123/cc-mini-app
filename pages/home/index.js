@@ -6,21 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    toView:'sdd111',
     scrollTop: 0,
     windowHeight: '',
-    page: 1,
-    size: 10,
-    goodList:[
-      {
-        id:'sdd111',
-        src: '/images/card1.png'
-      },
-      {
-        id: 'dssdsd22',
-        src: '/images/card2.png'
-      }
-    ]
+    goodList:[]
   },
 
   /**
@@ -36,11 +24,16 @@ Page({
         })
       }
     })
-    this.getGoodList()
+    this.getStartList()
   },
 
-  getGoodList () {
-    
+  getStartList () {
+    let params = { src_flag: 1 }
+    WXAPI.start(params).then(res => {
+      this.setData(
+        { goodList: res.data.list }
+      )
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

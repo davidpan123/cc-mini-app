@@ -8,7 +8,6 @@ Page({
     toView: 'dssdsd22',
     windowHeight: '',
     res: null,
-    isZuan: false,
     sku: {
       skuScore: [],
       skuClarity: [],
@@ -16,27 +15,20 @@ Page({
       skuSpec: [],
       merchantCode: '',
       price: 0,
-      defaultSKU: '',
       defaultMerchantCode: '',
       defaultPrice: 0,
       limit: 99,
       count: 1,
-      skuId: '',
-      selectedSku: '',
-      stock: 0 //经销库存
+      type: '',
+      level: '',
+      color: '',
+      spec: ''
     },
-    total: 0,
-    pageIndex: 0 ,
+    pages: 0,
+    pageIndex: 1 ,
     pageSize: 10,
-    goodList: [
-      {
-        id: 'sdd111',
-        xcx_title: '',
-        xcx_d_pic: '/images/card1.png',
-        xcx_xq_pic: '',
-        xcx_xq_content: ''
-      }
-    ]
+    goodList: [],
+    goodId: ''
   },
 
   /**
@@ -66,30 +58,29 @@ Page({
   },
   scrollBottom: function () {
     for (var i = 0; i < this.data.goodList.length; ++i) {
-      if (this.data.goodList[i].id === this.data.toView) {
+      if (this.data.goodList[i].goods_id === this.data.toView) {
         this.setData({
-          toView: this.data.goodList[i + 1] ? this.data.goodList[i + 1].id : this.data.goodList[i]
+          toView: this.data.goodList[i + 1] ? this.data.goodList[i + 1].goods_id : this.data.goodList[i]
         })
         break
       }
     }
   },
   getGoodList () {
-    let params = {pageIndex: this.data.pageIndex, pageSize: this.data.pageSize}
+    let params = { page: this.data.pageIndex, size: this.data.pageSize, channel: '2'}
     WXAPI.getGoodList(params).then(res => {
       this.setData({
-        total: res.pages,
-        goodList: [...this.goodList, ...res.data.list]
+        pages: res.data.pages,
+        goodList: this.data.goodList.concat(res.data.list)
       })
     })
   },
   getGoodDetail () {
     const self = this;
-    let params = { id: '5be14683a2154f6a355108e0'}
+    let params = { id: self.data.goodId}
     WXAPI.getGoodDetail(params).then(res => {
       self.setData({
-        res: res.data,
-        isZuan: res.data.is_diamond
+        res: res.data
       })
       let skuScore = [];
       let skuClarity = [];
@@ -98,36 +89,57 @@ Page({
 
       self.data.res.skus.forEach((item, index) => {
         if (!index) {
-          self.data.sku.defaultSKU = item.sku_id; //默认第1条是默认sku
           self.data.sku.defaultPrice = item.price;
           self.data.sku.defaultMerchantCode = item.merchant_code;
-          self.getGoodsStock(item.sku_id, stock => {
-            self.data.sku.stock = stock;
-            self.setData({
-              sku: self.data.sku
-            })
-          });
         }
-        if (self.data.isZuan) {
+
+        // good_kind（'0'：钻石， '1'： 主石， '2'： 素金）
+        if (res.data.good_kind === '0') {
           if (item.zhuzuanfenshu) {
             skuScore.push(item.zhuzuanfenshu);
           }
           if (item.zuanshijingdu) {
             skuClarity.push(item.zuanshijingdu);
           }
-        } else {
+          if (!index) {
+            self.data.sku.type = item.zhuzuanfenshu;
+            self.data.sku.level = item.zuanshijingdu;
+          }
+        } else if (res.data.good_kind === '1') {
           if (item.zhushimingcheng) {
             skuScore.push(item.zhushimingcheng);
           }
           if (item.zhushipingji) {
             skuClarity.push(item.zhushipingji);
           }
+          if (!index) {
+            self.data.sku.type = item.zhushimingcheng;
+            self.data.sku.level = item.zhushipingji;
+          }
+        } else {
+          if (item.jinleixing) {
+            skuScore.push(item.jinleixing);
+          }
+          if (item.jinzhong) {
+            skuClarity.push(item.jinzhong);
+          }
+          if (!index) {
+            self.data.sku.type = item.jinleixing;
+            self.data.sku.level = item.jinzhong;
+          }
         }
+        
         if (item.color) {
           skuColor.push(item.color);
+          if (!index) {
+            self.data.sku.color = item.color;
+          }
         }
         if (item.guige) {
           skuSpec.push(item.guige);
+          if (!index) {
+            self.data.sku.spec = item.guige;
+          }
         }
       });
 
@@ -136,24 +148,6 @@ Page({
       skuColor = [...new Set(skuColor)];
       skuSpec = [...new Set(skuSpec)];
 
-      self.data.res.skus.forEach(item => {
-        if (self.data.isZuan) {
-          item.skuIds = [
-            skuScore.indexOf(item.zhuzuanfenshu),
-            skuClarity.indexOf(item.zuanshijingdu),
-            skuColor.indexOf(item.color),
-            skuSpec.indexOf(item.guige)
-          ].join('_');
-        } else {
-          item.skuIds = [
-            skuScore.indexOf(item.zhushimingcheng),
-            skuClarity.indexOf(item.zhushipingji),
-            skuColor.indexOf(item.color),
-            skuSpec.indexOf(item.guige)
-          ].join('_');
-        }
-      });
-
       self.data.sku.skuScore = skuScore.map(item => ({ label: item, disabled: false }));
       self.data.sku.skuClarity = skuClarity.map(item => ({ label: item, disabled: false }));
       self.data.sku.skuColor = skuColor.map(item => ({ label: item, disabled: false }));
@@ -161,14 +155,42 @@ Page({
       self.setData({
         sku: self.data.sku
       })
-
-      console.log(self.data.sku)
     })
   },
-  getGoodsStock(skuId, cb) {
-    let params = { sku: skuId }
-    WXAPI.getGoodsStock(params).then(res => {
-      cb(res.data.stock);
+  /**
+   * 选择类型(钻石分数、主石名称、金类型)
+   */
+  selectedType (e) {
+    this.data.sku.type = e.currentTarget.dataset['type']
+    this.setData({
+      sku: this.data.sku
+    })
+  },
+  /**
+   * 选择level(钻石进度、主石评级、金重)
+   */
+  selectedLevel(e) {
+    this.data.sku.level = e.currentTarget.dataset['level']
+    this.setData({
+      sku: this.data.sku
+    })
+  },
+  /**
+   * 选择颜色
+   */
+  selectedColor(e) {
+    this.data.sku.color = e.currentTarget.dataset['color']
+    this.setData({
+      sku: this.data.sku
+    })
+  },
+  /**
+   * 选择规格
+   */
+  selectedSpec(e) {
+    this.data.sku.spec =  e.currentTarget.dataset['spec']
+    this.setData({
+      sku: this.data.sku
     })
   },
   minute () {
@@ -202,7 +224,11 @@ Page({
   /**
    * 显示购买对话框
    */
-  showPayDialog () {
+  showPayDialog (e) {
+    this.setData({
+      goodId: e.currentTarget.id
+    })
+    
     //获取商品详情，设置购买参数
     this.getGoodDetail();
     this.setData({
@@ -245,7 +271,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.pageIndex < this.data.total) {
+  },
+
+  /**
+   * 加载更多
+   */
+  loadMore () {
+    if (this.data.pageIndex < this.data.pages) {
       this.setData({
         pageIndex: this.data.pageIndex + 1
       })

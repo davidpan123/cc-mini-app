@@ -10,8 +10,8 @@
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": false,
-		"coverView": true,
 		"checkInvalidKey": true,
+		"coverView": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
 		"babelSetting": {
@@ -22,7 +22,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.2",
-	"appid": "wx3770988764ac962a",
+	"appid": "wx1c903ce159e16e7b",
 	"projectname": "cc-mini-app",
 	"debugOptions": {
 		"hidedInDevtools": []

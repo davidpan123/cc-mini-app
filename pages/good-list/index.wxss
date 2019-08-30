@@ -54,6 +54,10 @@ page {
   margin-top: 15rpx;
 }
 
+.sku-title {
+  width: 100rpx;
+}
+
 .buy-pane {
   margin-top: 84rpx;
 }
@@ -156,11 +160,17 @@ page {
   .sku-btn {
     margin-top: 24rpx;
     border-radius: 20rpx;
-    background-color: #fff7f7;
+    background-color: #eeeeee;
     height: 40rpx;
     line-height: 40rpx;
     text-align: center;
-    border: 2prx solid #fff7f7;
+    border: 2prx solid #eeeeee;
+  }
+
+  .type-active, .level-active, .color-active, .spec-active  {
+    border-color: #ff91a5;
+    background-color: #fff7f7;
+    color: #ff91a5;
   }
 
   .sku-count-pane {
