@@ -14,7 +14,7 @@ const request = (url, needSubDomain, method, data, isJson) => {
       method: method,
       data: data,
       header: {
-        // 'X-AUTH-USER': '1000177',
+        'X-AUTH-USER': wx.getStorageSync('user_id'),
         'X-AUTH-TOKEN': wx.getStorageSync('token'),
         'Content-Type': isJson ? 'application/json; charset=UTF-8' : 'application/x-www-form-urlencoded; charset=UTF-8'
         //  Content-Type："json"
@@ -107,7 +107,7 @@ function checkStatus(res) {
     icon: 'none'
   })
   // 认证失败,请重新登陆
-  if (statusCode === '401') {
+  if (statusCode === 401) {
     wx.navigateTo({
       url: '/pages/authorize/index'
     })
@@ -135,32 +135,32 @@ module.exports = {
   register: (data) => {
     return request('/user/wxapp/register/complex', true, 'post', data)
   },
-  getAddress: (data) => {
-    return request('/address', true, 'get')
+  getAddress: () => {
+    return request('/xcx/address', true, 'get')
   },
-  addAdress: (addAdress) => {
-    return request('/address', true, 'post', data, true)
+  addAdress: (data) => {
+    return request('/xcx/address', true, 'post', data, false)
   },
   setAddress: (data) => {
-    return request('/address', true, 'put', data, true)
+    return request('/xcx/address', true, 'put', data, true)
   },
   getProvince: () => {
-    return request('/province', true, 'get', '', true)
+    return request('/xcx/province', true, 'get', '', true)
   },
   getCity: (data) => {
-    return request('/city', true, 'get', data, true)
+    return request('/xcx/city', true, 'get', data, true)
   },
   getDistrict: (data) => {
-    return request('/district', true, 'get', data, true)
+    return request('/xcx/district', true, 'get', data, true)
   },
   getOrders: ()=> {
-    return request('/my/orders', true, 'get', '', true)
+    return request('/xcx/my/orders', true, 'get', '', true)
   },
   getOrderDetail: (data) => {
-    return request('/order/detail/:id', true, 'get', data, true)
+    return request('/xcx/order/detail/:id', true, 'get', data, true)
   },
   changeOrder: (data) => {
-    return request('/change_order', true, 'post', data, true)
+    return request('/xcx/change_order', true, 'post', data, true)
   },
   getGoodList: (data) => {
     return request('/xcx/goods', true, 'get', data, true)
@@ -168,6 +168,12 @@ module.exports = {
   //获取商品详情
   getGoodDetail: (data) => {
     return request('/xcx/goods/detail/:id', true, 'get', data, true)
+  },
+  getLogistics: () => {
+    return request('/xcx/logitics', true, 'get', '', true)
+  },
+  confimOrder: (data) => {
+    return request('/xcx/buy_now', true, 'post', data, false)
   },
   uploadFile: (token, tempFilePath) => {
     const uploadUrl = API_BASE_URL + '/' + CONFIG.subDomain + '/dfs/upload/file'

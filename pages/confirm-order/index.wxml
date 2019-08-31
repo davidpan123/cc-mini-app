@@ -24,34 +24,34 @@
   </view>
   <view class="good-detail-pane order-container">
     <view class='good-img-pane'>
-      <image src='/images/my/icon_order_shipped.png' class='good-img'></image>
+      <image src='{{good.img}}' class='good-img'></image>
     </view>
     <view class='good-content'>
       <view class='good-content-top'>
-        <view class='good-title font-6'>卡美婚嫁系列-戒指</view>
-        <view class='good-desc'>25分;vs微瑕; H/白;</view>
+        <view class='good-title font-6'>{{good.goods_title}}</view>
+        <view class='good-desc'>{{skuLabel}};</view>
       </view>
       <view class='good-content-bottom flex-row-between'>
         <view>
           <text class='good-monet-type'>￥</text>
-          <text class='good-momey-value'>32223.00</text>
+          <text class='good-momey-value'>{{goodPrice}}</text>
         </view>
-        <text class='good-count'>x1</text>
+        <text class='good-count'>x{{sku.num}}</text>
       </view>
     </view>
   </view>
   <view class="good-logistics-pane order-container">
     <view class='row-item flex-row-between'>
       <text class='font-9'>配送方式</text>
-      <view>
-        <text class="font-6">快递运输￥10.00</text>
+      <view bindtap="showLogisticDialog">
+        <text class="font-6">{{logitic.name}}￥{{logitic.price}}</text>
         <image src="/images/icon_arrow_r.png" class="arrow arrow-right"></image>
       </view>
     </view>
     <view class='row-item flex-row-between'>
       <text class='font-9'>留言</text>
       <view class='msg-pane'>
-        <input name="msg" class="input input-right font-6" type="text" placeholder="选填： 建议留言前先与卖家沟通确认" value="{{msg}}" placeholder-class="placeholder"/>
+        <input name="msg" class="input input-right font-6" type="text" placeholder="选填： 建议留言前先与卖家沟通确认" value="{{msg}}" placeholder-class="placeholder" bindinput="msgInput"/>
         <image src="/images/icon_arrow_r.png" class="arrow arrow-right"></image>
       </view>
     </view>
@@ -59,25 +59,38 @@
   <view class="good-money-pane order-container">
     <view class='row-item flex-row-between'>
       <text class='font-9'>商品总额</text>
-      <text class="font-6-blod font-size-24">￥35540.00</text>
+      <text class="font-6-blod font-size-24">￥{{goodPrice*sku.num}}</text>
     </view>
     <view class='row-item flex-row-between'>
       <text class='font-9'>运费</text>
-      <text class="font-6-blod font-size-24">￥10.00</text>
-    </view>
-    <view class='row-item flex-row-between'>
-      <text class='font-9'>优惠活动</text>
-      <text class="font-6-theme-blod font-size-24">-￥2000.00</text>
+      <text class="font-6-blod font-size-24">￥{{logitic.price}}</text>
     </view>
   </view>
   <view class="footer">
     <view class='footer-pane flex-row-between'>
       <view class='money'>
         <text class='all-txt'>合计:</text>
-        <text class='money-value'>￥33566.90</text>
+        <text class='money-value'>￥{{goodPrice*sku.num + logitic.price}}</text>
       </view>
       <view>
-        <button class="order-btn" bindtap='submitOrder'>提交订单</button>  
+        <button class="order-btn {{addInfo ? 'order-btn-active' : null}}" bindtap='submitOrder'>提交订单</button>  
+      </view>
+    </view>
+  </view>
+  <view class="show-popup flex-row-center" hidden="{{hideShopPopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class="popup-title">配送方式</view>
+      <view class="logistics-types" wx:for="{{logisticsList}}" wx:key="{{index}}">
+        <view class="logistics-types-item">
+          <text class="font-6">{{item.name}}</text>
+          <image class="select-img" src="{{selectIndex === index ? '/images/refund/button_select_on.png' : '/images/refund/button_select_off.png'}}"  data-index="{{index}}" bindtap="handleSelect"></image>
+        </view>
+        <view class="line" wx:if="{{index !== logisticsList.length}}"></view>
+      </view>
+      <view class="popup-btn-pane flex-row-center ">
+        <view class='popup-btn cancel-btn' bindtap="closePopupTap">取消</view>
+        <view class='popup-btn ok-btn' bindtap="saveLogistic">确定</view>
       </view>
     </view>
   </view>

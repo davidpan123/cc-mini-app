@@ -137,3 +137,89 @@ page{
 .order-btn-active {
   background-color: #ff91a5;
 } 
+
+
+/* 快递模态框 */
+.show-popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    z-index: 4;
+  }
+  .popup-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+  }
+  .popup-contents{
+    background-color: #fff;
+    z-index: 6;
+    width: 480rpx;
+    border-radius: 10rpx;
+  }
+  .wdith-600 {
+    width: 600rpx;
+  }
+  .popup-title {
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    border-top-left-radius: 10rpx;
+    border-top-right-radius: 10rpx;
+    font-size: 30rpx;
+    color: #666666;
+  }
+  .popup-item {
+    padding-top: 30rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #666666;
+  }
+  .popup-conten-item {
+    padding: 10rpx 20rpx 30rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #666666;
+  }
+  .logistics-types { 
+    padding: 0 24rpx 20rpx;
+  }
+  .logistics-types-item {
+    height: 84rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16rpx;
+  }
+  .select-img {
+    width: 36rpx;
+    height: 36rpx;
+    border-radius: 50%;
+  }
+  .line {
+    height: 2rpx;
+    background-color: #f0f0f0;
+  }
+  .popup-btn {
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    flex: 1;
+    border-bottom-left-radius: 10rpx;
+    border-bottom-right-radius: 10rpx;
+  }
+  .cancel-btn {
+    font-size: 30rpx;
+    color: #666666;
+  }
+  .ok-btn {
+    font-size: 30rpx;
+    color: #ffffff;
+    background-color: #ffaab9;
+  }

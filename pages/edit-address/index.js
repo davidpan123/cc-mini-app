@@ -146,7 +146,6 @@ Page({
     })
   },
   bindSave: function (e) {
-    console.log(this.data.reqData)
     var that = this;
     var linkMan = this.data.reqData.name;
     var address = this.data.address;
@@ -188,10 +187,12 @@ Page({
     if (this.data.isEdit) {
       resObj = Object.assign({}, this.data.reqData, {address_id: this.data.reqData.id })
       WXAPI.setAddress(resObj).then(res => {
+        if (res.status !== 0) retrun
         wx.navigateBack({})
       })
     } else {
       WXAPI.addAdress(this.data.reqData).then(res => {
+        if(res.status !== 0) retrun
         wx.navigateBack({})
       })
     }

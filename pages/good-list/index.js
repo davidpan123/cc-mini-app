@@ -9,6 +9,7 @@ Page({
     windowHeight: '',
     res: null,
     sku: {
+      skuId: '',
       skuScore: [],
       skuClarity: [],
       skuColor: [],
@@ -89,6 +90,7 @@ Page({
 
       self.data.res.skus.forEach((item, index) => {
         if (!index) {
+          self.data.sku.skuId = item.sku_id
           self.data.sku.defaultPrice = item.price;
           self.data.sku.defaultMerchantCode = item.merchant_code;
         }
@@ -218,7 +220,7 @@ Page({
     // 购买操作
     // 成功后跳转确认订单页面
     wx.navigateTo({
-      url: '/pages/confirm-order/index'
+      url: `/pages/confirm-order/index?skuId=${this.data.sku.skuId}&num=${this.data.sku.count}&goodId=${this.data.goodId}`
     })
   },
   /**
