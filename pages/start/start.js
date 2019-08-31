@@ -27,10 +27,6 @@ Page({
             { videoSrc: res.data.list[0]['src_addr'] }
           )
         }
-      }).catch(function (e) {
-        wx.navigateTo({
-          url: '/pages/home/index'
-        })
       })
     }
   },  

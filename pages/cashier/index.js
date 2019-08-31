@@ -1,11 +1,13 @@
-// pages/cashier/index.js
+const WXAPI = require('../../wxapi/main')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orderId: ''
+    orderId: '',
+    payId: '',
+    all_money: 0
   },
 
   /**
@@ -28,6 +30,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
+    this.getOrderDetail()
   },
 
   /**
@@ -65,11 +68,41 @@ Page({
   onShareAppMessage: function () {
 
   },
+  getOrderDetail () {
+    let params = { id: this.data.orderId }
+    WXAPI.getOrderDetail(params).then(res => {
+      if (res.status !== 0) return
+      this.setData({
+        all_money: res.data.all_money
+      })
+    })
+  },
   /**
    * 确认支付
    */
   confirmPay () {
     // 支付接口
+    //1. 申请pay_id 
+    WXAPI.getPayId({ order_id: this.data.orderId }).then(res => {
+      if (res.status !== 0) return
+      this.setData({
+        payId: res.data.pay_id
+      })
+      let payParam = { order_id: this.data.orderId, pay_id: res.data.pay_id}
+      WXAPI.pay(payParam).then(payData => {
+        wx.requestPayment({
+          appId: payData.data.appId,
+          timeStamp: payData.data.timeStamp,
+          nonceStr: payData.data.nonceStr,
+          package: payData.data.package,
+          signType: payData.data.signType,
+          paySign: payData.data.paySign,
+          success(res) {},
+          fail(err) {}
+        })
+      })
+    })
+    return 
     // 支付完成跳转
     wx.navigateTo({
       url: '/pages/order-pay-success/index'

@@ -31,7 +31,9 @@
         </view>
         <!--已取消 8-->
         <view class="order-item-btn" wx:if="{{item.status==8}}">
-          <button class="service-btn" bindtap="contactService">联系客服</button>  
+          <view class="order-item-btn-pane">
+            <button class="service-btn" bindtap="contactService">联系客服</button>  
+          </view>
         </view>
         <!-- 退款中 4  |  已退款 6-->
         <view class="order-item-btn" wx:if="{{item.status==4 || item.status==6}}">

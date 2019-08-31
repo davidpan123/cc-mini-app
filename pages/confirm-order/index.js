@@ -120,7 +120,7 @@ Page({
       if (res.status !== 0) return
       // 跳转支付页面
       wx.navigateTo({
-        url: '/pages/cashier/index'
+        url: `/pages/cashier/index?orderId=${res.data.order_id}`
       })
     })
   },

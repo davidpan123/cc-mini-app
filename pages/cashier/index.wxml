@@ -11,7 +11,7 @@
       </view>
       <view class="a-row">
         <view class="label money-label">需支付:</view>
-        <view class="text money-value">{{'3879.80元'}}</view>
+        <view class="text money-value">{{all_money}}元</view>
       </view>
     </view>
   </view>

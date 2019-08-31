@@ -9,7 +9,7 @@
     <view class="text">暂无订单</view>
   </view>
   <view class="order-list-pane" hidden="{{orderList && orderList.length ? false : true}}">
-    <scroll-view class="order-list" scroll-y="true">
+    <scroll-view class="order-list" scroll-y="true" style="height: {{windowHeight+'px'}}">
         <view class="order-item-pane" wx:for="{{orderList}}" wx:key="{{index}}" data-id="{{item.order_id}}" bindtap="goOrderDetail">
           <view class="order-item-header">
             <view class="title">
@@ -43,7 +43,9 @@
           </view>
           <!-- 待发货 1  |  已完成 3  | 已取消 8-->
           <view class="order-item-btn" wx:if="{{item.status==1 || item.status==3 || item.status==8}}">
-            <button class="service-btn" catchtap="contactService">联系客服</button>  
+            <view class="order-item-btn-pane">
+              <button class="service-btn" catchtap="contactService">联系客服</button> 
+            </view> 
           </view>
           <!-- 待收货 2-->
           <view class="order-item-btn" wx:if="{{item.status==2}}">

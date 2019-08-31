@@ -2,6 +2,7 @@ const app = getApp()
 const WXAPI = require('../../wxapi/main')
 Page({
   data: {
+    windowHeight: 0,
     appName: 'CC卡美珠宝',
     statusType: [
       { type: -1, name:"全部"},
@@ -10,6 +11,16 @@ Page({
       { type: 2, name: "待收货" },
       { type: 3, name: "已完成" }
     ],
+    allStatus: {
+      0: '待付款',
+      1: '待发货',
+      2: '待收货',
+      3: '已完成',
+      5: '退款中',
+      6: '退款完成',
+      7: '关闭',
+      8: '取消'
+    },
     currentType: -1,
     orderList: [],
     hideReceingPopup: true,
@@ -22,7 +33,7 @@ Page({
     this.setData({
       currentType: curType
     });
-    this.onShow();
+    this.getOrderList();
   },
   goOrderDetail (e) {
     let orderId = e.currentTarget.dataset.id;
@@ -31,15 +42,24 @@ Page({
     })
   },
   onLoad: function (options) {
+    const self = this
+    wx.getSystemInfo({
+      success: function (res) {
+        // 高度 单位为px
+        self.setData({
+          windowHeight: res.windowHeight - 50
+        })
+      }
+    })
     if (options && options.type) {
       this.setData({
         currentType: options.type
       });
     }
-    // 获取订单列表
-    this.getOrderList()
   },
   onShow: function () {
+    // 获取订单列表
+    this.getOrderList()
   },
   /**
    * 获取订单列表
@@ -49,7 +69,7 @@ Page({
       title: '加载中',
     })
     let that = this;
-    WXAPI.getOrders().then(res => {
+    WXAPI.getOrders({source: 2}).then(res => {
       wx.hideLoading();
       let orders = res.data;
       if (that.data.currentType != -1) {
@@ -58,13 +78,14 @@ Page({
         });
       }
       orders.forEach(order => {
-        let statusItem = this.data.statusType.find(statusObj => statusObj.type === order.status)
-        order.statusName = statusItem.name || '';
+        order.statusName = this.data.allStatus[order.status] || '';
         order.goods.forEach(item => {
-          if (item.is_diamond) {
+          if (item.good_kind === '0') {
             item.skuLabel = `${item.zhuzuanfenshu};${item.zuanshijingdu};${item.color};${item.guige}`;
-          } else {
+          } else if (item.good_kind === '1') {
             item.skuLabel = `${item.zhushimingcheng};${item.zhushipingji};${item.color};${item.guige}`;
+          } else {
+            item.skuLabel = `${item.jinleixing};${item.jinzhong};${item.guige}`;
           }
         });
       });

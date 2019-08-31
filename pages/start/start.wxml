@@ -1,5 +1,5 @@
 <!--pages/start/start.wxml-->
 <view class='video-pane'>
-  <video src="{{videoSrc}}" class='video' controls="{{false}}" autoplay="{{true}}"  show-center-play-btn="{{false}}" show-play-btn="{{false}}" bindended="videoEnd"></video>
+  <video src="{{videoSrc}}" class='video' controls="{{false}}" autoplay="{{true}}"  show-center-play-btn="{{false}}" show-play-btn="{{false}}" object-fit="cover" initial-time="2" bindended="videoEnd"></video>
   <image bindtap='goToIndex' class='btn' src='/images/Button_skip.png'></image> 
 </view>

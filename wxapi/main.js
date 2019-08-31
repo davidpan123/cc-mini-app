@@ -153,14 +153,14 @@ module.exports = {
   getDistrict: (data) => {
     return request('/xcx/district', true, 'get', data, true)
   },
-  getOrders: ()=> {
-    return request('/xcx/my/orders', true, 'get', '', true)
+  getOrders: (data)=> {
+    return request('/xcx/my/orders', true, 'get', data, true)
   },
   getOrderDetail: (data) => {
     return request('/xcx/order/detail/:id', true, 'get', data, true)
   },
   changeOrder: (data) => {
-    return request('/xcx/change_order', true, 'post', data, true)
+    return request('/xcx/change_order', true, 'post', data, false)
   },
   getGoodList: (data) => {
     return request('/xcx/goods', true, 'get', data, true)
@@ -175,26 +175,10 @@ module.exports = {
   confimOrder: (data) => {
     return request('/xcx/buy_now', true, 'post', data, false)
   },
-  uploadFile: (token, tempFilePath) => {
-    const uploadUrl = API_BASE_URL + '/' + CONFIG.subDomain + '/dfs/upload/file'
-    return new Promise((resolve, reject) => {
-      wx.uploadFile({
-        url: uploadUrl,
-        filePath: tempFilePath,
-        name: 'upfile',
-        formData: {
-          'token': token
-        },
-        success(res) {
-          resolve(JSON.parse(res.data))
-        },
-        fail(error) {
-          reject(error)
-        },
-        complete(aaa) {
-          // 加载完成
-        }
-      })
-    })
+  getPayId: (data) => {
+    return request('/xcx/pay_prepare', true, 'post', data, false)
+  },
+  pay: (data)=> {
+    return request('/xcx/pay_submit', true, 'post', data, false)
   }
 }

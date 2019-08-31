@@ -26,7 +26,7 @@ Page({
   onShow: function () {
     // 获取订单列表
     let that = this;
-    WXAPI.getOrders().then(res => {
+    WXAPI.getOrders({source: 2}).then(res => {
       let orders = res.data;
       orders = orders.filter(order => {
         return order.status === 4 || order.status === 6 || order.status === 8;

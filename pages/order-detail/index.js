@@ -51,10 +51,12 @@ Page({
       wx.hideLoading();
       let order = res.data
       order.goods.forEach(item => {
-        if (item.is_diamond) {
-          item.skuLabel = `${item.zhuzuanfenshu};${item.zuanshijingdu};${item.guige};${item.guige}`;
+        if (item.good_kind === '0') {
+          item.skuLabel = `${item.zhuzuanfenshu};${item.zuanshijingdu};${item.color};${item.guige}`;
+        } else if (item.good_kind === '1') {
+          item.skuLabel = `${item.zhushimingcheng};${item.zhushipingji};${item.color};${item.guige}`;
         } else {
-          item.skuLabel = `${item.zhushimingcheng};${item.zhushipingji};${item.guige};${item.guige}`;
+          item.skuLabel = `${item.jinleixing};${item.jinzhong};${item.guige}`;
         }
       });
       if (!order.logistics.info) {
@@ -82,6 +84,8 @@ Page({
         statusName: that.getStatusName(order.status),
         isShowPay: that.isShowPay(order.status),
         created_at: created_at,
+        finish_at: finish_at,
+        pay_time: pay_time
       })
     })
   },

@@ -5,7 +5,7 @@
     <view class="good-list-pane" wx:for="{{goodList}}" wx:key="{{index}}" id="{{item.goods_id}}">
       <image class="good-img" src="{{item.xcx_d_pic}}"></image>
       <view class="model-pane">
-        <image class="good-top-img" src="{{item.xcx_xq_pic}}"></image>
+        <image class="good-top-img" src="{{item.xcx_xq_pic[0].url}}"></image>
         <view class="good-title">{{item.xcx_title}}</view>
         <view class="good-desc">
             <view class="good-item-desc">{{item.xcx_xq_content}}</view>
