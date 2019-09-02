@@ -173,6 +173,11 @@ page {
     color: #ff91a5;
   }
 
+  .disabled {
+    background-color: #eeeeee;
+    color: #bbbbbb;
+  }
+
   .sku-count-pane {
     padding: 32rpx 40rpx;
   }

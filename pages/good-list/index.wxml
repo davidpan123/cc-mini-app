@@ -27,7 +27,7 @@
     <view class="popup-mask" bindtap="closePopupTap"></view>
     <view class="popup-contents">
       <view class="good-pay-pane flex-row-start border-bottom"> 
-        <image class="good-pay-img" src="{{res.img}}"></image>
+        <image class="good-pay-img" src="{{res.xcx_xq_pic[0].url}}"></image>
         <view class="good-pay-desc-pane">
           <view class="pay-money">￥{{sku.price || sku.defaultPrice}}</view>
           <view class="good-pay-num">商品编号：{{sku.merchantCode || sku.defaultMerchantCode}}</view>
@@ -37,25 +37,25 @@
         <view class="sku-tem-pane">
           <view class="sku-title font-6 mag-top-40">{{res.good_kind === '0' ? '主钻分数' : (res.good_kind === '1' ? '主石名称' : '金类型')}}</view>
           <view wx:for="{{sku.skuScore}}" wx:key="{{index}}" class="sku-tem-btn-pane">
-            <button class="sku-btn font-6 {{sku.type === item.label ? 'type-active' : ''}}" bindtap="selectedType" data-type="{{item.label}}">{{item.label}}</button>
+            <button class="sku-btn font-6 {{skuIndex.scoreIndex === index ? 'type-active' : ''}} {{item.disabled ? 'disabled' : ''}}" bindtap="selectedType" data-item="{{item}}" data-index="{{index}}">{{item.label}}</button>
           </view>
         </view>
         <view class="sku-tem-pane">
           <view class="sku-title font-6 mag-top-40"> {{res.good_kind === '0' ? '钻石净度' : (res.good_kind === '1' ? '主石评级' : '金重')}}</view>
           <view wx:for="{{sku.skuClarity}}" wx:key="{{index}}" class="sku-tem-btn-pane">
-            <button class="sku-btn font-6 {{sku.level === item.label ? 'level-active' : ''}}" bindtap="selectedLevel" data-level="{{item.label}}">{{item.label}}</button>
+            <button class="sku-btn font-6 {{skuIndex.clarityIndex === index ? 'level-active' : ''}} {{item.disabled ? 'disabled' : ''}}" bindtap="selectedLevel" data-item="{{item}}" data-index="{{index}}">{{item.label}}</button>
           </view>
         </view>
         <view class="sku-tem-pane" wx:if="{{res.good_kind !== '2'}}">
           <view class="sku-title font-6 mag-top-40">{{res.good_kind === '0' ? '主钻颜色' : '主石颜色'}}</view>
           <view wx:for="{{sku.skuColor}}" wx:key="{{index}}" class="sku-tem-btn-pane">
-            <button class="sku-btn font-6 {{sku.color === item.label ? 'color-active' : ''}}" bindtap="selectedColor" data-color="{{item.label}}">{{item.label}}</button>
+            <button class="sku-btn font-6 {{skuIndex.colorIndex === index ? 'color-active' : ''}} {{item.disabled ? 'disabled' : ''}}" bindtap="selectedColor" data-item="{{item}}" data-index="{{index}}">{{item.label}}</button>
           </view>
         </view>
         <view class="sku-tem-pane">
           <view class="sku-title font-6 mag-top-40">规格</view>
           <view wx:for="{{sku.skuSpec}}" wx:key="{{index}}" class="sku-tem-btn-pane">
-            <button class="sku-btn font-6 {{sku.spec === item.label ? 'spec-active' : ''}}" bindtap="selectedSpec" data-spec="{{item.label}}">{{item.label}}</button>
+            <button class="sku-btn font-6 {{skuIndex.specIndex === index ? 'spec-active' : ''}} {{item.disabled ? 'disabled' : ''}}" bindtap="selectedSpec" data-item="{{item}}" data-index="{{index}}">{{item.label}}</button>
           </view>
         </view>
       </view> 

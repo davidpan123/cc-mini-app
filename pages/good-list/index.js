@@ -8,6 +8,12 @@ Page({
     toView: 'dssdsd22',
     windowHeight: '',
     res: null,
+    skuIndex: {
+      scoreIndex: -1,
+      clarityIndex: -1,
+      colorIndex: -1,
+      specIndex: -1
+    },
     sku: {
       skuId: '',
       skuScore: [],
@@ -19,11 +25,7 @@ Page({
       defaultMerchantCode: '',
       defaultPrice: 0,
       limit: 99,
-      count: 1,
-      type: '',
-      level: '',
-      color: '',
-      spec: ''
+      count: 1
     },
     pages: 0,
     pageIndex: 1 ,
@@ -90,7 +92,6 @@ Page({
 
       self.data.res.skus.forEach((item, index) => {
         if (!index) {
-          self.data.sku.skuId = item.sku_id
           self.data.sku.defaultPrice = item.price;
           self.data.sku.defaultMerchantCode = item.merchant_code;
         }
@@ -103,20 +104,12 @@ Page({
           if (item.zuanshijingdu) {
             skuClarity.push(item.zuanshijingdu);
           }
-          if (!index) {
-            self.data.sku.type = item.zhuzuanfenshu;
-            self.data.sku.level = item.zuanshijingdu;
-          }
         } else if (res.data.good_kind === '1') {
           if (item.zhushimingcheng) {
             skuScore.push(item.zhushimingcheng);
           }
           if (item.zhushipingji) {
             skuClarity.push(item.zhushipingji);
-          }
-          if (!index) {
-            self.data.sku.type = item.zhushimingcheng;
-            self.data.sku.level = item.zhushipingji;
           }
         } else {
           if (item.jinleixing) {
@@ -125,23 +118,13 @@ Page({
           if (item.jinzhong) {
             skuClarity.push(item.jinzhong);
           }
-          if (!index) {
-            self.data.sku.type = item.jinleixing;
-            self.data.sku.level = item.jinzhong;
-          }
         }
         
         if (item.color) {
           skuColor.push(item.color);
-          if (!index) {
-            self.data.sku.color = item.color;
-          }
         }
         if (item.guige) {
           skuSpec.push(item.guige);
-          if (!index) {
-            self.data.sku.spec = item.guige;
-          }
         }
       });
 
@@ -149,6 +132,30 @@ Page({
       skuClarity = [...new Set(skuClarity)];
       skuColor = [...new Set(skuColor)];
       skuSpec = [...new Set(skuSpec)];
+
+      self.data.res.skus.forEach(item => {
+        if (res.data.good_kind === '0') {
+          item.skuIds = [
+            skuScore.indexOf(item.zhuzuanfenshu),
+            skuClarity.indexOf(item.zuanshijingdu),
+            skuColor.indexOf(item.color),
+            skuSpec.indexOf(item.guige)
+          ].join('_');
+        } else if (res.data.good_kind === '1') {
+          item.skuIds = [
+            skuScore.indexOf(item.zhushimingcheng),
+            skuClarity.indexOf(item.zhushipingji),
+            skuColor.indexOf(item.color),
+            skuSpec.indexOf(item.guige)
+          ].join('_');
+        } else {
+          item.skuIds = [
+            skuScore.indexOf(item.jinleixing),
+            skuClarity.indexOf(item.jinzhong),
+            skuSpec.indexOf(item.guige)
+          ].join('_');
+        }
+      });
 
       self.data.sku.skuScore = skuScore.map(item => ({ label: item, disabled: false }));
       self.data.sku.skuClarity = skuClarity.map(item => ({ label: item, disabled: false }));
@@ -159,41 +166,79 @@ Page({
       })
     })
   },
+  setSkuStatus () {
+    let { scoreIndex, clarityIndex, colorIndex, specIndex } = this.data.skuIndex
+    let selectIndexes = [scoreIndex, clarityIndex, colorIndex, specIndex];
+    [this.data.sku.skuScore, this.data.sku.skuClarity, this.data.sku.skuColor, this.data.sku.skuSpec].forEach((type, typeIndex) => {
+      type.forEach((item, index) => {
+        let arr = Object.assign([], selectIndexes);
+        arr[typeIndex] = index;
+        let reg = new RegExp(arr.join('_').replace(/-1/g, '[\\d]'), 'g');
+        let result = this.data.res.skus.filter(sku => {
+          return reg.test(sku.skuIds);
+        });
+        item.disabled = !result.length;
+      });
+    });
+    if(!selectIndexes.includes(-1)) {
+      let skuItem = this.data.res.skus.find(item => item.skuIds === selectIndexes.join('_'))
+      if (skuItem) {
+        this.data.sku.skuId = skuItem.sku_id
+        this.setData({
+          sku: this.data.sku
+        })
+      }
+    } else {
+      this.data.sku.skuId = ''
+      this.setData({
+        sku: this.data.sku
+      })
+    }
+  },
+  selectIndex (item, index, type) {
+    if(!item.disabled) {
+      if(this.data.skuIndex[type] === index) {
+        this.data.skuIndex[type] = -1
+      } else {
+        this.data.skuIndex[type] = index
+      }
+    }
+    this.setData({
+      skuIndex: this.data.skuIndex
+    })
+    this.setSkuStatus()
+  },
   /**
    * 选择类型(钻石分数、主石名称、金类型)
    */
   selectedType (e) {
-    this.data.sku.type = e.currentTarget.dataset['type']
-    this.setData({
-      sku: this.data.sku
-    })
+    let item = e.currentTarget.dataset['item']
+    let index = e.currentTarget.dataset['index']
+    this.selectIndex(item, index, 'scoreIndex')
   },
   /**
    * 选择level(钻石进度、主石评级、金重)
    */
   selectedLevel(e) {
-    this.data.sku.level = e.currentTarget.dataset['level']
-    this.setData({
-      sku: this.data.sku
-    })
+    let item = e.currentTarget.dataset['item']
+    let index = e.currentTarget.dataset['index']
+    this.selectIndex(item, index, 'clarityIndex')
   },
   /**
    * 选择颜色
    */
   selectedColor(e) {
-    this.data.sku.color = e.currentTarget.dataset['color']
-    this.setData({
-      sku: this.data.sku
-    })
+    let item = e.currentTarget.dataset['item']
+    let index = e.currentTarget.dataset['index']
+    this.selectIndex(item, index, 'colorIndex')
   },
   /**
    * 选择规格
    */
   selectedSpec(e) {
-    this.data.sku.spec =  e.currentTarget.dataset['spec']
-    this.setData({
-      sku: this.data.sku
-    })
+    let item = e.currentTarget.dataset['item']
+    let index = e.currentTarget.dataset['index']
+    this.selectIndex(item, index, 'specIndex')
   },
   minute () {
     if (this.data.sku.count > 1) {
@@ -215,6 +260,14 @@ Page({
    * 确认购买
    */
   confirmBuy () {
+    if (!this.data.sku.skuId) {
+      wx.showModal({
+        title: '提示',
+        content: '亲, 请完善商品参数的选择!',
+        showCancel: false
+      })
+      return
+    }
     // 购买操作
     this.closePopupTap()
     // 购买操作
