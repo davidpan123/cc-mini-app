@@ -10,7 +10,7 @@
     </view>
     <view class="order-money">
       <label class="label-text">支付金额:</label>
-      <text class="value-text">3600.90元</text>
+      <text class="value-text">{{all_money}}元</text>
     </view>
   </view>
   <view>

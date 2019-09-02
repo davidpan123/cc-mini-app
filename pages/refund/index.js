@@ -4,29 +4,16 @@ Page({
     appName: 'CC卡美珠宝',
     orderList: []
   },
-  cancelOrderTap: function (e) {
-    const that = this;
-    const orderId = e.currentTarget.dataset.id;
-    wx.showModal({
-      title: '确定要取消该订单吗？',
-      content: '',
-      success: function (res) {
-        if (res.confirm) {
-          WXAPI.orderClose(orderId, wx.getStorageSync('token')).then(function (res) {
-            if (res.code == 0) {
-              that.onShow();
-            }
-          })
-        }
-      }
-    })
-  },
   onLoad: function () {
   },
   onShow: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
     // 获取订单列表
-    let that = this;
     WXAPI.getOrders({source: 2}).then(res => {
+      wx.hideLoading();
+      if (res.status !== 0) return
       let orders = res.data;
       orders = orders.filter(order => {
         return order.status === 4 || order.status === 6 || order.status === 8;
@@ -34,10 +21,12 @@ Page({
       orders.forEach(order => {
         order.statusName = order.status === 4 ? '退款中' : (order.status === 8 ? '已取消' : '已退款');
         order.goods.forEach(item => {
-          if (item.is_diamond) {
-            item.skuLabel = `${item.zhuzuanfenshu};${item.zuanshijingdu};${item.guige};${item.guige}`;
+          if (item.good_kind === '0') {
+            item.skuLabel = `${item.zhuzuanfenshu};${item.zuanshijingdu};${item.color};${item.guige}`;
+          } else if (item.good_kind === '1') {
+            item.skuLabel = `${item.zhushimingcheng};${item.zhushipingji};${item.color};${item.guige}`;
           } else {
-            item.skuLabel = `${item.zhushimingcheng};${item.zhushipingji};${item.guige};${item.guige}`;
+            item.skuLabel = `${item.jinleixing};${item.jinzhong};${item.guige}`;
           }
         });
       });
@@ -58,7 +47,7 @@ Page({
   */
   goRefundDetail() {
     wx.navigateTo({
-      url: '/pages/refund-detail/index'
+      url: '/pages/refund-detail/index?orderId=' + orderId,
     })
   },
   /**

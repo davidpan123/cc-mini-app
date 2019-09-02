@@ -5,14 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orderId: ''
+    all_money: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      orderId: options.orderId,
+      all_money: options.all_money
+    })
   },
 
   /**
@@ -32,9 +36,8 @@ Page({
    * to 订单详情
    */
   goOrderDetail () {
-    // oreder详情id
     wx.navigateTo({
-      url: '/pages/order-detail/index'
+      url: '/pages/order-detail/index?orderId=' + this.data.orderId
     })
   },
   /**

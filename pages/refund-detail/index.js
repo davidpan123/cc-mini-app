@@ -43,6 +43,7 @@ Page({
     let params = { id: this.data.orderId }
     WXAPI.getOrderDetail(params).then(res => {
       wx.hideLoading();
+      if (res.status !== 0) return
       let order = res.data
       let reqData = {
         name: order.refund_info.name,
@@ -127,6 +128,7 @@ Page({
     let orderId = this.data.orderId;
     let params = Object.assign({ order_id: orderId, action: 'refund', choice: this.data.selectIndex }, this.data.reqData)
     WXAPI.changeOrder(params).then(res => {
+      if (res.status !== 0) return
       // 重新提交成功后再次请求详情接口
       self.getOrderDetail()
     })

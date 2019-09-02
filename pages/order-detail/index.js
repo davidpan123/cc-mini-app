@@ -49,6 +49,7 @@ Page({
     let params = {id: this.data.orderId}
     WXAPI.getOrderDetail(params).then(res => {
       wx.hideLoading();
+      if (res.status !== 0) return
       let order = res.data
       order.goods.forEach(item => {
         if (item.good_kind === '0') {
@@ -108,15 +109,7 @@ Page({
    * 是否显示付款信息
    */
   isShowPay (status) {
-    if (status === 0) {
-      return false;
-    } else {
-      if (status === 8) {
-        return false;
-      } else {
-        return true;
-      }
-    }
+    return status !== 0 && status !== 8
   },
   /**
    * 查看物流

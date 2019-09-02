@@ -97,15 +97,15 @@ Page({
           package: payData.data.package,
           signType: payData.data.signType,
           paySign: payData.data.paySign,
-          success(res) {},
+          success(res) {
+            // 支付完成跳转
+            wx.navigateTo({
+              url: `/pages/order-pay-success/index?all_money=${this.data.all_money}&orderId=${this.data.orderId}`
+            })
+          },
           fail(err) {}
         })
       })
-    })
-    return 
-    // 支付完成跳转
-    wx.navigateTo({
-      url: '/pages/order-pay-success/index'
     })
   }
 })
