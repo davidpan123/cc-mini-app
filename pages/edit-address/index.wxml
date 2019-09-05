@@ -21,7 +21,7 @@
         </view>
         <view class="addr-details">
             <view class="label">详细地址</view>
-            <view class="label-right">
+            <view class="label-right" wx:if="{{hideShopPopup}}">
                 <textarea name="address" disabled="{{!hideShopPopup}}" class='input-right' auto-height placeholder="{{hideShopPopup ? '请填写街道、楼门牌等信息' : ''}}"  value="{{reqData.street}}" placeholder-class="placeholder" bindinput="streetInput"/>
             </view>
         </view>
