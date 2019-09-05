@@ -5,40 +5,42 @@
   </view>
   <view class="order-list-pane top-shadow-inset" hidden="{{orderList && orderList.length ? false : true}}">
     <scroll-view class="order-list" scroll-y="true">
-      <view class="order-item-pane" wx:for="{{orderList}}" wx:key="{{index}}" data-id="{{item.order_id}}" bindtap="goOrderDetail">
-        <view class="order-item-header">
-          <view class="title">
-            <image class="shop-icon" src="/images/order/icon_shop.png"></image>
-            <text class="title-text">{{appName}}</text>
+      <view class="order-item-pane" wx:for="{{orderList}}" wx:key="{{index}}" >
+        <view data-id="{{item.order_id}}" bindtap="goOrderDetail">
+          <view class="order-item-header">
+            <view class="title">
+              <image class="shop-icon" src="/images/order/icon_shop.png"></image>
+              <text class="title-text">{{appName}}</text>
+            </view>
+            <view class="status-desc">{{item.statusName}}</view>
           </view>
-          <view class="status-desc">{{item.statusName}}</view>
-        </view>
-         <view class="order-item-content" wx:for="{{item.goods}}" wx:for-item="good" wx:key="{{index}}">
-          <view class="order-content-left">
-            <image src="{{good.goods_img}}" class="goods-img"></image>
-            <view class="good-desc-pane">
-              <view class="good-desc-title">{{good.goods_name}}</view>
-              <view class="good-desc-txt">{{good.skuLabel}}</view>
+          <view class="order-item-content" wx:for="{{item.goods}}" wx:for-item="good" wx:key="{{index}}">
+            <view class="order-content-left">
+              <image src="{{good.goods_img}}" class="goods-img"></image>
+              <view class="good-desc-pane">
+                <view class="good-desc-title">{{good.goods_name}}</view>
+                <view class="good-desc-txt">{{good.skuLabel}}</view>
+              </view>
+            </view>
+            <view class="order-content-right">
+              <view class="order-item-money">￥{{good.goods_price}}</view>
+              <view class="order-item-count">X{{good.goods_count}}</view>
             </view>
           </view>
-          <view class="order-content-right">
-            <view class="order-item-money">￥{{good.goods_price}}</view>
-            <view class="order-item-count">X{{good.goods_count}}</view>
+          <view class="order-item-desc">
+            <text class="desc-text">共{{item.goods.length}}件商品 实付款：￥{{item.rest_money}} (含运费￥{{item.logistics_money}})</text>
           </view>
-        </view>
-        <view class="order-item-desc">
-          <text class="desc-text">共{{item.goods.length}}件商品 实付款：￥{{item.rest_money}} (含运费￥{{item.logistics_money}})</text>
-        </view>
-        <!--已取消 8-->
-        <view class="order-item-btn" wx:if="{{item.status==8}}">
-          <view class="order-item-btn-pane">
-            <button class="service-btn" bindtap="contactService">联系客服</button>  
+          <!--已取消 8-->
+          <view class="order-item-btn" wx:if="{{item.status==8}}">
+            <view class="order-item-btn-pane">
+              <button class="service-btn" open-type="contact">联系客服</button>  
+            </view>
           </view>
         </view>
         <!-- 退款中 4  |  已退款 6-->
         <view class="order-item-btn" wx:if="{{item.status==4 || item.status==6}}">
           <view class="order-item-btn-pane">
-            <button class="service-btn" bindtap="contactService">联系客服</button>  
+            <button class="service-btn" open-type="contact">联系客服</button>  
             <button class="pay-btn" data-id="{{item.order_id}}" bindtap="goRefundDetail">查看退款</button>  
           </view>
         </view>
