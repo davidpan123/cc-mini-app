@@ -5,7 +5,7 @@ Page({
    */
   data: {
     hideShopPopup: true,
-    toView: 'dssdsd22',
+    toView: '',
     windowHeight: '',
     res: null,
     skuIndex: {

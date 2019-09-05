@@ -44,7 +44,7 @@
           </view>
         </view>
         <view class="addList">
-          <view wx:for="{{adList}}" wx:key="{{index}}" data-item="{{item}}" data-index="{{index}}" bindtap="choice" class="list-item font-6 {{selectedIndex === index ? 'actived' : ''}}" >
+          <view wx:for="{{adList}}" wx:key="{{index}}" data-item="{{item}}" data-index="{{index}}" bindtap="choice" class="list-item font-6 {{(chIndex===1 && reqData.province === item.name || chIndex===2 && reqData.city === item.name || chIndex===3 && reqData.district === item.name) ? 'actived' : ''}}" >
             {{item.name}}
           </view>
         </view>

@@ -89,6 +89,7 @@ Page({
         payId: res.data.pay_id
       })
       let payParam = { order_id: this.data.orderId, pay_id: res.data.pay_id}
+      const self = this
       WXAPI.pay(payParam).then(payData => {
         wx.requestPayment({
           appId: payData.data.appId,
@@ -100,7 +101,7 @@ Page({
           success(res) {
             // 支付完成跳转
             wx.navigateTo({
-              url: `/pages/order-pay-success/index?all_money=${this.data.all_money}&orderId=${this.data.orderId}`
+              url: `/pages/order-pay-success/index?all_money=${self.data.all_money}&orderId=${self.data.orderId}`
             })
           },
           fail(err) {}

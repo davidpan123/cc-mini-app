@@ -52,7 +52,6 @@
       <text class='font-9'>留言</text>
       <view class='msg-pane'>
         <input name="msg" class="input input-right font-6" type="text" placeholder="选填： 建议留言前先与卖家沟通确认" value="{{msg}}" placeholder-class="placeholder" bindinput="msgInput"/>
-        <image src="/images/icon_arrow_r.png" class="arrow arrow-right"></image>
       </view>
     </view>
   </view>

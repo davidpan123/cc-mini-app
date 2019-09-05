@@ -173,6 +173,10 @@ page, .scroll-view{
   background-color: #ffaab9;
 }
 
+.mar-right {
+  margin-left: 30rpx;
+}
+
 /* 订单详情 */
 .pad-bootom {
   padding-bottom: 20rpx;

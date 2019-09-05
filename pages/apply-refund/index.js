@@ -44,7 +44,6 @@ Page({
     WXAPI.getOrderDetail(params).then(res => {
       wx.hideLoading();
       let order = res.data
-      
       //created_at下单时间
       let created_at = ''
       if (order.created_at) {

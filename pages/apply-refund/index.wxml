@@ -5,8 +5,9 @@
       <view class="a-row">
         <view class="label">订单内容:</view>
         <view>
-          <text wx:for="order.goods" wx:key="{{index}}">{{item.goods_name}}</text>
-          <text>共{{item.goods_count}}件</text>
+          <text wx:for="{{order.goods}}" wx:key="{{index}}">
+            <text>{{item.goods_name}}{{' '}}共{{item.goods_count}}件</text>
+          </text>
         </view>
       </view>
       <view class="a-row next">

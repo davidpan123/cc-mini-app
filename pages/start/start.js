@@ -17,6 +17,9 @@ Page({
     const _this = this
     const app_show_pic_version = wx.getStorageSync('app_show_pic_version')
     if (app_show_pic_version && app_show_pic_version == CONFIG.version) {
+      this.setData(
+        { videoSrc: wx.getStorageSync('videoSrc') || '' }
+      )
       this.goLoginOrHome()
     } else {
       let params = { src_flag: 0 }
@@ -26,6 +29,7 @@ Page({
           this.setData(
             { videoSrc: res.data.list[0]['src_addr'] }
           )
+          wx.setStorageSync('videoSrc', this.data.videoSrc)
         }
       })
     }

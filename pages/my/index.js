@@ -50,6 +50,7 @@ Page({
     this.setData({
       userInfo: appData.globalData.userInfo
     })
+
     this.getAddress()
   },
   /**

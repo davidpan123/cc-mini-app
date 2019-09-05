@@ -45,7 +45,8 @@ Page({
   /**
   * 查看退款
   */
-  goRefundDetail() {
+  goRefundDetail(e) {
+    let orderId = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/refund-detail/index?orderId=' + orderId,
     })

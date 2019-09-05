@@ -17,7 +17,6 @@ const request = (url, needSubDomain, method, data, isJson) => {
         'X-AUTH-USER': wx.getStorageSync('user_id'),
         'X-AUTH-TOKEN': wx.getStorageSync('token'),
         'Content-Type': isJson ? 'application/json; charset=UTF-8' : 'application/x-www-form-urlencoded; charset=UTF-8'
-        //  Content-Type："json"
       },
       success(request) {
         resolve(request.data)
