@@ -1,6 +1,6 @@
 // 小程序开发api接口工具包，https://github.com/gooking/wxapi
 const CONFIG = require('./config.js')
-const API_BASE_URL = 'http://shoptest.cc-jewel.com'
+const API_BASE_URL = 'https://shoptest.cc-jewel.com'
 
 const request = (url, needSubDomain, method, data, isJson) => {
   if (/:id/.test(url)) {
